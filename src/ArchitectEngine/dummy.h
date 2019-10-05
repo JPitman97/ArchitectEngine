@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _DUMMY_H
+#define _DUMMY_H
+
 #include <iostream>
 #include <SDL2/SDL.h>
 
@@ -16,3 +18,4 @@ private:
 	const int SCREEN_HEIGHT = 480;
 };
 
+#endif
