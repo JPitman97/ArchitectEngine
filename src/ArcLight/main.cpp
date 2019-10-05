@@ -1,6 +1,11 @@
-#include <iostream>
+#include "dummy.h"
 
-int main() {
-	std::cout << "Hello World!" << std::endl;
-return 0;
+int main()
+{
+	std::shared_ptr<dummy> dumbo(new dummy);
+
+	dumbo->openWindow();
+
+	getchar();
+	return 0;
 }
