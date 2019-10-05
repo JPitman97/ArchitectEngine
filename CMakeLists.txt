@@ -12,7 +12,7 @@ link_directories(
 
 target_include_directories(ArchitectEngine PUBLIC ${CMAKE_SOURCE_DIR}/External/include/msvc)
 
-target_link_libraries(ArchitectEngine SDL2 opengl32 glew32)
+target_link_libraries(ArchitectEngine SDL2 GL GLU)
 
 add_executable(ArcLight
 	src/ArcLight/main.cpp
