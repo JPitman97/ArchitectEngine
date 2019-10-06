@@ -2,6 +2,7 @@
 #define _DUMMY_H
 
 #include <iostream>
+#include <memory>
 #include <SDL2/SDL.h>
 
 class dummy
@@ -12,8 +13,8 @@ public:
 	void openWindow();
 
 private:
-	SDL_Window* window = NULL;
-	SDL_Surface* surface = NULL;
+	SDL_Window* window = nullptr;
+	SDL_Surface* surface = nullptr;
 	const int SCREEN_WIDTH = 640;
 	const int SCREEN_HEIGHT = 480;
 };
