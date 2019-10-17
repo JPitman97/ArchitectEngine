@@ -1,10 +1,24 @@
-#include "../ArchitectEngine/dummy.h"
+#include "../ArchitectEngine/Core.h"
+#include <iostream>
 
-int main() {
-    std::shared_ptr<dummy> dumbo(new dummy);
+#define shared std::shared_ptr
+#define weak std::weak_ptr
 
-    dumbo->openWindow();
-    std::cout << "Dying" << std::endl;
-    //getchar();
-    return 0;
+int main()
+{
+	//Init
+	shared<Core> core = Core::Initialize();
+
+	//Create a new entity
+	shared<Entity> entity = core->addEntity();
+
+	//Add a component
+	
+
+	//Start
+	core->start();
+
+	std::cout << "Dying" << std::endl;
+	//getchar();
+	return 0;
 }

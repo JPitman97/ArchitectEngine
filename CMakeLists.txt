@@ -2,8 +2,12 @@ cmake_minimum_required(VERSION 2.6)
 project(ARCHITECTENGINE)
 
 add_library(ArchitectEngine
-	src/ArchitectEngine/dummy.cpp
-	src/ArchitectEngine/dummy.h
+	src/ArchitectEngine/Core.cpp
+	src/ArchitectEngine/Core.h
+	src/ArchitectEngine/Entity.cpp
+	src/ArchitectEngine/Entity.h
+	src/ArchitectEngine/Component.cpp
+	src/ArchitectEngine/Component.h
 )
 
 link_directories(
