@@ -8,6 +8,8 @@ add_library(ArchitectEngine
 	src/ArchitectEngine/Entity.h
 	src/ArchitectEngine/Component.cpp
 	src/ArchitectEngine/Component.h
+	src/ArchitectEngine/Renderer.cpp
+	src/ArchitectEngine/Renderer.h
 )
 
 link_directories(

@@ -2,18 +2,15 @@
 #define _CORE_H
 
 #include <memory>
-#include <vector>
+#include <list>
 
 class Entity;
 
 class Core
 {
 public:
-	Core();
-
-	~Core();
-
-	static std::shared_ptr<Core> Initialize();
+	
+	std::shared_ptr<Core> Initialize();
 
 	void start();
 
@@ -24,8 +21,8 @@ public:
 private:
 	//std::shared_ptr<Enviroment> enviroment;
 	//std::shared_ptr<Keyboard> keyboard;
-	std::vector<std::shared_ptr<Entity>> entities;
-	bool isRunning;
+	std::list<std::shared_ptr<Entity>> entities;
+	bool isRunning = false;
 };
 
 #endif

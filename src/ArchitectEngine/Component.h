@@ -4,11 +4,11 @@
 
 class Core;
 class Entity;
+
 class Component
 {
 public:
-
-	Component();
+	virtual ~Component() = default;
 
 	std::shared_ptr<Entity> getEntity() const;
 

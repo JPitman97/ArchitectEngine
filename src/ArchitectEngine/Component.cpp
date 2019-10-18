@@ -1,7 +1,5 @@
 #include "Component.h"
-#include "Entity.h"
 
-Component::Component() = default;
 
 std::shared_ptr<Entity> Component::getEntity() const
 {

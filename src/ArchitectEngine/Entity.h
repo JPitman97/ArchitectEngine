@@ -2,15 +2,14 @@
 #define _ENTITY_H
 
 #include <memory>
-#include <vector>
+#include <list>
 
-class Core;
 class Component;
+class Core;
+
 class Entity
 {
 public:
-
-	Entity();
 
 	std::shared_ptr<Core> getCore() const;
 
@@ -24,7 +23,7 @@ private:
 
 private:
 	std::weak_ptr<Core> core;
-	std::vector<std::shared_ptr<Component>> components;
+	std::list<std::shared_ptr<Component>> components;
 };
 
 #endif

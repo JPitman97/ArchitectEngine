@@ -7,13 +7,14 @@
 int main()
 {
 	//Init
-	shared<Core> core = Core::Initialize();
+	shared<Core> core;
+	core->Initialize();
 
 	//Create a new entity
 	shared<Entity> entity = core->addEntity();
 
-	//Add a component
-	
+	//Add a component TODO fix the circular dependency issue with this line!!!
+	//entity->addComponent<Renderer>();
 
 	//Start
 	core->start();

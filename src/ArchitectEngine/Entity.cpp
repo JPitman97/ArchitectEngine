@@ -1,8 +1,4 @@
 #include "Entity.h"
-#include "Component.h"
-#include "Core.h"
-
-Entity::Entity() = default;
 
 std::shared_ptr<Core> Entity::getCore() const
 {
