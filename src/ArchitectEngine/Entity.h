@@ -13,8 +13,15 @@ public:
 
 	std::shared_ptr<Core> getCore() const;
 
-	template <class T>
-	std::shared_ptr<T> addComponent();
+
+	template <class T> std::shared_ptr<T> addComponent()
+	{
+		std::shared_ptr<T> comp = std::make_shared<T>();
+		//comp->entity = std::shared_ptr<Entity>(this); TODO Fix this line to assign the entity
+		components.push_back(comp);
+		if (comp)
+			return comp;
+	}
 
 private:
 	void tick();

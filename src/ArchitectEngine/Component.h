@@ -8,6 +8,8 @@ class Entity;
 class Component
 {
 public:
+	friend class Entity;
+
 	virtual ~Component() = default;
 
 	std::shared_ptr<Entity> getEntity() const;

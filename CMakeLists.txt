@@ -10,6 +10,7 @@ add_library(ArchitectEngine
 	src/ArchitectEngine/Component.h
 	src/ArchitectEngine/Renderer.cpp
 	src/ArchitectEngine/Renderer.h
+	src/ArchitectEngine/architectengine.h
 )
 
 link_directories(

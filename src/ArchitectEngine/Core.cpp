@@ -1,4 +1,5 @@
 #include "Core.h"
+#include "Entity.h"
 
 std::shared_ptr<Core> Core::Initialize()
 {
@@ -18,6 +19,7 @@ void Core::stop()
 
 std::shared_ptr<Entity> Core::addEntity()
 {
-	std::shared_ptr<Entity> entity;
+	std::shared_ptr<Entity> entity = std::make_shared<Entity>();
+	entities.push_back(entity);
 	return entity;
 }

@@ -9,7 +9,7 @@ class Entity;
 class Core
 {
 public:
-	
+
 	std::shared_ptr<Core> Initialize();
 
 	void start();
