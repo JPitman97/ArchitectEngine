@@ -2,7 +2,7 @@
 #define _architectengine_H
 
 #include "Core.h"
-#include "Renderer.h"
+#include "RendererComponent.h"
 #include "Entity.h"
 
 #endif

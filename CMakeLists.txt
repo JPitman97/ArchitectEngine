@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 2.6)
 project(ARCHITECTENGINE)
 
+include_directories(src)
+
 add_library(ArchitectEngine
 	src/ArchitectEngine/Core.cpp
 	src/ArchitectEngine/Core.h
@@ -8,8 +10,8 @@ add_library(ArchitectEngine
 	src/ArchitectEngine/Entity.h
 	src/ArchitectEngine/Component.cpp
 	src/ArchitectEngine/Component.h
-	src/ArchitectEngine/Renderer.cpp
-	src/ArchitectEngine/Renderer.h
+	src/ArchitectEngine/RendererComponent.cpp
+	src/ArchitectEngine/RendererComponent.h
 	src/ArchitectEngine/architectengine.h
 )
 
@@ -19,8 +21,11 @@ link_directories(
 
 target_include_directories(ArchitectEngine PUBLIC ${CMAKE_SOURCE_DIR}/External/include/msvc)
 
-target_link_libraries(ArchitectEngine SDL2 opengl32 glew32) #Windows
-#target_link_libraries(ArchitectEngine SDL2 GL GLU) #Linux
+if(WIN32)
+	target_link_libraries(ArchitectEngine SDL2 opengl32 glew32) #Windows
+else()
+	target_link_libraries(ArchitectEngine SDL2 GL GLU) #Linux
+endif()
 
 add_executable(ArcLight
 	src/ArcLight/main.cpp

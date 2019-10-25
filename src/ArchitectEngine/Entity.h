@@ -10,17 +10,19 @@ class Core;
 class Entity
 {
 public:
+	friend class Core;
 
 	std::shared_ptr<Core> getCore() const;
 
 
-	template <class T> std::shared_ptr<T> addComponent()
+	template <typename T, typename... A>
+	std::shared_ptr<T> addComponent(A... args)
 	{
-		std::shared_ptr<T> comp = std::make_shared<T>();
-		//comp->entity = std::shared_ptr<Entity>(this); TODO Fix this line to assign the entity
+		std::shared_ptr<T> comp = std::make_shared<T>(args...);
+		comp->entity = self;
 		components.push_back(comp);
-		if (comp)
-			return comp;
+
+		return comp;
 	}
 
 private:
@@ -29,6 +31,7 @@ private:
 	void display();
 
 private:
+	std::weak_ptr<Entity> self;
 	std::weak_ptr<Core> core;
 	std::list<std::shared_ptr<Component>> components;
 };

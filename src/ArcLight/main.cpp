@@ -1,4 +1,4 @@
-#include "../ArchitectEngine/architectengine.h"
+#include <ArchitectEngine/architectengine.h>
 #include <iostream>
 
 #define shared std::shared_ptr
@@ -7,20 +7,19 @@
 int main()
 {
 	//Init
-	shared<Core> core = std::make_shared<Core>();
-	core->Initialize();
+	shared<Core> core = Core::Initialize(640, 480);
 
 	//Create a new entity
 	shared<Entity> entity = core->addEntity();
 
 	//Add a component
-	auto entityRenderer = entity->addComponent<Renderer>();
+	shared<RendererComponent> entityRenderer = entity->addComponent<RendererComponent>();
+
 	entityRenderer->onDisplay();
 
 	//Start
 	core->start();
 
 	std::cout << "Dying" << std::endl;
-	//getchar();
 	return 0;
 }
