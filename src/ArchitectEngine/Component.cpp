@@ -1,5 +1,5 @@
 #include "Component.h"
-
+#include "Entity.h"
 
 std::shared_ptr<Entity> Component::getEntity() const
 {
@@ -8,7 +8,7 @@ std::shared_ptr<Entity> Component::getEntity() const
 
 std::shared_ptr<Core> Component::getCore() const
 {
-	return nullptr;
+	return getEntity()->getCore();
 }
 
 void Component::onInit()

@@ -7,7 +7,7 @@
 int main()
 {
 	//Init
-	shared<Core> core = Core::Initialize(640, 480);
+	shared<Core> core = Core::Initialize("Hello Triangle", 640, 480);
 
 	//Create a new entity
 	shared<Entity> entity = core->addEntity();

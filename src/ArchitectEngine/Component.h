@@ -29,6 +29,7 @@ private:
 
 private:
 	std::weak_ptr<Entity> entity;
+	std::weak_ptr<Core> core;
 };
 
 #endif

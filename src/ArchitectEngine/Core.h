@@ -10,8 +10,9 @@ class Entity;
 class Core
 {
 public:
+	friend class RendererComponent; //TODO REMOVE THIS
 
-	static std::shared_ptr<Core> Initialize(int _width, int _height);
+	static std::shared_ptr<Core> Initialize(std::string _title, int _width, int _height);
 
 	void start();
 
@@ -27,6 +28,7 @@ private:
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
 	SDL_Event event;
+	std::weak_ptr<Core> self;
 };
 
 #endif
