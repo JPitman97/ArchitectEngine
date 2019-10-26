@@ -4,7 +4,19 @@
 #include <memory>
 #include <list>
 
+extern "C" {
+#include "LUA53/lua.h"
+#include "LUA53/lauxlib.h"
+#include "LUA53/lualib.h"
+}
+#include <LuaBridge/LuaBridge.h>
+
+#ifdef _WIN32
+#pragma comment(lib, "liblua53.a")
+#endif
+
 class Component;
+class LuaComponent;
 class Core;
 
 class Entity
@@ -24,6 +36,8 @@ public:
 
 		return comp;
 	}
+
+	std::shared_ptr<LuaComponent> addLuaComponent(const std::string& _scriptFilename, const std::string& _tableName) const;
 
 private:
 	void tick();

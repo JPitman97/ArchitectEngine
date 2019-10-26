@@ -12,6 +12,8 @@ add_library(ArchitectEngine
 	src/ArchitectEngine/Component.h
 	src/ArchitectEngine/RendererComponent.cpp
 	src/ArchitectEngine/RendererComponent.h
+	src/ArchitectEngine/LuaComponent.cpp
+	src/ArchitectEngine/LuaComponent.h
 	src/ArchitectEngine/architectengine.h
 )
 
