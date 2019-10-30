@@ -14,6 +14,7 @@ int main()
 
 	//Add a component
 	shared<RendererComponent> entityRenderer = entity->addComponent<RendererComponent>();
+	shared<LuaComponent> luaTest = entity->addLuaComponent("test.lua");
 
 	entityRenderer->onDisplay();
 

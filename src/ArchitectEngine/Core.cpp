@@ -37,6 +37,11 @@ void Core::start()
 		if (event.type == SDL_QUIT) {
 			break;
 		}
+
+		for each (auto& entity in entities)
+		{
+			entity->update();
+		}
 	}
 }
 

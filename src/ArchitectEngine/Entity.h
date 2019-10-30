@@ -24,6 +24,8 @@ class Entity
 public:
 	friend class Core;
 
+	~Entity();
+
 	std::shared_ptr<Core> getCore() const;
 
 
@@ -37,7 +39,22 @@ public:
 		return comp;
 	}
 
-	std::shared_ptr<LuaComponent> addLuaComponent(const std::string& _scriptFilename, const std::string& _tableName) const;
+	template <typename T>
+	std::shared_ptr<T> getComponent()
+	{
+		for each (auto* comp in components)
+		{
+			if (std::dynamic_pointer_cast<T>(comp))
+			{
+				return comp
+			}
+		}
+		return nullptr;
+	}
+
+	void update();
+
+	std::shared_ptr<LuaComponent> addLuaComponent(const std::string& _scriptFilename);
 
 private:
 	void tick();
@@ -48,6 +65,11 @@ private:
 	std::weak_ptr<Entity> self;
 	std::weak_ptr<Core> core;
 	std::list<std::shared_ptr<Component>> components;
+	std::list<std::shared_ptr<LuaComponent>> luaComponents;
+
+
+	//Handle Lua logic
+	lua_State *lState = nullptr;
 };
 
 #endif

@@ -1,14 +1,26 @@
 #ifndef _LUACOMPONENT_H
 #define _LUACOMPONENT_H
-#include "Component.h"
 
+extern "C" {
+#include "LUA53/lua.h"
+#include "LUA53/lauxlib.h"
+#include "LUA53/lualib.h"
+}
+#include <LuaBridge/LuaBridge.h>
 
-class LuaComponent : public Component
+#ifdef _WIN32
+#pragma comment(lib, "liblua53.a")
+#endif
+
+class LuaComponent
 {
 public:
 	LuaComponent();
 
-	void onTick() override;
+	static int onInit(lua_State* L);
+	static int onBegin(lua_State* L);
+	static int onTick(lua_State* L);
+	static int onDisplay(lua_State* L);
 
 private:
 
