@@ -18,11 +18,11 @@ std::shared_ptr<Core> Entity::getCore() const
 
 void Entity::update()
 {
-	for each (auto& comp in components)
+	for (auto& comp : components)
 	{
 		comp->onTick();
 	}
-	for each (auto& comp in luaComponents)
+	for (auto& comp : luaComponents)
 	{
 		if (lState)
 		{

@@ -45,7 +45,7 @@
 
 #include <LuaBridge/detail/LuaHelpers.h>
 #include <LuaBridge/detail/TypeTraits.h>
-#include <LuaBridge/detail/TypeList.h>
+#include <LuaBridge/detail/typelist.h>
 #include <LuaBridge/detail/FuncTraits.h>
 #include <LuaBridge/detail/Constructor.h>
 #include <LuaBridge/detail/ClassInfo.h>

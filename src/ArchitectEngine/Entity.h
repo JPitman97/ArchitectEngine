@@ -42,11 +42,11 @@ public:
 	template <typename T>
 	std::shared_ptr<T> getComponent()
 	{
-		for each (auto* comp in components)
+		for (auto& comp : components)
 		{
 			if (std::dynamic_pointer_cast<T>(comp))
 			{
-				return comp
+				return comp;
 			}
 		}
 		return nullptr;

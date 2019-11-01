@@ -38,7 +38,7 @@ void Core::start()
 			break;
 		}
 
-		for each (auto& entity in entities)
+		for(auto& entity : entities)
 		{
 			entity->update();
 		}
