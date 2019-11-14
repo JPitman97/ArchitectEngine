@@ -20,6 +20,7 @@ void Entity::update()
 {
 	for (auto& comp : components)
 	{
+		comp->onDisplay();
 		comp->onTick();
 	}
 	for (auto& comp : luaComponents)

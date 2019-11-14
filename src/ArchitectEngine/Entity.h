@@ -39,15 +39,13 @@ public:
 		return comp;
 	}
 
-	template <typename T>
-	std::shared_ptr<T> getComponent()
+	template<class T> std::shared_ptr<T> getComponent()
 	{
 		for (auto& comp : components)
 		{
-			if (std::dynamic_pointer_cast<T>(comp))
-			{
-				return comp;
-			}
+			std::shared_ptr<T> c = std::dynamic_pointer_cast<T>(comp);
+			if (c)
+				return c;
 		}
 		return nullptr;
 	}

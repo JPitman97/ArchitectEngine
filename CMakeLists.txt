@@ -15,6 +15,23 @@ add_library(ArchitectEngine
 	src/ArchitectEngine/LuaComponent.cpp
 	src/ArchitectEngine/LuaComponent.h
 	src/ArchitectEngine/architectengine.h
+	src/ArchitectEngine/Camera.cpp
+	src/ArchitectEngine/Camera.h
+	src/ArchitectEngine/ShaderProgram.cpp
+	src/ArchitectEngine/ShaderProgram.h
+	src/ArchitectEngine/Texture.cpp
+	src/ArchitectEngine/Texture.h
+	src/ArchitectEngine/Transform.cpp
+	src/ArchitectEngine/Transform.h
+	src/ArchitectEngine/VertexArray.cpp
+	src/ArchitectEngine/VertexArray.h
+	src/ArchitectEngine/VertexBuffer.cpp
+	src/ArchitectEngine/VertexBuffer.h
+	src/ArchitectEngine/CameraComponent.cpp
+	src/ArchitectEngine/CameraComponent.h
+	src/ArchitectEngine/TransformComponent.cpp
+	src/ArchitectEngine/TransformComponent.h
+	src/ArchitectEngine/ObjectLoader.h
 )
 
 link_directories(
