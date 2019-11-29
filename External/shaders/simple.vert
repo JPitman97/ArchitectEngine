@@ -1,3 +1,5 @@
+#version 460
+
 attribute vec3 in_Position;
 
 uniform mat4 modelMatrix;
