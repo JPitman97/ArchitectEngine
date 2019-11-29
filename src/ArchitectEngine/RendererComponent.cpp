@@ -183,20 +183,26 @@ void RendererComponent::setMesh(std::string path, const std::string& texPath)
 	loader.LoadFile(path);
 	curMesh = loader.LoadedMeshes[0];
 	objPositions = std::make_shared<VertexBuffer>();
+	objColor = std::make_shared<VertexBuffer>();
 	objTexCoords = std::make_shared<VertexBuffer>();
 	mesh = std::make_shared<VertexArray>();
 
-	for (int i = 0; i < curMesh.Vertices.size(); i++)
+	for (auto& vertice : curMesh.Vertices)
 	{
-		objPositions->add(glm::vec3(curMesh.Vertices[i].Position.X, curMesh.Vertices[i].Position.Y, curMesh.Vertices[i].Position.Z));
+		objPositions->add(glm::vec3(vertice.Position.X, vertice.Position.Y, vertice.Position.Z));
 	}
-	for (int i = 0; i < curMesh.Vertices.size(); i++)
+	for (auto& vertice : curMesh.Vertices)
 	{
-		objTexCoords->add(glm::vec2(curMesh.Vertices[i].TextureCoordinate.X, curMesh.Vertices[i].TextureCoordinate.Y));
+		objColor->add(glm::vec3(vertice.Normal.X, vertice.Normal.Y, vertice.Normal.Z));
+	}
+	for (auto& vertice : curMesh.Vertices)
+	{
+		objTexCoords->add(glm::vec2(vertice.TextureCoordinate.X, vertice.TextureCoordinate.Y));
 	}
 
 	tex = texture->loadTexture(texPath);
 
 	mesh->SetBuffer("in_Position", objPositions);
+	mesh->SetBuffer("in_Color", objColor);
 	mesh->SetBuffer("in_TexCoord", objTexCoords);
 }

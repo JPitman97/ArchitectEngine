@@ -21,6 +21,9 @@ std::shared_ptr<Core> Core::Initialize(std::string _title, int _width, int _heig
 		std::string msg = "Couldn't initialise OpenGL Context: ";
 		throw std::runtime_error(msg += SDL_GetError());
 	}
+
+	std::cout << glGetString(GL_VERSION) << std::endl;
+
 	if (glewInit() != GLEW_OK)
 	{
 		std::string msg = "Couldn't initialise Glew: ";

@@ -26,13 +26,13 @@ int main()
 	//Add a component
 	//shared<RendererComponent> entityRenderer = entity->addComponent<RendererComponent>();
 	//shared<LuaComponent> luaTest = entity->addLuaComponent("test.lua");
-	entity->addComponent<TransformComponent>();
+	//entity->addComponent<TransformComponent>();
 	shared<RendererComponent> entityRenderer = entity->addComponent<RendererComponent>();
 	entityRenderer->setMesh("Assets/lumberJack.obj", "Assets/lumberJack_diffuse.png");
-	entity->getComponent<TransformComponent>()->setPos(glm::vec3(0.0f, 0.0f, 0.0f));
+	/*entity->getComponent<TransformComponent>()->setPos(glm::vec3(0.0f, 0.0f, 0.0f));
 	entity->getComponent<TransformComponent>()->setRot(glm::vec3(0, 0, 0));
 	entity->getComponent<TransformComponent>()->setScale(glm::vec3(1.0f));
-
+*/
 
 	//entityRenderer->onDisplay();
 	entity->getComponent<RendererComponent>()->onDisplay();

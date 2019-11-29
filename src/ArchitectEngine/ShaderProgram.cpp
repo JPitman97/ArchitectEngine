@@ -145,6 +145,14 @@ ShaderProgram::ShaderProgram(const std::string& _vert, const std::string& _frag)
 	glGetShaderiv(vertexShaderId, GL_COMPILE_STATUS, &success);
 	if (!success)
 	{
+		GLint maxLength = 0;
+		glGetShaderiv(vertexShaderId, GL_INFO_LOG_LENGTH, &maxLength);
+
+		// The maxLength includes the NULL character
+		std::vector<GLchar> errorLog(maxLength);
+		glGetShaderInfoLog(vertexShaderId, maxLength, &maxLength, &errorLog[0]);
+		for (auto& i : errorLog)
+			std::cout << i;
 		std::cout << "Error" << std::endl;
 	}
 
@@ -155,6 +163,14 @@ ShaderProgram::ShaderProgram(const std::string& _vert, const std::string& _frag)
 	glGetShaderiv(fragmentShaderId, GL_COMPILE_STATUS, &success);
 	if (!success)
 	{
+		GLint maxLength = 0;
+		glGetShaderiv(fragmentShaderId, GL_INFO_LOG_LENGTH, &maxLength);
+
+		// The maxLength includes the NULL character
+		std::vector<GLchar> errorLog(maxLength);
+		glGetShaderInfoLog(fragmentShaderId, maxLength, &maxLength, &errorLog[0]);
+		for (auto& i : errorLog)
+			std::cout << i;
 		std::cout << "Error" << std::endl;
 	}
 
@@ -165,7 +181,7 @@ ShaderProgram::ShaderProgram(const std::string& _vert, const std::string& _frag)
 	glBindAttribLocation(id, 0, "in_Position");
 	glBindAttribLocation(id, 1, "in_Color");
 	glBindAttribLocation(id, 2, "in_TexCoord");
-	glBindAttribLocation(id, 3, "in_lightColor");
+	//glBindAttribLocation(id, 3, "in_lightColor");
 	glLinkProgram(id);
 	success = 0;
 	glGetProgramiv(id, GL_LINK_STATUS, &success);
