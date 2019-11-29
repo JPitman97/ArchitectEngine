@@ -40,6 +40,8 @@ private:
 	std::weak_ptr<Core> self;
 
 	glm::mat4 modelMatrix;
+
+	float lastTime, time, diff, idealTime;
 };
 
 #endif

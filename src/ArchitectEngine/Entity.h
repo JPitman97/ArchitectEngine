@@ -12,7 +12,7 @@ extern "C" {
 #include <LuaBridge/LuaBridge.h>
 
 #ifdef _WIN32
-#pragma comment(lib, "liblua53.a")
+//#pragma comment(lib, "liblua53.a")
 #endif
 
 class Component;

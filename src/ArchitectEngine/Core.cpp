@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include <GL/glew.h>
 #include "ShaderProgram.h"
+#include "TransformComponent.h"
 
 std::shared_ptr<Core> Core::Initialize(std::string _title, int _width, int _height)
 {
@@ -35,6 +36,7 @@ std::shared_ptr<Core> Core::Initialize(std::string _title, int _width, int _heig
 
 void Core::start()
 {
+	lastTime = SDL_GetTicks();
 	isRunning = true;
 
 	while (isRunning)
@@ -45,6 +47,11 @@ void Core::start()
 			break;
 		}
 
+		/*time = SDL_GetTicks();
+		diff = time - lastTime;
+		Time->deltaTime = diff / 1000.0f;
+		lastTime = time;*/
+
 		//Clear the screen to white and also clear the color and depth buffer
 		glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -53,8 +60,19 @@ void Core::start()
 		{
 			entity->update();
 		}
+		
+		auto it = std::next(entities.begin(), 0);
+		auto rotcomp = (*it)->getComponent<TransformComponent>();
+		rotcomp->setRot(glm::vec3(rotcomp->getRot().x + 0.5f, rotcomp->getRot().y + 0.5f, rotcomp->getRot().z));
 
 		SDL_GL_SwapWindow(window);
+
+		idealTime = 1.0f / 60.0f;
+		//if (idealTime > Time::deltaTime)
+		//{
+		//	//sleep
+		//	SDL_Delay((idealTime - Time::deltaTime) * 1000.0f);
+		//}
 	}
 }
 

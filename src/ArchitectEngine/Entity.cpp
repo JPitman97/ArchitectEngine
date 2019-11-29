@@ -27,7 +27,6 @@ void Entity::update()
 	{
 		if (lState)
 		{
-			comp->onInit(lState);
 			comp->onTick(lState);
 		}
 	}
@@ -46,6 +45,7 @@ std::shared_ptr<LuaComponent> Entity::addLuaComponent(const std::string& _script
 	
 	luaL_loadfile(lState, _scriptFilename.c_str());
 	luaComponents.push_back(lComp);
+	lComp->onInit(lState);
 	return lComp;
 }
 
