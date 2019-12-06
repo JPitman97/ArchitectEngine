@@ -174,9 +174,14 @@
 void RendererComponent::onDisplay()
 {
 	if (!shader)
+	{
 		getCore()->getShaderProgram()->draw(mesh, tex);
+	}
 	else
-		shader->draw(mesh, tex);
+	{
+		if (mesh && tex)
+			shader->draw(mesh, tex);
+	}
 }
 
 void RendererComponent::setShader(const std::string & _vert, const std::string & _frag)

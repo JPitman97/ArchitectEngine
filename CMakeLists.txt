@@ -36,6 +36,8 @@ add_library(ArchitectEngine
 	src/ArchitectEngine/Enviroment.h
 	src/ArchitectEngine/Time.cpp
 	src/ArchitectEngine/Time.h
+	src/ArchitectEngine/SkyboxComponent.cpp
+	src/ArchitectEngine/SkyboxComponent.h
 )
 
 link_directories(

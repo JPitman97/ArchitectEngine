@@ -10,5 +10,6 @@
 #include "LuaComponent.h"
 #include "Enviroment.h"
 #include "Time.h"
+#include "SkyBoxComponent.h"
 
 #endif

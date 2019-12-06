@@ -26,21 +26,22 @@ int main()
 	shared<Entity> entity = core->addEntity();
 
 	//Add a component
-	shared<LuaComponent> luaTest = entity->addLuaComponent("Debug/test.lua");
-	entity->addComponent<TransformComponent>();
+	//shared<LuaComponent> luaTest = entity->addLuaComponent("Debug/test.lua");
+	auto TC = entity->addComponent<TransformComponent>();
 	shared<RendererComponent> entityRenderer = entity->addComponent<RendererComponent>();
 	entityRenderer->setMesh("Debug/Assets/Cube.obj", "Debug/Assets/Crate.jpg");
-	entity->getComponent<TransformComponent>()->setPos(glm::vec3(-0.3f, 0.0f, 0.0f));
-	entity->getComponent<TransformComponent>()->setRot(glm::vec3(0, 0, 0));
-	entity->getComponent<TransformComponent>()->setScale(glm::vec3(0.2f));
+	TC->setPos(glm::vec3(-0.3f, 0.0f, 0.0f));
+	TC->setRot(glm::vec3(0, 0, 0));
+	TC->setScale(glm::vec3(0.2f));
 
 	shared<Entity> entity2 = core->addEntity();
-	entity2->addComponent<TransformComponent>();
-	entity2->getComponent<RendererComponent>()->setShader("Debug/shaders/simple.vert", "Debug/shaders/simple.frag");
-	entity2->addComponent<RendererComponent>()->setMesh("Debug/Assets/LumberJack.obj", "Debug/Assets/LumberJack_diffuse.png");
-	entity2->getComponent<TransformComponent>()->setPos(glm::vec3(0.3f, 0.0f, 0.0f));
-	entity2->getComponent<TransformComponent>()->setRot(glm::vec3(0, 0, 0));
-	entity2->getComponent<TransformComponent>()->setScale(glm::vec3(2.0f));
+	auto TC2 = entity2->addComponent<TransformComponent>();
+	shared<RendererComponent> ER = entity2->addComponent<RendererComponent>();
+	ER->setMesh("Debug/Assets/Cube.obj", "Debug/Assets/Grass.jpg");
+	TC2->setPos(glm::vec3(0.3f, 0.0f, 0.0f));
+	TC2->setRot(glm::vec3(0, 0, 0));
+	TC2->setScale(glm::vec3(0.2f));
+
 
 	//Start
 	core->start();

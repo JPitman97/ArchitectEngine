@@ -29,7 +29,7 @@ public:
 	void onDisplay() override;
 
 	void setShader(const std::string& _vert, const std::string& _frag);
-	std::shared_ptr<ShaderProgram> getShader() { return shader; }
+	std::shared_ptr<ShaderProgram> getShader() const { return shader; }
 	void setMesh(std::string path, const std::string& texPath);
 	std::shared_ptr<VertexArray> getMesh() const { return mesh; }
 	GLuint getTex() const { return tex; }
