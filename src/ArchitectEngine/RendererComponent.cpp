@@ -5,6 +5,7 @@
 #include "Texture.h"
 #include "Core.h"
 #include "ObjectLoader.h"
+#include "ShaderProgram.h"
 
 
 //RendererComponent::RendererComponent()
@@ -172,7 +173,15 @@
 
 void RendererComponent::onDisplay()
 {
-	getCore()->getShaderProgram()->draw(mesh, tex);
+	if (!shader)
+		getCore()->getShaderProgram()->draw(mesh, tex);
+	else
+		shader->draw(mesh, tex);
+}
+
+void RendererComponent::setShader(const std::string & _vert, const std::string & _frag)
+{
+	shader = std::make_shared<ShaderProgram>(_vert, _frag);
 }
 
 void RendererComponent::setMesh(std::string path, const std::string& texPath)

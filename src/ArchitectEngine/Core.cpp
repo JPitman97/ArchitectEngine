@@ -64,7 +64,11 @@ void Core::start()
 		
 		auto it = std::next(entities.begin(), 0);
 		auto rotcomp = (*it)->getComponent<TransformComponent>();
-		rotcomp->setRot(glm::vec3(rotcomp->getRot().x + 5.0f  * Time::deltaTime, rotcomp->getRot().y + 5.0f * Time::deltaTime, rotcomp->getRot().z * Time::deltaTime));
+		rotcomp->setRot(glm::vec3(rotcomp->getRot().x + 8.0f  * Time::deltaTime, rotcomp->getRot().y + 8.0f * Time::deltaTime, rotcomp->getRot().z * Time::deltaTime));
+
+		it = std::next(entities.begin(), 1);
+		rotcomp = (*it)->getComponent<TransformComponent>();
+		rotcomp->setRot(glm::vec3(rotcomp->getRot().x * Time::deltaTime, rotcomp->getRot().y + -20.0f * Time::deltaTime, rotcomp->getRot().z * Time::deltaTime));
 
 		SDL_GL_SwapWindow(window);
 

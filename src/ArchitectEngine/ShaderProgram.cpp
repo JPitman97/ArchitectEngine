@@ -181,8 +181,7 @@ ShaderProgram::ShaderProgram(const std::string& _vert, const std::string& _frag)
 	glBindAttribLocation(id, 0, "in_Position");
 	glBindAttribLocation(id, 1, "in_Color");
 	glBindAttribLocation(id, 2, "in_TexCoord");
-	//glBindFragDataLocation(id, 3, "diffuseColor");
-	//glBindAttribLocation(id, 3, "in_lightColor");
+
 	glLinkProgram(id);
 	success = 0;
 	glGetProgramiv(id, GL_LINK_STATUS, &success);

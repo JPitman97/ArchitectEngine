@@ -20,6 +20,7 @@
 class VertexArray;
 class VertexBuffer;
 class Texture;
+class ShaderProgram;
 
 class RendererComponent : public Component
 {
@@ -27,11 +28,14 @@ public:
 
 	void onDisplay() override;
 
+	void setShader(const std::string& _vert, const std::string& _frag);
+	std::shared_ptr<ShaderProgram> getShader() { return shader; }
 	void setMesh(std::string path, const std::string& texPath);
 	std::shared_ptr<VertexArray> getMesh() const { return mesh; }
 	GLuint getTex() const { return tex; }
 
 private:
+	std::shared_ptr<ShaderProgram> shader;
 	std::shared_ptr<VertexBuffer> objPositions;
 	std::shared_ptr<VertexBuffer> objColor;
 	std::shared_ptr<VertexBuffer> objTexCoords;
