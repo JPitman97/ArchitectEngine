@@ -26,15 +26,21 @@ int main()
 	shared<Entity> entity = core->addEntity();
 
 	//Add a component
-	//shared<RendererComponent> entityRenderer = entity->addComponent<RendererComponent>();
 	shared<LuaComponent> luaTest = entity->addLuaComponent("Debug/test.lua");
-	shared<TransformComponent> transform = entity->addComponent<TransformComponent>();
+	entity->addComponent<TransformComponent>();
 	shared<RendererComponent> entityRenderer = entity->addComponent<RendererComponent>();
 	entityRenderer->setMesh("Debug/Assets/Cube.obj", "Debug/Assets/Crate.jpg");
 	entity->getComponent<TransformComponent>()->setPos(glm::vec3(0.0f, 0.0f, 0.0f));
-	entity->getComponent<TransformComponent>()->setRot(glm::vec3(0, 45, 0));
-	entity->getComponent<TransformComponent>()->setScale(glm::vec3(0.5f));
+	entity->getComponent<TransformComponent>()->setRot(glm::vec3(0, 0, 0));
+	entity->getComponent<TransformComponent>()->setScale(glm::vec3(0.1f));
 
+	shared<Entity> entity2 = core->addEntity();
+	entity2->addComponent<TransformComponent>();
+	shared<RendererComponent> entityRenderer2 = entity2->addComponent<RendererComponent>();
+	entityRenderer2->setMesh("Debug/Assets/Cube.obj", "Debug/Assets/Crate.jpg");
+	entity2->getComponent<TransformComponent>()->setPos(glm::vec3(0.3f, 0.0f, 0.0f));
+	entity2->getComponent<TransformComponent>()->setRot(glm::vec3(0, 45, 0));
+	entity2->getComponent<TransformComponent>()->setScale(glm::vec3(0.1f));
 
 	//Start
 	core->start();

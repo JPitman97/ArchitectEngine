@@ -32,6 +32,10 @@ add_library(ArchitectEngine
 	src/ArchitectEngine/TransformComponent.cpp
 	src/ArchitectEngine/TransformComponent.h
 	src/ArchitectEngine/ObjectLoader.h
+	src/ArchitectEngine/Enviroment.cpp
+	src/ArchitectEngine/Enviroment.h
+	src/ArchitectEngine/Time.cpp
+	src/ArchitectEngine/Time.h
 )
 
 link_directories(

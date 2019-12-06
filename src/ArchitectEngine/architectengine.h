@@ -8,5 +8,7 @@
 #include "TransformComponent.h"
 #include "CameraComponent.h"
 #include "LuaComponent.h"
+#include "Enviroment.h"
+#include "Time.h"
 
 #endif
