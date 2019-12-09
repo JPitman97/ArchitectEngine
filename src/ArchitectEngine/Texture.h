@@ -12,7 +12,7 @@ public:
 	Texture();
 
 	GLuint loadTexture(const std::string& _path);
-	GLuint loadCubemap(std::vector<const GLchar* > faces);
+	GLuint loadCubemap(std::vector<std::string> faces);
 
 	~Texture();
 
