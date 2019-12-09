@@ -1,12 +1,9 @@
 #version 460
 
-uniform samplerCube skybox;
-varying vec3 ex_TexCoord;
-
-out vec4 diffuseColor;
+in vec3 ex_TexCoord; // direction vector representing a 3D texture coordinate
+uniform samplerCube skybox; // cubemap texture sampler
 
 void main()
-{
-	vec4 tex = texture(skybox, ex_TexCoord);
-	diffuseColor = tex;
-}
+{             
+	gl_FragColor = texture(skybox, ex_TexCoord);
+} 
