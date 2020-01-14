@@ -1,9 +1,9 @@
-#version 460
+#version 130
+varying vec3 TexCoords;
 
-in vec3 ex_TexCoord; // direction vector representing a 3D texture coordinate
-uniform samplerCube skybox; // cubemap texture sampler
+uniform samplerCube skybox;
 
 void main()
-{             
-	gl_FragColor = texture(skybox, ex_TexCoord);
-} 
+{    
+    gl_FragColor = texture(skybox, TexCoords);
+}

@@ -10,7 +10,7 @@ public:
 
 	void Tick(float _DT) const;
 
-	void initialise();
+	void initialise() const;
 private:
 	std::shared_ptr<Camera> camera;
 };

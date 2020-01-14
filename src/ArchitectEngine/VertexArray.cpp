@@ -19,7 +19,7 @@ void VertexArray::SetBuffer(const std::string& _attribute, const std::shared_ptr
 	{
 		buffers.at(0) = _buffer;
 	}
-	else if (_attribute == "in_Color")
+	else if (_attribute == "in_Normal")
 	{
 		buffers.at(1) = _buffer;
 	}

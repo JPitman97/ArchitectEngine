@@ -37,7 +37,7 @@ public:
 private:
 	std::shared_ptr<ShaderProgram> shader;
 	std::shared_ptr<VertexBuffer> objPositions;
-	std::shared_ptr<VertexBuffer> objColor;
+	std::shared_ptr<VertexBuffer> objNormals;
 	std::shared_ptr<VertexBuffer> objTexCoords;
 	std::shared_ptr<VertexArray> mesh;
 	std::shared_ptr<Texture> texture;

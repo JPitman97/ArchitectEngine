@@ -23,7 +23,7 @@ void CameraComponent::Tick(float _DT) const
 	getCore()->getShaderProgram()->SetUniform("viewMatrix", glm::inverse(viewMatrix));
 }
 
-void CameraComponent::initialise()
+void CameraComponent::initialise() const
 {
 	const glm::mat4 viewMatrix = camera->setViewMatrix(glm::mat4(1.0f));
 	getCore()->getShaderProgram()->SetUniform("viewMatrix", viewMatrix);

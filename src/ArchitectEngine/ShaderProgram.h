@@ -16,10 +16,9 @@ class ShaderProgram
 private:
 	GLuint id = 0;
 public:
-	ShaderProgram();
 	ShaderProgram(const std::string& _vert, const std::string& _frag);
 
-	void draw(const std::shared_ptr<VertexArray>& _vertexArray, GLuint _texID);
+	void draw(const std::shared_ptr<VertexArray>& _vertexArray, GLuint _texID, GLuint _id = NULL);
 
 
 	void SetUniform(const std::string& _uniform, const glm::vec3& _value);

@@ -1,14 +1,14 @@
-#version 460
-
+#version 130
 attribute vec3 in_Position;
 
-uniform mat4 viewMatrix;
-uniform mat4 projectionMatrix;
+varying vec3 TexCoords;
 
-varying vec3 ex_TexCoord;
+uniform mat4 projectionMatrix;
+uniform mat4 viewMatrix;
 
 void main()
 {
-	ex_TexCoord = in_Position;
-	gl_Position = projectionMatrix * viewMatrix * vec4(in_Position, 1.0);
-}
+    TexCoords = in_Position;
+    vec4 pos = projectionMatrix * viewMatrix * vec4(in_Position, 1.0);
+    gl_Position = pos.xyww;
+}  
