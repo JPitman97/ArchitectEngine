@@ -1,40 +1,63 @@
 #include "Camera.h"
 
-Camera::Camera() = default;
-
-
-Camera::~Camera() = default;
-
-glm::mat4 Camera::getViewMatrix() const
+glm::mat4 Camera::GetViewMatrix() const
 {
-	return viewMatrix;
+	return glm::lookAt(Position, Position + Front, Up);
 }
 
-glm::mat4 Camera::setViewMatrix(glm::mat4 _matrix)
+void Camera::ProcessKeyboard(Camera_Movement direction, float deltaTime)
 {
-	viewMatrix = std::move(_matrix);
-	return viewMatrix;
+	float velocity = MovementSpeed * deltaTime;
+	if (direction == FORWARD)
+		Position += Front * velocity;
+	if (direction == BACKWARD)
+		Position -= Front * velocity;
+	if (direction == LEFT)
+		Position -= Right * velocity;
+	if (direction == RIGHT)
+		Position += Right * velocity;
 }
 
-glm::mat4 Camera::setPosition(glm::mat4& _matrix, glm::vec3& _position, glm::vec3& _rotation, float _deltaTime)
+void Camera::ProcessMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch)
 {
-	//Set the position of the camera
-	camPosition = _position;
-	_matrix = glm::mat4(1.0f);
-	_matrix = glm::translate(_matrix, _position);
-	_matrix = glm::rotate(_matrix, glm::radians(_rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
-	_matrix = glm::rotate(_matrix, glm::radians(_rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-	_matrix = glm::rotate(_matrix, glm::radians(_rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+	xoffset *= MouseSensitivity;
+	yoffset *= MouseSensitivity;
 
-	return _matrix;
+	Yaw += xoffset;
+	Pitch += yoffset;
+
+	// Make sure that when pitch is out of bounds, screen doesn't get flipped
+	if (constrainPitch)
+	{
+		if (Pitch > 89.0f)
+			Pitch = 89.0f;
+		if (Pitch < -89.0f)
+			Pitch = -89.0f;
+	}
+
+	// Update Front, Right and Up Vectors using the updated Euler angles
+	updateCameraVectors();
 }
 
-glm::vec3 Camera::getCamPos() const
+void Camera::ProcessMouseScroll(float yoffset)
 {
-	return camPosition;
+	if (Zoom >= 1.0f && Zoom <= 45.0f)
+		Zoom -= yoffset;
+	if (Zoom <= 1.0f)
+		Zoom = 1.0f;
+	if (Zoom >= 45.0f)
+		Zoom = 45.0f;
 }
 
-glm::vec3 Camera::getCamRot() const
+void Camera::updateCameraVectors()
 {
-	return camRotation;
+	// Calculate the new Front vector
+	glm::vec3 front;
+	front.x = cos(glm::radians(Yaw)) * cos(glm::radians(Pitch));
+	front.y = sin(glm::radians(Pitch));
+	front.z = sin(glm::radians(Yaw)) * cos(glm::radians(Pitch));
+	Front = glm::normalize(front);
+	// Also re-calculate the Right and Up vector
+	Right = glm::normalize(glm::cross(Front, WorldUp));  // Normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
+	Up = glm::normalize(glm::cross(Right, Front));
 }

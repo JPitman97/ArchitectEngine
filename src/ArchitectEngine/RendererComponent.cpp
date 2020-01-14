@@ -15,8 +15,8 @@ void RendererComponent::onDisplay()
 	}
 	else
 	{
-		//if (mesh && tex)
-			//shader->draw(mesh, tex, shader->GetId());
+		if (mesh && tex)
+			shader->draw(mesh, tex, shader->GetId());
 	}
 }
 

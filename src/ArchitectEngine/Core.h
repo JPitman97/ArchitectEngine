@@ -8,6 +8,7 @@
 
 class Entity;
 class ShaderProgram;
+class Camera;
 
 class Core
 {
@@ -28,10 +29,13 @@ public:
 	void setShaderProgram(std::shared_ptr<ShaderProgram> _shaderProgram) { shaderProgram = _shaderProgram; }
 	std::shared_ptr<ShaderProgram> getShaderProgram() const;
 
+	std::shared_ptr<Camera> getCamera() const;
+
 private:
 	//std::shared_ptr<Enviroment> enviroment;
 	//std::shared_ptr<Keyboard> keyboard;
 	std::shared_ptr<ShaderProgram> shaderProgram;
+	std::shared_ptr<Camera> camera;
 	std::list<std::shared_ptr<Entity>> entities;
 	bool isRunning = false;
 	SDL_Window* window = nullptr;

@@ -4,6 +4,7 @@
 #include "ShaderProgram.h"
 #include "TransformComponent.h"
 #include "Time.h"
+#include "Camera.h"
 
 std::shared_ptr<Core> Core::Initialize(std::string _title, int _width, int _height)
 {
@@ -31,6 +32,12 @@ std::shared_ptr<Core> Core::Initialize(std::string _title, int _width, int _heig
 		std::string msg = "Couldn't initialise Glew: ";
 		throw std::runtime_error(msg += SDL_GetError());
 	}
+
+	core->setShaderProgram(std::make_shared<ShaderProgram>("Shaders/simple.vert", "Shaders/simple.frag"));
+	core->getShaderProgram()->SetUniform("in_Texture", 1);
+
+	// camera 
+	core->camera = std::make_shared<Camera>(glm::vec3(0.0F, 0.0f, 3.0f));
 
 	return core;
 }
@@ -62,10 +69,14 @@ void Core::start()
 			entity->update();
 		}
 		
-		/*auto it = std::next(entities.begin(), 0);
+		auto it = std::next(entities.begin(), 0);
 		auto rotcomp = (*it)->getComponent<TransformComponent>();
-		rotcomp->setRot(glm::vec3(rotcomp->getRot().x + 8.0f  * Time::deltaTime, rotcomp->getRot().y + 8.0f * Time::deltaTime, rotcomp->getRot().z * Time::deltaTime));
-*/
+		rotcomp->setRot(glm::vec3(rotcomp->getRot().x + 30.0f  * Time::deltaTime, rotcomp->getRot().y + 30.0f * Time::deltaTime, rotcomp->getRot().z * Time::deltaTime));
+
+		it = std::next(entities.begin(), 1);
+		rotcomp = (*it)->getComponent<TransformComponent>();
+		rotcomp->setRot(glm::vec3(rotcomp->getRot().x - 30.0f * Time::deltaTime, rotcomp->getRot().y - 30.0f * Time::deltaTime, rotcomp->getRot().z * Time::deltaTime));
+
 		SDL_GL_SwapWindow(window);
 
 		idealTime = 1.0f / 60.0f;
@@ -94,4 +105,9 @@ std::shared_ptr<Entity> Core::addEntity()
 std::shared_ptr<ShaderProgram> Core::getShaderProgram() const
 {
 	return shaderProgram;
+}
+
+std::shared_ptr<Camera> Core::getCamera() const
+{
+	return camera;
 }
