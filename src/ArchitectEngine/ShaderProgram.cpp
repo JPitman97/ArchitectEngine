@@ -126,46 +126,20 @@ void ShaderProgram::draw(const std::shared_ptr<VertexArray>& _vertexArray, GLuin
 //TODO Convert all these to LearnOpenGL Tutorials
 void ShaderProgram::SetUniform(const std::string& _uniform, const glm::vec3& _value)
 {
-	const GLuint uniformId = glGetUniformLocation(id, _uniform.c_str());
-
-	if (uniformId == -1)
-	{
-		std::cout << "Error" << std::endl;
-	}
-
 	glUseProgram(id);
-	glUniform3f(uniformId, _value.x, _value.y, _value.z);
+	glUniform3fv(glGetUniformLocation(id, _uniform.c_str()), 1, &_value[0]); 
 	glUseProgram(0);
 }
 
 void ShaderProgram::SetUniform(const std::string& _uniform, const glm::vec4& _value)
 {
-	const GLuint uniformId = glGetUniformLocation(id, _uniform.c_str());
-
-	if (uniformId == -1)
-	{
-		std::cout << "Error" << std::endl;
-	}
-
 	glUseProgram(id);
-	glUniform4f(uniformId, _value.x, _value.y, _value.z, _value.w);
+	glUniform4fv(glGetUniformLocation(id, _uniform.c_str()), 1, &_value[0]);
 	glUseProgram(0);
 }
 
 void ShaderProgram::SetUniform(const std::string& _uniform, const glm::mat4& _value)
 {
-	/*const GLuint uniformId = glGetUniformLocation(id, _uniform.c_str());
-
-	if (uniformId == -1)
-	{
-		std::cout << "Error" << std::endl;
-	}
-
-	glUseProgram(id);
-	GLuint matrix = glGetUniformLocation(id, _uniform.c_str());
-	glUniformMatrix4fv(matrix, 1, GL_FALSE, glm::value_ptr(_value));
-	glUseProgram(0);*/
-
 	glUseProgram(id);
 	glUniformMatrix4fv(glGetUniformLocation(id, _uniform.c_str()), 1, GL_FALSE, &_value[0][0]);
 	glUseProgram(0);
@@ -173,15 +147,8 @@ void ShaderProgram::SetUniform(const std::string& _uniform, const glm::mat4& _va
 
 void ShaderProgram::SetUniform(const std::string& _uniform, const int _value)
 {
-	const GLuint uniformId = glGetUniformLocation(id, _uniform.c_str());
-
-	if (uniformId == -1)
-	{
-		std::cout << "Error" << std::endl;
-	}
-
 	glUseProgram(id);
-	glUniform1f(uniformId, _value);
+	glUniform1f(glGetUniformLocation(id, _uniform.c_str()), _value);
 	glUseProgram(0);
 }
 
