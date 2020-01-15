@@ -123,6 +123,7 @@ void ShaderProgram::draw(const std::shared_ptr<VertexArray>& _vertexArray, GLuin
 	glUseProgram(0);
 }
 
+//TODO Convert all these to LearnOpenGL Tutorials
 void ShaderProgram::SetUniform(const std::string& _uniform, const glm::vec3& _value)
 {
 	const GLuint uniformId = glGetUniformLocation(id, _uniform.c_str());
@@ -153,7 +154,7 @@ void ShaderProgram::SetUniform(const std::string& _uniform, const glm::vec4& _va
 
 void ShaderProgram::SetUniform(const std::string& _uniform, const glm::mat4& _value)
 {
-	const GLuint uniformId = glGetUniformLocation(id, _uniform.c_str());
+	/*const GLuint uniformId = glGetUniformLocation(id, _uniform.c_str());
 
 	if (uniformId == -1)
 	{
@@ -161,7 +162,12 @@ void ShaderProgram::SetUniform(const std::string& _uniform, const glm::mat4& _va
 	}
 
 	glUseProgram(id);
-	glUniformMatrix4fv(uniformId, 1, GL_FALSE, glm::value_ptr(_value));
+	GLuint matrix = glGetUniformLocation(id, _uniform.c_str());
+	glUniformMatrix4fv(matrix, 1, GL_FALSE, glm::value_ptr(_value));
+	glUseProgram(0);*/
+
+	glUseProgram(id);
+	glUniformMatrix4fv(glGetUniformLocation(id, _uniform.c_str()), 1, GL_FALSE, &_value[0][0]);
 	glUseProgram(0);
 }
 

@@ -33,6 +33,7 @@ int main()
 	//TC->setRot(glm::vec3(0, 0, 0));
 	//TC->setScale(glm::vec3(0.2f));
 
+	
 	shared<Entity> Crate = core->addEntity();
 	auto TC = Crate->addComponent<TransformComponent>();
 	shared<RendererComponent> entityRenderer = Crate->addComponent<RendererComponent>();
@@ -52,6 +53,7 @@ int main()
 	TC2->setPos(glm::vec3(0.3f, 0.0f, 0.0f));
 	TC2->setRot(glm::vec3(0, 0, 0));
 	TC2->setScale(glm::vec3(0.2f));
+	
 
 	shared<Entity> skybox = core->addEntity();
 	shared<RendererComponent> RC = skybox->addComponent<RendererComponent>();

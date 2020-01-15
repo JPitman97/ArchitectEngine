@@ -60,9 +60,9 @@ SkyBloxComponent::SkyBloxComponent(const std::string& _fileLoc)
 	glGenBuffers(1, &skyboxVBO);
 	glBindVertexArray(skyboxVAO);
 	glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * skyboxVertices.size(), &skyboxVertices.at(0), GL_STATIC_DRAW);
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0);
 	glBindVertexArray(0);
 
 	// Cubemap (Skybox)
@@ -81,14 +81,17 @@ void SkyBloxComponent::onDisplay()
 {
 	// draw skybox as last
 	glDepthFunc(GL_LEQUAL);  // change depth function so depth test passes when values are equal to depth buffer's content
-	glUseProgram(getEntity()->getComponent<RendererComponent>()->getShader()->GetId());
+	auto shader = getEntity()->getComponent<RendererComponent>()->getShader();
+	//glUseProgram(shader->GetId());
 	glm::mat4 view = glm::mat4(glm::mat3(getEntity()->getCore()->getCamera()->GetViewMatrix())); // remove translation from the view matrix
-	getEntity()->getComponent<RendererComponent>()->getShader()->SetUniform("viewMatrix", view);
-	getEntity()->getComponent<RendererComponent>()->getShader()->SetUniform("projectionMatrix", glm::perspective(glm::radians(getEntity()->getCore()->getCamera()->Zoom), (float)800 / (float)600, 0.1f, 100.0f));
+	shader->SetUniform("viewMatrix", view);
+	shader->SetUniform("projectionMatrix", glm::perspective(getEntity()->getCore()->getCamera()->Zoom, (float)800 / (float)600, 0.1f, 100.0f));
 	// skybox cube
+	glUseProgram(shader->GetId());
 	glBindVertexArray(skyboxVAO);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
+
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 	glBindVertexArray(0);
 	glDepthFunc(GL_LESS); // set depth function back to default

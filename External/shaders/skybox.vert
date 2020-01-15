@@ -5,10 +5,12 @@ varying vec3 TexCoords;
 
 uniform mat4 projectionMatrix;
 uniform mat4 viewMatrix;
+//uniform mat4 modelMatrix;
 
 void main()
 {
     TexCoords = in_Position;
     vec4 pos = projectionMatrix * viewMatrix * vec4(in_Position, 1.0);
     gl_Position = pos.xyww;
+    //gl_Position = pos;
 }  
