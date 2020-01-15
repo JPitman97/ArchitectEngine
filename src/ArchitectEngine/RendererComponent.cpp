@@ -31,7 +31,7 @@ void RendererComponent::setMesh(std::string path, const std::string& texPath)
 	objl::Loader loader;
 	objl::Mesh curMesh;
 	loader.LoadFile(path);
-	curMesh = loader.LoadedMeshes[0];
+	curMesh = loader.LoadedMeshes[0]; //Crashes program
 	objPositions = std::make_shared<VertexBuffer>();
 	objNormals = std::make_shared<VertexBuffer>();
 	objTexCoords = std::make_shared<VertexBuffer>();

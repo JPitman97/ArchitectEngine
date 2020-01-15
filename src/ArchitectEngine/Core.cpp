@@ -5,6 +5,7 @@
 #include "TransformComponent.h"
 #include "Time.h"
 #include "Camera.h"
+#include "Input.h"
 
 std::shared_ptr<Core> Core::Initialize(std::string _title, int _width, int _height)
 {
@@ -36,11 +37,21 @@ std::shared_ptr<Core> Core::Initialize(std::string _title, int _width, int _heig
 	core->setShaderProgram(std::make_shared<ShaderProgram>("Shaders/simple.vert", "Shaders/simple.frag"));
 	core->getShaderProgram()->SetUniform("in_Texture", 1);
 
+	core->input = std::make_shared<Input>();
+
 	// camera 
 	core->camera = std::make_shared<Camera>(glm::vec3(0.0F, 0.0f, 3.0f));
 
 	core->width = _width;
 	core->height = _height;
+
+	//update the shader uniform "projectionMatrix" with the new matrix
+	core->modelMatrix = glm::mat4(1.0f);
+	core->viewMatrix = core->getCamera()->GetViewMatrix();
+	core->projectionMatrix = glm::perspective(glm::radians(core->getCamera()->Zoom), (float)core->getScreenSize().x / (float)core->getScreenSize().y, 0.1f, 100.0f);
+	core->getShaderProgram()->SetUniform("projectionMatrix", core->projectionMatrix);
+	core->getShaderProgram()->SetUniform("modelMatrix", core->modelMatrix);
+	core->getShaderProgram()->SetUniform("viewMatrix", core->viewMatrix);
 
 	return core;
 }
@@ -52,11 +63,8 @@ void Core::start()
 
 	while (isRunning)
 	{
-		SDL_PollEvent(&event);
-		if (event.type == SDL_QUIT) {
-			isRunning = false;
-			break;
-		}
+		if (!input->handleInput(&event))
+			stop();
 
 		time = SDL_GetTicks();
 		diff = time - lastTime;
@@ -115,6 +123,11 @@ std::shared_ptr<ShaderProgram> Core::getShaderProgram() const
 std::shared_ptr<Camera> Core::getCamera() const
 {
 	return camera;
+}
+
+std::shared_ptr<Input> Core::getInput() const
+{
+	return input;
 }
 
 glm::vec2 Core::getScreenSize() const

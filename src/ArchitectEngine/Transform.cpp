@@ -46,4 +46,9 @@ glm::vec3 Transform::getFwd(const glm::vec3& _direction, const glm::vec3& _rotat
 	return fwd;
 }
 
+void Transform::setModelMatrix(glm::mat4 _modelMatrix)
+{
+	modelMatrix = _modelMatrix;
+}
+
 Transform::~Transform() = default;

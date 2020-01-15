@@ -21,9 +21,11 @@ public:
 	void updateInputs(/*Input Params here*/);
 
 	glm::vec3 getFwd(const glm::vec3& _direction, const glm::vec3& _rotation) const;
+	void setModelMatrix(glm::mat4 _modelMatrix);
 
 private:
 	glm::vec3 fwd;
+	glm::mat4 modelMatrix;
 };
 
 #endif

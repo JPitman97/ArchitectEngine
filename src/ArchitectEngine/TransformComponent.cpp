@@ -12,9 +12,9 @@ TransformComponent::TransformComponent()
 
 void TransformComponent::onTick()
 {
-	glm::mat4 mm = getCore()->getModelMatrix();
+	glm::mat4 mm = getCore()->getDefaultModelMatrix();
 	mm = transform->updateModelMatrix(mm, position, rotation, scale);
-	getCore()->setModelMatrix(mm);
+	transform->setModelMatrix(mm);
 	
 	if (getEntity()->getComponent<RendererComponent>()->getShader())
 		getEntity()->getComponent<RendererComponent>()->getShader()->SetUniform("modelMatrix", mm);

@@ -6,10 +6,9 @@
 #include "ShaderProgram.h"
 #include "RendererComponent.h"
 #include "TransformComponent.h"
-#include "CameraComponent.h"
+#include "TPCameraComponent.h"
 #include "LuaComponent.h"
-#include "Enviroment.h"
-#include "Time.h"
 #include "SkyBoxComponent.h"
+#include "InputComponent.h"
 
 #endif

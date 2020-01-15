@@ -27,8 +27,8 @@ add_library(ArchitectEngine
 	src/ArchitectEngine/VertexArray.h
 	src/ArchitectEngine/VertexBuffer.cpp
 	src/ArchitectEngine/VertexBuffer.h
-	src/ArchitectEngine/CameraComponent.cpp
-	src/ArchitectEngine/CameraComponent.h
+	src/ArchitectEngine/TPCameraComponent.cpp
+	src/ArchitectEngine/TPCameraComponent.h
 	src/ArchitectEngine/TransformComponent.cpp
 	src/ArchitectEngine/TransformComponent.h
 	src/ArchitectEngine/ObjectLoader.h
@@ -38,6 +38,10 @@ add_library(ArchitectEngine
 	src/ArchitectEngine/Time.h
 	src/ArchitectEngine/SkyboxComponent.cpp
 	src/ArchitectEngine/SkyboxComponent.h
+	src/architectengine/Input.cpp
+	src/architectengine/Input.h
+	src/architectengine/InputComponent.cpp
+	src/architectengine/InputComponent.h
 )
 
 link_directories(
