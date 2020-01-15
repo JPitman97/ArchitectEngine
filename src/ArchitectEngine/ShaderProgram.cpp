@@ -106,11 +106,7 @@ void ShaderProgram::draw(const std::shared_ptr<VertexArray>& _vertexArray, GLuin
 	// Enable depth test
 	glEnable(GL_DEPTH_TEST);
 	// Accept fragment if it closer to the camera than the former one
-	glDepthFunc(GL_LEQUAL);
-
-	//Cull faces
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
+	glDepthFunc(GL_LESS);
 
 	glBindTexture(GL_TEXTURE_2D, _texID);
 	if (_id)

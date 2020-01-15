@@ -49,10 +49,10 @@ int main()
 	entityRenderer2->getShader()->SetUniform("projectionMatrix", projectionMatrix);
 	entityRenderer2->getShader()->SetUniform("modelMatrix", model);
 	entityRenderer2->getShader()->SetUniform("viewMatrix", view);	
-	entityRenderer2->setMesh("Assets/Cube.obj", "Assets/Grass.jpg");
-	TC2->setPos(glm::vec3(0.3f, 0.0f, 0.0f));
-	TC2->setRot(glm::vec3(0, 0, 0));
-	TC2->setScale(glm::vec3(0.2f));
+	entityRenderer2->setMesh("Assets/ivysaur.obj", "Assets/ivysaur_diffuse.jpg");
+	TC2->setPos(glm::vec3(1.0f, -0.3f, 0.0f));
+	TC2->setRot(glm::vec3(0, 180, 0));
+	TC2->setScale(glm::vec3(0.5f));
 	
 
 	shared<Entity> skybox = core->addEntity();
