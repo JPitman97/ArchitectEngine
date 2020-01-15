@@ -7,17 +7,17 @@
 int main()
 {
 	//Init
-	shared<Core> core = Core::Initialize("Arc Light", 800, 600);
+	shared<Core> core = Core::Initialize("Arc Light", 1280, 720);
 
 	glm::mat4 projectionMatrix = glm::mat4(1.0f);
 
 	//set the projectionMatrix to perspective
-	projectionMatrix = glm::perspective(glm::radians(45.0f), (float)800 / (float)600, 0.1f, 100.0f);
+	projectionMatrix = glm::perspective(glm::radians(45.0f), (float)core->getScreenSize().x / (float)core->getScreenSize().y, 0.1f, 100.0f);
 
 	//update the shader uniform "projectionMatrix" with the new matrix
 	glm::mat4 model = glm::mat4(1.0f);
 	glm::mat4 view = core->getCamera()->GetViewMatrix();
-	glm::mat4 projection = glm::perspective(glm::radians(core->getCamera()->Zoom), (float)800 / (float)600, 0.1f, 100.0f);
+	glm::mat4 projection = glm::perspective(glm::radians(core->getCamera()->Zoom), (float)core->getScreenSize().x / (float)core->getScreenSize().y, 0.1f, 100.0f);
 	core->getShaderProgram()->SetUniform("projectionMatrix", projection);
 	core->getShaderProgram()->SetUniform("modelMatrix", model);
 	core->getShaderProgram()->SetUniform("viewMatrix", view);

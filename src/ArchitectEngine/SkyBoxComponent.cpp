@@ -85,7 +85,7 @@ void SkyBloxComponent::onDisplay()
 	//glUseProgram(shader->GetId());
 	glm::mat4 view = glm::mat4(glm::mat3(getEntity()->getCore()->getCamera()->GetViewMatrix())); // remove translation from the view matrix
 	shader->SetUniform("viewMatrix", view);
-	shader->SetUniform("projectionMatrix", glm::perspective(getEntity()->getCore()->getCamera()->Zoom, (float)800 / (float)600, 0.1f, 100.0f));
+	shader->SetUniform("projectionMatrix", glm::perspective(getEntity()->getCore()->getCamera()->Zoom, (float)getEntity()->getCore()->getScreenSize().x / (float)getEntity()->getCore()->getScreenSize().y, 0.1f, 100.0f));
 	// skybox cube
 	glUseProgram(shader->GetId());
 	glBindVertexArray(skyboxVAO);

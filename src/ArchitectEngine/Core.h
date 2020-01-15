@@ -31,6 +31,8 @@ public:
 
 	std::shared_ptr<Camera> getCamera() const;
 
+	glm::vec2 getScreenSize() const;
+
 private:
 	//std::shared_ptr<Enviroment> enviroment;
 	//std::shared_ptr<Keyboard> keyboard;
@@ -40,6 +42,7 @@ private:
 	bool isRunning = false;
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
+	int width, height;
 	SDL_Event event;
 	std::weak_ptr<Core> self;
 

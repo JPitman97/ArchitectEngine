@@ -39,6 +39,9 @@ std::shared_ptr<Core> Core::Initialize(std::string _title, int _width, int _heig
 	// camera 
 	core->camera = std::make_shared<Camera>(glm::vec3(0.0F, 0.0f, 3.0f));
 
+	core->width = _width;
+	core->height = _height;
+
 	return core;
 }
 
@@ -112,4 +115,9 @@ std::shared_ptr<ShaderProgram> Core::getShaderProgram() const
 std::shared_ptr<Camera> Core::getCamera() const
 {
 	return camera;
+}
+
+glm::vec2 Core::getScreenSize() const
+{
+	return glm::vec2(width, height);
 }
