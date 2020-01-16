@@ -130,6 +130,11 @@ std::shared_ptr<Input> Core::getInput() const
 	return input;
 }
 
+std::list<std::shared_ptr<Entity>> Core::getEntities() const
+{
+	return entities;
+}
+
 glm::vec2 Core::getScreenSize() const
 {
 	return glm::vec2(width, height);

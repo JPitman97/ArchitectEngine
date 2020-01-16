@@ -16,9 +16,9 @@ public:
 	void keyInput();
 
 	void setPos(const glm::vec3& _pos) { position = _pos; }
-	glm::vec3 getPos() const { return position; }
+	glm::vec3 getPos() { return position; }
 	void setRot(const glm::vec3& _rot) { rotation = _rot; }
-	glm::vec3 getRot() const { return rotation; }
+	glm::vec3 getRot() { return rotation; }
 	void setScale(const glm::vec3& _scale) { scale = _scale; }
 	glm::vec3 getScale() const { return scale; }
 

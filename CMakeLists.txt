@@ -38,10 +38,12 @@ add_library(ArchitectEngine
 	src/ArchitectEngine/Time.h
 	src/ArchitectEngine/SkyboxComponent.cpp
 	src/ArchitectEngine/SkyboxComponent.h
-	src/architectengine/Input.cpp
-	src/architectengine/Input.h
-	src/architectengine/InputComponent.cpp
-	src/architectengine/InputComponent.h
+	src/Architectengine/Input.cpp
+	src/Architectengine/Input.h
+	src/Architectengine/InputComponent.cpp
+	src/Architectengine/InputComponent.h
+	src/ArchitectEngine/BoxColliderComponent.cpp
+	src/ArchitectEngine/BoxColliderComponent.h
 )
 
 link_directories(

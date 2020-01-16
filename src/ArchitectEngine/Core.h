@@ -36,10 +36,11 @@ public:
 
 	std::shared_ptr<Input> getInput() const;
 
+	std::list<std::shared_ptr<Entity>> getEntities() const;
+
 	glm::vec2 getScreenSize() const;
 
 private:
-	//std::shared_ptr<Enviroment> enviroment;
 	std::shared_ptr<ShaderProgram> shaderProgram;
 	std::shared_ptr<Camera> camera;
 	std::list<std::shared_ptr<Entity>> entities;

@@ -10,5 +10,5 @@
 #include "LuaComponent.h"
 #include "SkyBoxComponent.h"
 #include "InputComponent.h"
-
+#include "BoxColliderComponent.h"
 #endif

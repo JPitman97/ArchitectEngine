@@ -28,6 +28,8 @@ int main()
 	TC->setPos(glm::vec3(-0.3f, 0.0f, 0.0f));
 	TC->setRot(glm::vec3(0, 0, 0));
 	TC->setScale(glm::vec3(0.2f));
+	auto BC = Crate->addComponent<BoxColliderComponent>();
+	BC->setSize(glm::vec3(0.1f, 0.1f, 0.1f));
 
 	shared<Entity> Crate2 = core->addEntity();
 	auto TC2 = Crate2->addComponent<TransformComponent>();
@@ -41,6 +43,8 @@ int main()
 	TC2->setRot(glm::vec3(0, 180, 0));
 	TC2->setScale(glm::vec3(0.5f));
 	Crate2->addComponent<InputComponent>();
+	auto BC2 = Crate2->addComponent<BoxColliderComponent>();
+	BC2->setSize(glm::vec3(0.3f, 0.3f, 0.3f));
 
 
 	shared<Entity> skybox = core->addEntity();
