@@ -10,7 +10,7 @@ ShaderProgram::ShaderProgram(const std::string& _vert, const std::string& _frag)
 
 	if (!file.is_open())
 	{
-		std::cout << "Error" << std::endl;
+		std::cout << "Error opening file at: " << _vert << std::endl;
 	}
 	else
 	{
@@ -27,7 +27,7 @@ ShaderProgram::ShaderProgram(const std::string& _vert, const std::string& _frag)
 
 	if (!file.is_open())
 	{
-		std::cout << "Error" << std::endl;
+		std::cout << "Error opening file at: " << _frag << std::endl;
 	}
 	else
 	{
@@ -58,7 +58,7 @@ ShaderProgram::ShaderProgram(const std::string& _vert, const std::string& _frag)
 		glGetShaderInfoLog(vertexShaderId, maxLength, &maxLength, &errorLog[0]);
 		for (auto& i : errorLog)
 			std::cout << i;
-		std::cout << "Error" << std::endl;
+		std::cout << "Error compiling the vertex shader" << std::endl;
 	}
 
 	const GLuint fragmentShaderId = glCreateShader(GL_FRAGMENT_SHADER);
@@ -76,7 +76,7 @@ ShaderProgram::ShaderProgram(const std::string& _vert, const std::string& _frag)
 		glGetShaderInfoLog(fragmentShaderId, maxLength, &maxLength, &errorLog[0]);
 		for (auto& i : errorLog)
 			std::cout << i;
-		std::cout << "Error" << std::endl;
+		std::cout << "Error compiling the fragment shader" << std::endl;
 	}
 
 	id = glCreateProgram();
@@ -92,7 +92,7 @@ ShaderProgram::ShaderProgram(const std::string& _vert, const std::string& _frag)
 	glGetProgramiv(id, GL_LINK_STATUS, &success);
 	if (!success)
 	{
-		std::cout << "Error" << std::endl;
+		std::cout << "Error linking the program" << std::endl;
 	}
 
 	glDetachShader(id, vertexShaderId);

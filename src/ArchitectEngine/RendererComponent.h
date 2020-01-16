@@ -5,18 +5,6 @@
 #include <string>
 #include <GL/glew.h>
 
-//class RendererComponent : public Component
-//{
-//public:
-//	RendererComponent();
-//
-//	void onDisplay() override;
-//
-//private:
-//	unsigned int programId;
-//	unsigned int vaoId;
-//};
-
 class VertexArray;
 class VertexBuffer;
 class Texture;
@@ -30,7 +18,7 @@ public:
 
 	void setShader(const std::string& _vert, const std::string& _frag);
 	std::shared_ptr<ShaderProgram> getShader() const { return shader; }
-	void setMesh(std::string path, const std::string& texPath);
+	void setMesh(const std::string& _path, const std::string& _texPath);
 	std::shared_ptr<VertexArray> getMesh() const { return mesh; }
 	GLuint getTex() const { return tex; }
 

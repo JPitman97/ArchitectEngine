@@ -16,7 +16,7 @@ GLuint Texture::loadTexture(const std::string& _path)
 	unsigned char* data = stbi_load(_path.c_str(), &w, &h, &chan, 4);
 	if (!data)
 	{
-		throw std::runtime_error("Failed to load texture");
+		throw std::runtime_error("Failed to load texture at path: " + _path);
 	}
 
 	glGenTextures(1, &id);

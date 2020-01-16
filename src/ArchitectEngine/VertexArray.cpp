@@ -3,14 +3,26 @@
 
 VertexArray::VertexArray()
 {
-	dirty = false;
+	try
+	{
+		if (this != nullptr)
+		{
+			dirty = false;
 
-	buffers.resize(10);
+			buffers.resize(10);
 
-	glGenVertexArrays(1, &id);
+			glGenVertexArrays(1, &id);
 
-	if (!id)
-		std::cout << "ERROR::VertexArray::BAD_ID" << std::endl;
+			if (!id)
+				std::cout << "ERROR::VertexArray::BAD_ID" << std::endl;
+		}
+		else { throw std::exception("Failed to initialise VertexArray, are models correctly loaded?"); }
+	}
+	catch (std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	
 }
 
 void VertexArray::SetBuffer(const std::string& _attribute, const std::shared_ptr<VertexBuffer>& _buffer)
@@ -36,32 +48,54 @@ void VertexArray::SetBuffer(const std::string& _attribute, const std::shared_ptr
 
 int VertexArray::GetVertexCount()
 {
-	if (!buffers.at(0))
+	try
 	{
-		std::cout << "ERROR::VertexArray::ERROR_GETTING_VERTEX_COUNT" << std::endl;
-	}
+		if (this != nullptr)
+		{
+			if (!buffers.at(0))
+			{
+				std::cout << "ERROR::VertexArray::ERROR_GETTING_VERTEX_COUNT" << std::endl;
+			}
 
-	return buffers.at(0)->GetDataSize() / buffers.at(0)->GetComponents();
+			return buffers.at(0)->GetDataSize() / buffers.at(0)->GetComponents();
+		}
+		else { throw std::exception("Failed to get vertex count, are models correctly loaded?"); }
+	}
+	catch (std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 }
 
 GLuint VertexArray::GetId()
 {
-	if (dirty)
+	try
 	{
-		glBindVertexArray(id);
-
-		for (int i = 0; i < buffers.size(); i++)
+		if (this != nullptr)
 		{
-			if (buffers.at(i))
+			if (dirty)
 			{
-				glBindBuffer(GL_ARRAY_BUFFER, buffers.at(i)->GetId());
-				glVertexAttribPointer(i,
-					buffers.at(i)->GetComponents(), GL_FLOAT, GL_FALSE,
-					buffers.at(i)->GetComponents() * sizeof(GLfloat), static_cast<void*>(nullptr));
-				glEnableVertexAttribArray(i);
-			}
-		}
-	}
+				glBindVertexArray(id);
 
-	return id;
+				for (int i = 0; i < buffers.size(); i++)
+				{
+					if (buffers.at(i))
+					{
+						glBindBuffer(GL_ARRAY_BUFFER, buffers.at(i)->GetId());
+						glVertexAttribPointer(i,
+							buffers.at(i)->GetComponents(), GL_FLOAT, GL_FALSE,
+							buffers.at(i)->GetComponents() * sizeof(GLfloat), static_cast<void*>(nullptr));
+						glEnableVertexAttribArray(i);
+					}
+				}
+			}
+			return id;
+		}
+		else { throw std::exception("Failed to get VertexArray information, are you sure meshes were loaded correctly?"); }
+	}
+	catch (std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	
 }

@@ -9,7 +9,7 @@
 
 void RendererComponent::onDisplay()
 {
-	if (!shader)
+	if (!shader && mesh && tex)
 	{
 		getCore()->getShaderProgram()->draw(mesh, tex);
 	}
@@ -25,34 +25,49 @@ void RendererComponent::setShader(const std::string & _vert, const std::string &
 	shader = std::make_shared<ShaderProgram>(_vert, _frag);
 }
 
-void RendererComponent::setMesh(std::string path, const std::string& texPath)
+void RendererComponent::setMesh(const std::string& _path, const std::string& _texPath)
 {
-	//Set the mesh to the path passed in, then load the texture and apply it together, can be different textures for the same mesh
-	objl::Loader loader;
-	objl::Mesh curMesh;
-	loader.LoadFile(path);
-	curMesh = loader.LoadedMeshes[0]; //Crashes program
-	objPositions = std::make_shared<VertexBuffer>();
-	objNormals = std::make_shared<VertexBuffer>();
-	objTexCoords = std::make_shared<VertexBuffer>();
-	mesh = std::make_shared<VertexArray>();
-
-	for (auto& vertice : curMesh.Vertices)
+	try
 	{
-		objPositions->add(glm::vec3(vertice.Position.X, vertice.Position.Y, vertice.Position.Z));
-	}
-	for (auto& vertice : curMesh.Vertices)
-	{
-		objNormals->add(glm::vec3(vertice.Normal.X, vertice.Normal.Y, vertice.Normal.Z));
-	}
-	for (auto& vertice : curMesh.Vertices)
-	{
-		objTexCoords->add(glm::vec2(vertice.TextureCoordinate.X, vertice.TextureCoordinate.Y));
-	}
+		objl::Loader loader;
+		objl::Mesh curMesh;
+		loader.LoadFile(_path);
+		if (loader.LoadedMeshes.size() != 0)
+		{
+			curMesh = loader.LoadedMeshes[0];
+		}
+		else
+		{
+			std::string err = "Failed to load model at path: " + _path + " with texture path of: " + _texPath;
+			throw std::exception(err.c_str());
+		}
+		objPositions = std::make_shared<VertexBuffer>();
+		objNormals = std::make_shared<VertexBuffer>();
+		objTexCoords = std::make_shared<VertexBuffer>();
+		mesh = std::make_shared<VertexArray>();
 
-	tex = texture->loadTexture(texPath);
+		for (auto& vertice : curMesh.Vertices)
+		{
+			objPositions->add(glm::vec3(vertice.Position.X, vertice.Position.Y, vertice.Position.Z));
+		}
+		for (auto& vertice : curMesh.Vertices)
+		{
+			objNormals->add(glm::vec3(vertice.Normal.X, vertice.Normal.Y, vertice.Normal.Z));
+		}
+		for (auto& vertice : curMesh.Vertices)
+		{
+			objTexCoords->add(glm::vec2(vertice.TextureCoordinate.X, vertice.TextureCoordinate.Y));
+		}
 
-	mesh->SetBuffer("in_Position", objPositions);
-	mesh->SetBuffer("in_Normal", objNormals);
-	mesh->SetBuffer("in_TexCoord", objTexCoords);
+		tex = texture->loadTexture(_texPath);
+
+		mesh->SetBuffer("in_Position", objPositions);
+		mesh->SetBuffer("in_Normal", objNormals);
+		mesh->SetBuffer("in_TexCoord", objTexCoords);
+	}
+	catch (std::exception& e)
+	{
+		//std::cout << "Failed to load model at path: " << _path << " with texture path of: " << _texPath << std::endl;
+		std::cout << e.what() << std::endl;
+	}
 }
