@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include "Core.h"
 #include <iostream>
+#include "AudioComponent.h"
 
 void BoxColliderComponent::onTick()
 {
@@ -42,7 +43,7 @@ bool BoxColliderComponent::isColliding(const glm::vec3& _position, const glm::ve
 				if (abs(this->getEntity()->getComponent<TransformComponent>()->getPos().z - _position.z) < this->size.z + _size.z)
 				{
 					std::cout << "Collision" << std::endl;
-				
+					this->getEntity()->getComponent<AudioComponent>()->playAudio("Assets/dixie_horn.ogg");
 					return true;
 				}
 			}

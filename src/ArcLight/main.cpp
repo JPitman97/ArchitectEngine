@@ -30,6 +30,7 @@ int main()
 	TC->setScale(glm::vec3(0.2f));
 	auto BC = Crate->addComponent<BoxColliderComponent>();
 	BC->setSize(glm::vec3(0.1f, 0.1f, 0.1f));
+	auto AC = Crate->addComponent<AudioComponent>();
 
 	shared<Entity> Crate2 = core->addEntity();
 	auto TC2 = Crate2->addComponent<TransformComponent>();
@@ -45,7 +46,7 @@ int main()
 	Crate2->addComponent<InputComponent>();
 	auto BC2 = Crate2->addComponent<BoxColliderComponent>();
 	BC2->setSize(glm::vec3(0.3f, 0.3f, 0.3f));
-
+	auto AC2 = Crate2->addComponent<AudioComponent>();
 
 	shared<Entity> skybox = core->addEntity();
 	shared<RendererComponent> RC = skybox->addComponent<RendererComponent>();

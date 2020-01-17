@@ -44,6 +44,8 @@ add_library(ArchitectEngine
 	src/Architectengine/InputComponent.h
 	src/ArchitectEngine/BoxColliderComponent.cpp
 	src/ArchitectEngine/BoxColliderComponent.h
+	src/ArchitectEngine/AudioComponent.cpp
+	src/ArchitectEngine/AudioComponent.h
 )
 
 link_directories(
@@ -53,9 +55,9 @@ link_directories(
 target_include_directories(ArchitectEngine PUBLIC ${CMAKE_SOURCE_DIR}/External/include/msvc)
 
 if(WIN32)
-	target_link_libraries(ArchitectEngine SDL2 opengl32 glew32 lua53) #Windows
+	target_link_libraries(ArchitectEngine OpenAL32 SDL2 opengl32 glew32 lua53) #Windows
 else()
-	target_link_libraries(ArchitectEngine SDL2 GL GLU lua53) #Linux
+	target_link_libraries(ArchitectEngine OpenAL32 SDL2 GL GLU lua53) #Linux
 endif()
 
 add_executable(ArcLight
@@ -63,3 +65,13 @@ add_executable(ArcLight
 )
 
 target_link_libraries(ArcLight ArchitectEngine)
+
+add_custom_command(TARGET ArcLight
+	POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy
+		"${PROJECT_SOURCE_DIR}/External/lib/msvc/OpenAL32.dll"
+		"${PROJECT_SOURCE_DIR}/External/lib/msvc/glew32.dll"
+		"${PROJECT_SOURCE_DIR}/External/lib/msvc/lua53.dll"
+		"${PROJECT_SOURCE_DIR}/External/lib/msvc/SDL2.dll"
+		$<TARGET_FILE_DIR:ArcLight>
+)
