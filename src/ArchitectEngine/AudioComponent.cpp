@@ -118,7 +118,6 @@ void AudioComponent::playAudio(const std::string& _filename)
 	{
 		std::cout << e.what() << std::endl;
 	}
-	
 }
 
 void AudioComponent::load_ogg(const std::string& fileName, std::vector<char>& buffer, ALenum& format, ALsizei& freq)
@@ -166,5 +165,4 @@ void AudioComponent::load_ogg(const std::string& fileName, std::vector<char>& bu
 	{
 		std::cout << e.what() << std::endl;
 	}
-
 }

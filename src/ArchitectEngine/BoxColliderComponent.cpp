@@ -34,20 +34,27 @@ glm::vec3 BoxColliderComponent::getOffset() const
 bool BoxColliderComponent::isColliding(const glm::vec3& _position, const glm::vec3& _size) const
 {
 	// check the X axis
-		if (abs(this->getEntity()->getComponent<TransformComponent>()->getPos().x - _position.x) < this->size.x + _size.x)
+	if (abs(this->getEntity()->getComponent<TransformComponent>()->getPos().x - _position.x) < this->size.x + _size.x)
+	{
+		//check the Y axis
+		if (abs(this->getEntity()->getComponent<TransformComponent>()->getPos().y - _position.y) < this->size.y + _size.y)
 		{
-			//check the Y axis
-			if (abs(this->getEntity()->getComponent<TransformComponent>()->getPos().y - _position.y) < this->size.y + _size.y)
+			//check the Z axis
+			if (abs(this->getEntity()->getComponent<TransformComponent>()->getPos().z - _position.z) < this->size.z + _size.z)
 			{
-				//check the Z axis
-				if (abs(this->getEntity()->getComponent<TransformComponent>()->getPos().z - _position.z) < this->size.z + _size.z)
+				std::cout << "Collision" << std::endl;
+				this->getEntity()->getComponent<AudioComponent>()->playAudio("Assets/dixie_horn.ogg");
+				for (auto& entity : getEntity()->getCore()->getEntities())
 				{
-					std::cout << "Collision" << std::endl;
-					this->getEntity()->getComponent<AudioComponent>()->playAudio("Assets/dixie_horn.ogg");
-					return true;
+					if (entity->getComponent<BoxColliderComponent>() && this->getEntity() != entity)
+					{
+						entity->getComponent<AudioComponent>()->playAudio("Assets/Kryp.ogg");;
+					}
 				}
+				return true;
 			}
 		}
+	}
 	return false;
 }
 
