@@ -1,0 +1,73 @@
+\hypertarget{class_vertex_array}{}\doxysection{Vertex\+Array Class Reference}
+\label{class_vertex_array}\index{VertexArray@{VertexArray}}
+
+
+{\ttfamily \#include $<$Vertex\+Array.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_vertex_array_ab8a2dcce9698f96dac5f9a19c6979d03}{Vertex\+Array}} ()
+\item 
+void \mbox{\hyperlink{class_vertex_array_ad11a0464a212c0ba63081ad6d09c4c2f}{Set\+Buffer}} (const std\+::string \&\+\_\+attribute, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_vertex_buffer}{Vertex\+Buffer}} $>$ \&\+\_\+buffer)
+\item 
+int \mbox{\hyperlink{class_vertex_array_a94f9ebffa24c5721783099fef186f9a0}{Get\+Vertex\+Count}} ()
+\item 
+G\+Luint \mbox{\hyperlink{class_vertex_array_af6ade41fd0b2789e75b77bf29037aa83}{Get\+Id}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Vertex Array class which handles G\+Lfloat data and Id\textquotesingle{}s.
+
+This class handles the creation of model vertex data and passes their vertex information to the shader program. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_vertex_array_ab8a2dcce9698f96dac5f9a19c6979d03}\label{class_vertex_array_ab8a2dcce9698f96dac5f9a19c6979d03}} 
+\index{VertexArray@{VertexArray}!VertexArray@{VertexArray}}
+\index{VertexArray@{VertexArray}!VertexArray@{VertexArray}}
+\doxysubsubsection{\texorpdfstring{VertexArray()}{VertexArray()}}
+{\footnotesize\ttfamily Vertex\+Array\+::\+Vertex\+Array (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Vertex Array class which handles G\+Lfloat data and Id\textquotesingle{}s.
+
+This constructor handles the resizing of the buffer object as well as the generation of the \mbox{\hyperlink{class_vertex_array}{Vertex\+Array}} Id. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_vertex_array_af6ade41fd0b2789e75b77bf29037aa83}\label{class_vertex_array_af6ade41fd0b2789e75b77bf29037aa83}} 
+\index{VertexArray@{VertexArray}!GetId@{GetId}}
+\index{GetId@{GetId}!VertexArray@{VertexArray}}
+\doxysubsubsection{\texorpdfstring{GetId()}{GetId()}}
+{\footnotesize\ttfamily G\+Luint Vertex\+Array\+::\+Get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Get\textquotesingle{}s the Id of the Vertex Array.
+
+This method returns the Id of the Vertex Array. \mbox{\Hypertarget{class_vertex_array_a94f9ebffa24c5721783099fef186f9a0}\label{class_vertex_array_a94f9ebffa24c5721783099fef186f9a0}} 
+\index{VertexArray@{VertexArray}!GetVertexCount@{GetVertexCount}}
+\index{GetVertexCount@{GetVertexCount}!VertexArray@{VertexArray}}
+\doxysubsubsection{\texorpdfstring{GetVertexCount()}{GetVertexCount()}}
+{\footnotesize\ttfamily int Vertex\+Array\+::\+Get\+Vertex\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Getter method which retrieves the vertex count.
+
+This method returns the total vertices of the current mesh. \mbox{\Hypertarget{class_vertex_array_ad11a0464a212c0ba63081ad6d09c4c2f}\label{class_vertex_array_ad11a0464a212c0ba63081ad6d09c4c2f}} 
+\index{VertexArray@{VertexArray}!SetBuffer@{SetBuffer}}
+\index{SetBuffer@{SetBuffer}!VertexArray@{VertexArray}}
+\doxysubsubsection{\texorpdfstring{SetBuffer()}{SetBuffer()}}
+{\footnotesize\ttfamily void Vertex\+Array\+::\+Set\+Buffer (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+attribute,  }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_vertex_buffer}{Vertex\+Buffer}} $>$ \&}]{\+\_\+buffer }\end{DoxyParamCaption})}
+
+Set Buffer method which handles setting attributes. to locations specified in the shader program.
+
+Set Buffer method which handles setting attributes to locations specified in the shader program. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+attribute} & This is the name of the attribute to assign in the shader \\
+\hline
+{\em \+\_\+buffer} & This is the information to be stored in the attribute \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Architect\+Engine/Vertex\+Array.\+h\item 
+src/\+Architect\+Engine/Vertex\+Array.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,81 @@
+\hypertarget{class_audio_component}{}\doxysection{Audio\+Component Class Reference}
+\label{class_audio_component}\index{AudioComponent@{AudioComponent}}
+
+
+{\ttfamily \#include $<$Audio\+Component.\+h$>$}
+
+Inheritance diagram for Audio\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_audio_component}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_audio_component_aaea64af7cd81778f6737f0a4bee35394}{Audio\+Component}} ()
+\item 
+\mbox{\hyperlink{class_audio_component_a68bf2351458d61601aad7abeb3f58588}{$\sim$\+Audio\+Component}} ()
+\item 
+void \mbox{\hyperlink{class_audio_component_a56f0e66c554ce9594cc499bd0078caf9}{on\+Tick}} () override
+\item 
+void \mbox{\hyperlink{class_audio_component_a57b9f9d864c3cd9bf07cce21b8898276}{play\+Audio}} (const std\+::string \&\+\_\+filename)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class handles audio loading and playing.
+
+This class allows users to play their own sounds on entities 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_audio_component_aaea64af7cd81778f6737f0a4bee35394}\label{class_audio_component_aaea64af7cd81778f6737f0a4bee35394}} 
+\index{AudioComponent@{AudioComponent}!AudioComponent@{AudioComponent}}
+\index{AudioComponent@{AudioComponent}!AudioComponent@{AudioComponent}}
+\doxysubsubsection{\texorpdfstring{AudioComponent()}{AudioComponent()}}
+{\footnotesize\ttfamily Audio\+Component\+::\+Audio\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This constructor creates the audio device and context.
+
+This constructor creates all the objects needed as well as specifying a default sound location. \mbox{\Hypertarget{class_audio_component_a68bf2351458d61601aad7abeb3f58588}\label{class_audio_component_a68bf2351458d61601aad7abeb3f58588}} 
+\index{AudioComponent@{AudioComponent}!````~AudioComponent@{$\sim$AudioComponent}}
+\index{````~AudioComponent@{$\sim$AudioComponent}!AudioComponent@{AudioComponent}}
+\doxysubsubsection{\texorpdfstring{$\sim$AudioComponent()}{~AudioComponent()}}
+{\footnotesize\ttfamily Audio\+Component\+::$\sim$\+Audio\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This destructor destroys the device and context to avoid memory leaks.
+
+This destructor cleans up the audio component when it\textquotesingle{}s destroyed. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_audio_component_a56f0e66c554ce9594cc499bd0078caf9}\label{class_audio_component_a56f0e66c554ce9594cc499bd0078caf9}} 
+\index{AudioComponent@{AudioComponent}!onTick@{onTick}}
+\index{onTick@{onTick}!AudioComponent@{AudioComponent}}
+\doxysubsubsection{\texorpdfstring{onTick()}{onTick()}}
+{\footnotesize\ttfamily void Audio\+Component\+::on\+Tick (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+This method checks to see whether a sound is playing, if so it blocks others.
+
+This method avoids multiple audio clips playing at the same time from one source. 
+
+Reimplemented from \mbox{\hyperlink{class_component}{Component}}.
+
+\mbox{\Hypertarget{class_audio_component_a57b9f9d864c3cd9bf07cce21b8898276}\label{class_audio_component_a57b9f9d864c3cd9bf07cce21b8898276}} 
+\index{AudioComponent@{AudioComponent}!playAudio@{playAudio}}
+\index{playAudio@{playAudio}!AudioComponent@{AudioComponent}}
+\doxysubsubsection{\texorpdfstring{playAudio()}{playAudio()}}
+{\footnotesize\ttfamily void Audio\+Component\+::play\+Audio (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+filename }\end{DoxyParamCaption})}
+
+This method plays an audio clip from the file name.
+
+This method takes a file name and plays the audio clip. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+filename} & This is the name of the audioclip \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Architect\+Engine/Audio\+Component.\+h\item 
+src/\+Architect\+Engine/Audio\+Component.\+cpp\end{DoxyCompactItemize}

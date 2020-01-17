@@ -1,0 +1,131 @@
+\hypertarget{class_transform_component}{}\doxysection{Transform\+Component Class Reference}
+\label{class_transform_component}\index{TransformComponent@{TransformComponent}}
+
+
+{\ttfamily \#include $<$Transform\+Component.\+h$>$}
+
+Inheritance diagram for Transform\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_transform_component}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_transform_component_ace1cf2d7d2a7468e9cb3eb0ce382f446}{Transform\+Component}} ()
+\item 
+void \mbox{\hyperlink{class_transform_component_a2b394bfd01207cf92186ebce26c170d1}{on\+Tick}} () override
+\item 
+void \mbox{\hyperlink{class_transform_component_ae58731c667dbcddfb1631466b3a579c6}{set\+Pos}} (const glm\+::vec3 \&\+\_\+pos)
+\item 
+glm\+::vec3 \mbox{\hyperlink{class_transform_component_aee3fd80e014221b719281156142fdd7f}{get\+Pos}} ()
+\item 
+void \mbox{\hyperlink{class_transform_component_a4e5f005808330d05f21db91ef2be07eb}{set\+Rot}} (const glm\+::vec3 \&\+\_\+rot)
+\item 
+glm\+::vec3 \mbox{\hyperlink{class_transform_component_a4d4116110104a81793a52b9f7e299324}{get\+Rot}} ()
+\item 
+void \mbox{\hyperlink{class_transform_component_acddaaa5280fb2c95b52c19241b736072}{set\+Scale}} (const glm\+::vec3 \&\+\_\+scale)
+\item 
+glm\+::vec3 \mbox{\hyperlink{class_transform_component_a715d3fa134d7b37a9e6ce2cb76e8cb1b}{get\+Scale}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This Class handles the transforms of an object.
+
+This class is an abstraction to the \mbox{\hyperlink{class_transform}{Transform}} class, allowing the user only the necessities. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_transform_component_ace1cf2d7d2a7468e9cb3eb0ce382f446}\label{class_transform_component_ace1cf2d7d2a7468e9cb3eb0ce382f446}} 
+\index{TransformComponent@{TransformComponent}!TransformComponent@{TransformComponent}}
+\index{TransformComponent@{TransformComponent}!TransformComponent@{TransformComponent}}
+\doxysubsubsection{\texorpdfstring{TransformComponent()}{TransformComponent()}}
+{\footnotesize\ttfamily Transform\+Component\+::\+Transform\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This constructor creates a new instance of \mbox{\hyperlink{class_transform}{Transform}}.
+
+This constructor creates an instance of \mbox{\hyperlink{class_transform}{Transform}} to store and retrieve values from. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_transform_component_aee3fd80e014221b719281156142fdd7f}\label{class_transform_component_aee3fd80e014221b719281156142fdd7f}} 
+\index{TransformComponent@{TransformComponent}!getPos@{getPos}}
+\index{getPos@{getPos}!TransformComponent@{TransformComponent}}
+\doxysubsubsection{\texorpdfstring{getPos()}{getPos()}}
+{\footnotesize\ttfamily glm\+::vec3 Transform\+Component\+::get\+Pos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This method gets the position of the model.
+
+This method returns the models position. \mbox{\Hypertarget{class_transform_component_a4d4116110104a81793a52b9f7e299324}\label{class_transform_component_a4d4116110104a81793a52b9f7e299324}} 
+\index{TransformComponent@{TransformComponent}!getRot@{getRot}}
+\index{getRot@{getRot}!TransformComponent@{TransformComponent}}
+\doxysubsubsection{\texorpdfstring{getRot()}{getRot()}}
+{\footnotesize\ttfamily glm\+::vec3 Transform\+Component\+::get\+Rot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This method gets the position of the model.
+
+This method gets the rotation of the model and returns it. \mbox{\Hypertarget{class_transform_component_a715d3fa134d7b37a9e6ce2cb76e8cb1b}\label{class_transform_component_a715d3fa134d7b37a9e6ce2cb76e8cb1b}} 
+\index{TransformComponent@{TransformComponent}!getScale@{getScale}}
+\index{getScale@{getScale}!TransformComponent@{TransformComponent}}
+\doxysubsubsection{\texorpdfstring{getScale()}{getScale()}}
+{\footnotesize\ttfamily glm\+::vec3 Transform\+Component\+::get\+Scale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+This method gets the scale of the model.
+
+This method gets the scale of the model and returns it. \mbox{\Hypertarget{class_transform_component_a2b394bfd01207cf92186ebce26c170d1}\label{class_transform_component_a2b394bfd01207cf92186ebce26c170d1}} 
+\index{TransformComponent@{TransformComponent}!onTick@{onTick}}
+\index{onTick@{onTick}!TransformComponent@{TransformComponent}}
+\doxysubsubsection{\texorpdfstring{onTick()}{onTick()}}
+{\footnotesize\ttfamily void Transform\+Component\+::on\+Tick (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+This method is ran every tick.
+
+This method handles the movement of the object and also the creation of new matrices each tick. 
+
+Reimplemented from \mbox{\hyperlink{class_component}{Component}}.
+
+\mbox{\Hypertarget{class_transform_component_ae58731c667dbcddfb1631466b3a579c6}\label{class_transform_component_ae58731c667dbcddfb1631466b3a579c6}} 
+\index{TransformComponent@{TransformComponent}!setPos@{setPos}}
+\index{setPos@{setPos}!TransformComponent@{TransformComponent}}
+\doxysubsubsection{\texorpdfstring{setPos()}{setPos()}}
+{\footnotesize\ttfamily void Transform\+Component\+::set\+Pos (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{\+\_\+pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This method sets the position of the model.
+
+This method takes a position and overrides the models position with it. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pos} & This is the new position for the model \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_transform_component_a4e5f005808330d05f21db91ef2be07eb}\label{class_transform_component_a4e5f005808330d05f21db91ef2be07eb}} 
+\index{TransformComponent@{TransformComponent}!setRot@{setRot}}
+\index{setRot@{setRot}!TransformComponent@{TransformComponent}}
+\doxysubsubsection{\texorpdfstring{setRot()}{setRot()}}
+{\footnotesize\ttfamily void Transform\+Component\+::set\+Rot (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{\+\_\+rot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This method sets the rotation of the model.
+
+This method takes a rotation and overrides the models rotation with it. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+rot} & This is the new rotation for the model \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_transform_component_acddaaa5280fb2c95b52c19241b736072}\label{class_transform_component_acddaaa5280fb2c95b52c19241b736072}} 
+\index{TransformComponent@{TransformComponent}!setScale@{setScale}}
+\index{setScale@{setScale}!TransformComponent@{TransformComponent}}
+\doxysubsubsection{\texorpdfstring{setScale()}{setScale()}}
+{\footnotesize\ttfamily void Transform\+Component\+::set\+Scale (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{\+\_\+scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This method sets the scale of the model.
+
+This method takes a scale and overrides the models scale with it. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+scale} & This is the new scale for the model \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Architect\+Engine/Transform\+Component.\+h\item 
+src/\+Architect\+Engine/Transform\+Component.\+cpp\end{DoxyCompactItemize}

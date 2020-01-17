@@ -1,0 +1,55 @@
+\hypertarget{class_component}{}\doxysection{Component Class Reference}
+\label{class_component}\index{Component@{Component}}
+
+
+{\ttfamily \#include $<$Component.\+h$>$}
+
+Inheritance diagram for Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=10.000000cm]{class_component}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ \mbox{\hyperlink{class_component_a1548ef503c232776012f97bff35180ad}{get\+Entity}} () const
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_core}{Core}} $>$ \mbox{\hyperlink{class_component_aff6cb3ab6df5e7fe396874dae316af36}{get\+Core}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_component_a614439ccac0344926adc4c0165d64060}\label{class_component_a614439ccac0344926adc4c0165d64060}} 
+class {\bfseries Entity}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class handles the components.
+
+This method handles retreiving the component entity as well as the core, plus it provides virtual methods. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_component_aff6cb3ab6df5e7fe396874dae316af36}\label{class_component_aff6cb3ab6df5e7fe396874dae316af36}} 
+\index{Component@{Component}!getCore@{getCore}}
+\index{getCore@{getCore}!Component@{Component}}
+\doxysubsubsection{\texorpdfstring{getCore()}{getCore()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_core}{Core}} $>$ Component\+::get\+Core (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+This method returns the \mbox{\hyperlink{class_core}{Core}}.
+
+This method returns a shared \mbox{\hyperlink{class_core}{Core}} pointer. \mbox{\Hypertarget{class_component_a1548ef503c232776012f97bff35180ad}\label{class_component_a1548ef503c232776012f97bff35180ad}} 
+\index{Component@{Component}!getEntity@{getEntity}}
+\index{getEntity@{getEntity}!Component@{Component}}
+\doxysubsubsection{\texorpdfstring{getEntity()}{getEntity()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_entity}{Entity}} $>$ Component\+::get\+Entity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+This method returns the component entity.
+
+This method returns a shared pointer to the entity. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Architect\+Engine/Component.\+h\item 
+src/\+Architect\+Engine/Component.\+cpp\end{DoxyCompactItemize}

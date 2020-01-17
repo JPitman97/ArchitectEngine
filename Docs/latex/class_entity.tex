@@ -1,0 +1,76 @@
+\hypertarget{class_entity}{}\doxysection{Entity Class Reference}
+\label{class_entity}\index{Entity@{Entity}}
+
+
+{\ttfamily \#include $<$Entity.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_core}{Core}} $>$ \mbox{\hyperlink{class_entity_a854f124b1c9903ade6805cbbc785866c}{get\+Core}} () const
+\item 
+{\footnotesize template$<$typename T , typename... A$>$ }\\std\+::shared\+\_\+ptr$<$ T $>$ \mbox{\hyperlink{class_entity_aa180533d89a8b39db1ea26e0c1480553}{add\+Component}} (A... args)
+\item 
+{\footnotesize template$<$class T $>$ }\\std\+::shared\+\_\+ptr$<$ T $>$ \mbox{\hyperlink{class_entity_a3285414a556f8b07751d76dafaf03505}{get\+Component}} ()
+\item 
+void \mbox{\hyperlink{class_entity_a00b6eeaf99b35c8f8b10b5fbfc1baf4f}{update}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_entity_a4107254ac74f90d4f91e810d755b98c2}\label{class_entity_a4107254ac74f90d4f91e810d755b98c2}} 
+class {\bfseries Core}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class handles the creation of entities.
+
+This class handles the creation of entities and the ability to add components to them. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_entity_aa180533d89a8b39db1ea26e0c1480553}\label{class_entity_aa180533d89a8b39db1ea26e0c1480553}} 
+\index{Entity@{Entity}!addComponent@{addComponent}}
+\index{addComponent@{addComponent}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{addComponent()}{addComponent()}}
+{\footnotesize\ttfamily template$<$typename T , typename... A$>$ \\
+std\+::shared\+\_\+ptr$<$T$>$ Entity\+::add\+Component (\begin{DoxyParamCaption}\item[{A...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This template method is used to add components to entities.
+
+This template method is used to add components of all types to Entities and then return a shared pointer to them. 
+\begin{DoxyParams}{Parameters}
+{\em args} & This is the arguments for the component \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_entity_a3285414a556f8b07751d76dafaf03505}\label{class_entity_a3285414a556f8b07751d76dafaf03505}} 
+\index{Entity@{Entity}!getComponent@{getComponent}}
+\index{getComponent@{getComponent}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{getComponent()}{getComponent()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::shared\+\_\+ptr$<$T$>$ Entity\+::get\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This template method is used to retrieve components on entities.
+
+This template method is used to retrieve components of all types on Entities and return a shared pointer to them. \mbox{\Hypertarget{class_entity_a854f124b1c9903ade6805cbbc785866c}\label{class_entity_a854f124b1c9903ade6805cbbc785866c}} 
+\index{Entity@{Entity}!getCore@{getCore}}
+\index{getCore@{getCore}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{getCore()}{getCore()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_core}{Core}} $>$ Entity\+::get\+Core (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+This method returns a shared pointer to the core.
+
+method returns a shared pointer to the core for entities to use. \mbox{\Hypertarget{class_entity_a00b6eeaf99b35c8f8b10b5fbfc1baf4f}\label{class_entity_a00b6eeaf99b35c8f8b10b5fbfc1baf4f}} 
+\index{Entity@{Entity}!update@{update}}
+\index{update@{update}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Entity\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This method is used to run on\+Display and on\+Tick for entities.
+
+This method runs on\+Display and on\+Tick every tick for components to update themselves. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Architect\+Engine/Entity.\+h\item 
+src/\+Architect\+Engine/Entity.\+cpp\end{DoxyCompactItemize}

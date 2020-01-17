@@ -1,0 +1,139 @@
+\hypertarget{class_lua_component}{}\doxysection{Lua\+Component Class Reference}
+\label{class_lua_component}\index{LuaComponent@{LuaComponent}}
+
+
+{\ttfamily \#include $<$Lua\+Component.\+h$>$}
+
+Inheritance diagram for Lua\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_lua_component}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_lua_component_aa403509aa35e18e3ac4db9ab50a34a69}{initialise}} (std\+::string \+\_\+file\+Path)
+\item 
+void \mbox{\hyperlink{class_lua_component_ab9dd1656d5b875e8ca805fa81738a4d5}{on\+Init}} () override
+\item 
+void \mbox{\hyperlink{class_lua_component_a80365f8b58bb011671405406560e3b70}{on\+Begin}} () override
+\item 
+void \mbox{\hyperlink{class_lua_component_a0c9c6c1cd97f06a96e2f3fa018caf8ea}{on\+Tick}} () override
+\item 
+void \mbox{\hyperlink{class_lua_component_a13d3f44dc6247eb3d569816840ef38a9}{on\+Display}} () override
+\item 
+void \mbox{\hyperlink{class_lua_component_a92d15a6639257b37b07b9202683fda3e}{rotator}} ()
+\item 
+void \mbox{\hyperlink{class_lua_component_a929315b79a5c34c62ffba3336ef59e71}{sine\+Motion}} ()
+\item 
+\mbox{\hyperlink{class_lua_component_a48120f3614cb80c0f0d484b7ebb919ef}{$\sim$\+Lua\+Component}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_lua_component_a614439ccac0344926adc4c0165d64060}\label{class_lua_component_a614439ccac0344926adc4c0165d64060}} 
+class {\bfseries Entity}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class handles the Lua functionality for the engine.
+
+This class handles all Lua instances and the basic A\+PI for running lua scripts on objects. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_lua_component_a48120f3614cb80c0f0d484b7ebb919ef}\label{class_lua_component_a48120f3614cb80c0f0d484b7ebb919ef}} 
+\index{LuaComponent@{LuaComponent}!````~LuaComponent@{$\sim$LuaComponent}}
+\index{````~LuaComponent@{$\sim$LuaComponent}!LuaComponent@{LuaComponent}}
+\doxysubsubsection{\texorpdfstring{$\sim$LuaComponent()}{~LuaComponent()}}
+{\footnotesize\ttfamily Lua\+Component\+::$\sim$\+Lua\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This destructor destroys the lua state.
+
+This destructor cleans up the lua state and exits. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_lua_component_aa403509aa35e18e3ac4db9ab50a34a69}\label{class_lua_component_aa403509aa35e18e3ac4db9ab50a34a69}} 
+\index{LuaComponent@{LuaComponent}!initialise@{initialise}}
+\index{initialise@{initialise}!LuaComponent@{LuaComponent}}
+\doxysubsubsection{\texorpdfstring{initialise()}{initialise()}}
+{\footnotesize\ttfamily void Lua\+Component\+::initialise (\begin{DoxyParamCaption}\item[{std\+::string}]{\+\_\+file\+Path }\end{DoxyParamCaption})}
+
+This method initializes the Lua state as well as running the script.
+
+This method executes the passed in script and enables open\+Libs. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+file\+Path} & This is the filepath of the script \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_lua_component_a80365f8b58bb011671405406560e3b70}\label{class_lua_component_a80365f8b58bb011671405406560e3b70}} 
+\index{LuaComponent@{LuaComponent}!onBegin@{onBegin}}
+\index{onBegin@{onBegin}!LuaComponent@{LuaComponent}}
+\doxysubsubsection{\texorpdfstring{onBegin()}{onBegin()}}
+{\footnotesize\ttfamily void Lua\+Component\+::on\+Begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+This method starts just after on\+Init.
+
+This method starts just after on\+Init and is useful for player stuff. 
+
+Reimplemented from \mbox{\hyperlink{class_component}{Component}}.
+
+\mbox{\Hypertarget{class_lua_component_a13d3f44dc6247eb3d569816840ef38a9}\label{class_lua_component_a13d3f44dc6247eb3d569816840ef38a9}} 
+\index{LuaComponent@{LuaComponent}!onDisplay@{onDisplay}}
+\index{onDisplay@{onDisplay}!LuaComponent@{LuaComponent}}
+\doxysubsubsection{\texorpdfstring{onDisplay()}{onDisplay()}}
+{\footnotesize\ttfamily void Lua\+Component\+::on\+Display (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+This method runs the lua script to draw objects.
+
+This method is currently not implemented, but will be able to draw basic objects. 
+
+Reimplemented from \mbox{\hyperlink{class_component}{Component}}.
+
+\mbox{\Hypertarget{class_lua_component_ab9dd1656d5b875e8ca805fa81738a4d5}\label{class_lua_component_ab9dd1656d5b875e8ca805fa81738a4d5}} 
+\index{LuaComponent@{LuaComponent}!onInit@{onInit}}
+\index{onInit@{onInit}!LuaComponent@{LuaComponent}}
+\doxysubsubsection{\texorpdfstring{onInit()}{onInit()}}
+{\footnotesize\ttfamily void Lua\+Component\+::on\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+This method handles Lua methods that run at the start.
+
+This method executes at the start of the game. 
+
+Reimplemented from \mbox{\hyperlink{class_component}{Component}}.
+
+\mbox{\Hypertarget{class_lua_component_a0c9c6c1cd97f06a96e2f3fa018caf8ea}\label{class_lua_component_a0c9c6c1cd97f06a96e2f3fa018caf8ea}} 
+\index{LuaComponent@{LuaComponent}!onTick@{onTick}}
+\index{onTick@{onTick}!LuaComponent@{LuaComponent}}
+\doxysubsubsection{\texorpdfstring{onTick()}{onTick()}}
+{\footnotesize\ttfamily void Lua\+Component\+::on\+Tick (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+This method runs the Lua script every tick.
+
+This method executes all scripts that implement on\+Tick every tick. 
+
+Reimplemented from \mbox{\hyperlink{class_component}{Component}}.
+
+\mbox{\Hypertarget{class_lua_component_a92d15a6639257b37b07b9202683fda3e}\label{class_lua_component_a92d15a6639257b37b07b9202683fda3e}} 
+\index{LuaComponent@{LuaComponent}!rotator@{rotator}}
+\index{rotator@{rotator}!LuaComponent@{LuaComponent}}
+\doxysubsubsection{\texorpdfstring{rotator()}{rotator()}}
+{\footnotesize\ttfamily void Lua\+Component\+::rotator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This method rotates the object every tick.
+
+This method rotates the object every tick with the passed in values. \mbox{\Hypertarget{class_lua_component_a929315b79a5c34c62ffba3336ef59e71}\label{class_lua_component_a929315b79a5c34c62ffba3336ef59e71}} 
+\index{LuaComponent@{LuaComponent}!sineMotion@{sineMotion}}
+\index{sineMotion@{sineMotion}!LuaComponent@{LuaComponent}}
+\doxysubsubsection{\texorpdfstring{sineMotion()}{sineMotion()}}
+{\footnotesize\ttfamily void Lua\+Component\+::sine\+Motion (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This method runs a sine motion on an object.
+
+This method bobs the object up and down, however currently this script is not functional. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Architect\+Engine/Lua\+Component.\+h\item 
+src/\+Architect\+Engine/Lua\+Component.\+cpp\end{DoxyCompactItemize}

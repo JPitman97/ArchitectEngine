@@ -21,8 +21,3 @@ void TransformComponent::onTick()
 	else
 		getCore()->getShaderProgram()->SetUniform("modelMatrix", mm);
 }
-
-void TransformComponent::keyInput()
-{
-	//Handle key input
-}

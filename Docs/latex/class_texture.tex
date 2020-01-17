@@ -1,0 +1,53 @@
+\hypertarget{class_texture}{}\doxysection{Texture Class Reference}
+\label{class_texture}\index{Texture@{Texture}}
+
+
+{\ttfamily \#include $<$Texture.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+G\+Luint \mbox{\hyperlink{class_texture_a94c6fbd5c76250fefcca31c8661ac1a1}{load\+Texture}} (const std\+::string \&\+\_\+path)
+\item 
+G\+Luint \mbox{\hyperlink{class_texture_a0a6a6c4cef6eb60469e2cc0104d9a8c4}{load\+Cubemap}} (std\+::vector$<$ std\+::string $>$ faces)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class handles texture loading.
+
+This class handles the loading of textures as well as cubemaps. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_texture_a0a6a6c4cef6eb60469e2cc0104d9a8c4}\label{class_texture_a0a6a6c4cef6eb60469e2cc0104d9a8c4}} 
+\index{Texture@{Texture}!loadCubemap@{loadCubemap}}
+\index{loadCubemap@{loadCubemap}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{loadCubemap()}{loadCubemap()}}
+{\footnotesize\ttfamily G\+Luint Texture\+::load\+Cubemap (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::string $>$}]{faces }\end{DoxyParamCaption})}
+
+This method loads a cubemap from a defined path.
+
+This method takes a path and loads the cubemap from there, as well as setting parameters such as tiling. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+faces} & This is the path for the cubemap texture faces \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_texture_a94c6fbd5c76250fefcca31c8661ac1a1}\label{class_texture_a94c6fbd5c76250fefcca31c8661ac1a1}} 
+\index{Texture@{Texture}!loadTexture@{loadTexture}}
+\index{loadTexture@{loadTexture}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{loadTexture()}{loadTexture()}}
+{\footnotesize\ttfamily G\+Luint Texture\+::load\+Texture (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+path }\end{DoxyParamCaption})}
+
+This method loads a texture from a defined path.
+
+This method takes a path and loads the texture from there, as well as setting parameters such as tiling. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+path} & This is the path for the texture \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Architect\+Engine/Texture.\+h\item 
+src/\+Architect\+Engine/Texture.\+cpp\end{DoxyCompactItemize}

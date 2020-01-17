@@ -1,0 +1,140 @@
+\hypertarget{class_shader_program}{}\doxysection{Shader\+Program Class Reference}
+\label{class_shader_program}\index{ShaderProgram@{ShaderProgram}}
+
+
+{\ttfamily \#include $<$Shader\+Program.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_shader_program_a7ec722f21e5f34f30ebaf907070a7cf2}{Shader\+Program}} (const std\+::string \&\+\_\+vert, const std\+::string \&\+\_\+frag)
+\item 
+void \mbox{\hyperlink{class_shader_program_aa03e705d4f11d8ad97d20e26991548c5}{draw}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_vertex_array}{Vertex\+Array}} $>$ \&\+\_\+vertex\+Array, G\+Luint \+\_\+tex\+ID, G\+Luint \+\_\+id=N\+U\+LL)
+\item 
+void \mbox{\hyperlink{class_shader_program_a5ed1b29fec6cc63928856a8e075c0832}{Set\+Uniform}} (const std\+::string \&\+\_\+uniform, const glm\+::vec3 \&\+\_\+value)
+\item 
+void \mbox{\hyperlink{class_shader_program_a60c82076cab383406b43977dc7f87bba}{Set\+Uniform}} (const std\+::string \&\+\_\+uniform, const glm\+::vec4 \&\+\_\+value)
+\item 
+void \mbox{\hyperlink{class_shader_program_a3a36c69aa54ef6f4c72163d0cf27b471}{Set\+Uniform}} (const std\+::string \&\+\_\+uniform, const glm\+::mat4 \&\+\_\+value)
+\item 
+void \mbox{\hyperlink{class_shader_program_a41f1a26924cbb0f28494003cf6bf0a88}{Set\+Uniform}} (const std\+::string \&\+\_\+uniform, int \+\_\+value)
+\item 
+G\+Luint \mbox{\hyperlink{class_shader_program_a283225fed383ebdcf51e4fcdc064d7f5}{Get\+Id}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class handles the shaders and uniforms.
+
+This class handles the loading of shaders and also the setting of their uniforms, as well as default drawing. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_shader_program_a7ec722f21e5f34f30ebaf907070a7cf2}\label{class_shader_program_a7ec722f21e5f34f30ebaf907070a7cf2}} 
+\index{ShaderProgram@{ShaderProgram}!ShaderProgram@{ShaderProgram}}
+\index{ShaderProgram@{ShaderProgram}!ShaderProgram@{ShaderProgram}}
+\doxysubsubsection{\texorpdfstring{ShaderProgram()}{ShaderProgram()}}
+{\footnotesize\ttfamily Shader\+Program\+::\+Shader\+Program (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+vert,  }\item[{const std\+::string \&}]{\+\_\+frag }\end{DoxyParamCaption})}
+
+This constructor loads the two supplied shaders.
+
+this constructor loads the two supplied shaders and stores them for use. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+vert} & This is the path for the vertex shader \\
+\hline
+{\em \+\_\+frag} & This is the path to the frag shader \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_shader_program_aa03e705d4f11d8ad97d20e26991548c5}\label{class_shader_program_aa03e705d4f11d8ad97d20e26991548c5}} 
+\index{ShaderProgram@{ShaderProgram}!draw@{draw}}
+\index{draw@{draw}!ShaderProgram@{ShaderProgram}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void Shader\+Program\+::draw (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_vertex_array}{Vertex\+Array}} $>$ \&}]{\+\_\+vertex\+Array,  }\item[{G\+Luint}]{\+\_\+tex\+ID,  }\item[{G\+Luint}]{\+\_\+id = {\ttfamily NULL} }\end{DoxyParamCaption})}
+
+This method handles object rendering.
+
+This method uses the default shaders to render an object. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+vertex\+Array} & This is the vertex Array for the mesh \\
+\hline
+{\em \+\_\+tex\+ID} & This is the texture ID of the material \\
+\hline
+{\em \+\_\+id} & This is used if a new program needs to be used \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_shader_program_a283225fed383ebdcf51e4fcdc064d7f5}\label{class_shader_program_a283225fed383ebdcf51e4fcdc064d7f5}} 
+\index{ShaderProgram@{ShaderProgram}!GetId@{GetId}}
+\index{GetId@{GetId}!ShaderProgram@{ShaderProgram}}
+\doxysubsubsection{\texorpdfstring{GetId()}{GetId()}}
+{\footnotesize\ttfamily G\+Luint Shader\+Program\+::\+Get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+This method gets the shader Id.
+
+This method gets the shaders Id and returns it. \mbox{\Hypertarget{class_shader_program_a3a36c69aa54ef6f4c72163d0cf27b471}\label{class_shader_program_a3a36c69aa54ef6f4c72163d0cf27b471}} 
+\index{ShaderProgram@{ShaderProgram}!SetUniform@{SetUniform}}
+\index{SetUniform@{SetUniform}!ShaderProgram@{ShaderProgram}}
+\doxysubsubsection{\texorpdfstring{SetUniform()}{SetUniform()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily void Shader\+Program\+::\+Set\+Uniform (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+uniform,  }\item[{const glm\+::mat4 \&}]{\+\_\+value }\end{DoxyParamCaption})}
+
+This method sets the shader uniform.
+
+This method sets the shaders uniform to the passed in value. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+uniform} & This is the uniform to be set \\
+\hline
+{\em \+\_\+value} & This is the value to set the uniform too \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_shader_program_a5ed1b29fec6cc63928856a8e075c0832}\label{class_shader_program_a5ed1b29fec6cc63928856a8e075c0832}} 
+\index{ShaderProgram@{ShaderProgram}!SetUniform@{SetUniform}}
+\index{SetUniform@{SetUniform}!ShaderProgram@{ShaderProgram}}
+\doxysubsubsection{\texorpdfstring{SetUniform()}{SetUniform()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily void Shader\+Program\+::\+Set\+Uniform (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+uniform,  }\item[{const glm\+::vec3 \&}]{\+\_\+value }\end{DoxyParamCaption})}
+
+This method sets the shader uniform.
+
+This method sets the shaders uniform to the passed in value. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+uniform} & This is the uniform to be set \\
+\hline
+{\em \+\_\+value} & This is the value to set the uniform too \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_shader_program_a60c82076cab383406b43977dc7f87bba}\label{class_shader_program_a60c82076cab383406b43977dc7f87bba}} 
+\index{ShaderProgram@{ShaderProgram}!SetUniform@{SetUniform}}
+\index{SetUniform@{SetUniform}!ShaderProgram@{ShaderProgram}}
+\doxysubsubsection{\texorpdfstring{SetUniform()}{SetUniform()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily void Shader\+Program\+::\+Set\+Uniform (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+uniform,  }\item[{const glm\+::vec4 \&}]{\+\_\+value }\end{DoxyParamCaption})}
+
+This method sets the shader uniform.
+
+This method sets the shaders uniform to the passed in value. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+uniform} & This is the uniform to be set \\
+\hline
+{\em \+\_\+value} & This is the value to set the uniform too \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_shader_program_a41f1a26924cbb0f28494003cf6bf0a88}\label{class_shader_program_a41f1a26924cbb0f28494003cf6bf0a88}} 
+\index{ShaderProgram@{ShaderProgram}!SetUniform@{SetUniform}}
+\index{SetUniform@{SetUniform}!ShaderProgram@{ShaderProgram}}
+\doxysubsubsection{\texorpdfstring{SetUniform()}{SetUniform()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily void Shader\+Program\+::\+Set\+Uniform (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+uniform,  }\item[{int}]{\+\_\+value }\end{DoxyParamCaption})}
+
+This method sets the shader uniform.
+
+This method sets the shaders uniform to the passed in value. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+uniform} & This is the uniform to be set \\
+\hline
+{\em \+\_\+value} & This is the value to set the uniform too \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Architect\+Engine/Shader\+Program.\+h\item 
+src/\+Architect\+Engine/Shader\+Program.\+cpp\end{DoxyCompactItemize}

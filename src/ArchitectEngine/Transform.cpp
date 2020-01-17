@@ -28,11 +28,6 @@ glm::mat4 Transform::updateViewMatrix(glm::mat4& _matrix, glm::vec3& _position, 
 
 	return _matrix;
 }
-//Pass in the camera view matrix, NOT the model, move the camera and set the player position equal to the camera position
-void Transform::updateInputs() {
-
-	//TODO Handle inputs here
-}
 
 glm::vec3 Transform::getFwd(const glm::vec3& _direction, const glm::vec3& _rotation) const
 {

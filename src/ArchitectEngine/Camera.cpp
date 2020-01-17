@@ -1,6 +1,6 @@
 #include "Camera.h"
 
-Camera::Camera(const glm::vec3& position, const glm::vec3& up, float yaw, float pitch) : Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
+Camera::Camera(const glm::vec3& position, const glm::vec3& up, float yaw, float pitch) : Front(glm::vec3(0.0f, 0.0f, -1.0f)), Zoom(ZOOM)
 {
 	Position = position;
 	WorldUp = up;
@@ -10,7 +10,7 @@ Camera::Camera(const glm::vec3& position, const glm::vec3& up, float yaw, float 
 }
 
 Camera::Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch):
-	Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
+	Front(glm::vec3(0.0f, 0.0f, -1.0f)), Zoom(ZOOM)
 {
 	Position = glm::vec3(posX, posY, posZ);
 	WorldUp = glm::vec3(upX, upY, upZ);
@@ -27,40 +27,6 @@ glm::mat4 Camera::GetViewMatrix() const
 void Camera::setPosition(const glm::vec3 _position)
 {
 	Position = _position;
-}
-
-void Camera::ProcessKeyboard(Camera_Movement direction, float deltaTime)
-{
-	float velocity = MovementSpeed * deltaTime;
-	if (direction == FORWARD)
-		Position += Front * velocity;
-	if (direction == BACKWARD)
-		Position -= Front * velocity;
-	if (direction == LEFT)
-		Position -= Right * velocity;
-	if (direction == RIGHT)
-		Position += Right * velocity;
-}
-
-void Camera::ProcessMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch)
-{
-	xoffset *= MouseSensitivity;
-	yoffset *= MouseSensitivity;
-
-	Yaw += xoffset;
-	Pitch += yoffset;
-
-	// Make sure that when pitch is out of bounds, screen doesn't get flipped
-	if (constrainPitch)
-	{
-		if (Pitch > 89.0f)
-			Pitch = 89.0f;
-		if (Pitch < -89.0f)
-			Pitch = -89.0f;
-	}
-
-	// Update Front, Right and Up Vectors using the updated Euler angles
-	updateCameraVectors();
 }
 
 void Camera::updateCameraVectors()

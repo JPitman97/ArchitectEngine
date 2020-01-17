@@ -1,0 +1,89 @@
+\hypertarget{class_input}{}\doxysection{Input Class Reference}
+\label{class_input}\index{Input@{Input}}
+
+
+{\ttfamily \#include $<$Input.\+h$>$}
+
+Inheritance diagram for Input\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_input}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_input_a167f6c66df993b4785e97e10012d5997}{is\+Key}} (int \+\_\+key)
+\item 
+bool \mbox{\hyperlink{class_input_a3f83c23f52a358400115f3e6265990f3}{is\+Key\+Pressed}} (int \+\_\+key)
+\item 
+bool \mbox{\hyperlink{class_input_af033ce6c30350bf0d7ea77a1c10e438f}{is\+Key\+Released}} (int \+\_\+key)
+\item 
+bool \mbox{\hyperlink{class_input_aed4729cc3e2ad7529871df65efc23410}{handle\+Input}} (S\+D\+L\+\_\+\+Event $\ast$\+\_\+event)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class handles inputs.
+
+This class handles whether keys are pressed, released or held, and is used within \mbox{\hyperlink{class_input_component}{Input\+Component}}. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_input_aed4729cc3e2ad7529871df65efc23410}\label{class_input_aed4729cc3e2ad7529871df65efc23410}} 
+\index{Input@{Input}!handleInput@{handleInput}}
+\index{handleInput@{handleInput}!Input@{Input}}
+\doxysubsubsection{\texorpdfstring{handleInput()}{handleInput()}}
+{\footnotesize\ttfamily bool Input\+::handle\+Input (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Event $\ast$}]{\+\_\+event }\end{DoxyParamCaption})}
+
+This method checks for input from S\+DL and stores the key\textquotesingle{}s.
+
+This method checks for S\+DL events and stores the key\textquotesingle{}s if they are pressed. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+event} & This is the event to check for. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_input_a167f6c66df993b4785e97e10012d5997}\label{class_input_a167f6c66df993b4785e97e10012d5997}} 
+\index{Input@{Input}!isKey@{isKey}}
+\index{isKey@{isKey}!Input@{Input}}
+\doxysubsubsection{\texorpdfstring{isKey()}{isKey()}}
+{\footnotesize\ttfamily bool Input\+::is\+Key (\begin{DoxyParamCaption}\item[{int}]{\+\_\+key }\end{DoxyParamCaption})}
+
+This method checks if a key is held.
+
+This method checks to see if a key has been held for more than one tick. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+key} & This is the key to check for. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_input_a3f83c23f52a358400115f3e6265990f3}\label{class_input_a3f83c23f52a358400115f3e6265990f3}} 
+\index{Input@{Input}!isKeyPressed@{isKeyPressed}}
+\index{isKeyPressed@{isKeyPressed}!Input@{Input}}
+\doxysubsubsection{\texorpdfstring{isKeyPressed()}{isKeyPressed()}}
+{\footnotesize\ttfamily bool Input\+::is\+Key\+Pressed (\begin{DoxyParamCaption}\item[{int}]{\+\_\+key }\end{DoxyParamCaption})}
+
+This method checks if a key is pressed.
+
+This method checks to see if a key has been pressed. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+key} & This is the key to check for. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_input_af033ce6c30350bf0d7ea77a1c10e438f}\label{class_input_af033ce6c30350bf0d7ea77a1c10e438f}} 
+\index{Input@{Input}!isKeyReleased@{isKeyReleased}}
+\index{isKeyReleased@{isKeyReleased}!Input@{Input}}
+\doxysubsubsection{\texorpdfstring{isKeyReleased()}{isKeyReleased()}}
+{\footnotesize\ttfamily bool Input\+::is\+Key\+Released (\begin{DoxyParamCaption}\item[{int}]{\+\_\+key }\end{DoxyParamCaption})}
+
+This method checks if a key is released.
+
+This method checks to see if a key has been released for more than one tick. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+key} & This is the key to check for. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Architect\+Engine/Input.\+h\item 
+src/\+Architect\+Engine/Input.\+cpp\end{DoxyCompactItemize}

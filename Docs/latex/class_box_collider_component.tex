@@ -1,0 +1,93 @@
+\hypertarget{class_box_collider_component}{}\doxysection{Box\+Collider\+Component Class Reference}
+\label{class_box_collider_component}\index{BoxColliderComponent@{BoxColliderComponent}}
+
+
+{\ttfamily \#include $<$Box\+Collider\+Component.\+h$>$}
+
+Inheritance diagram for Box\+Collider\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_box_collider_component}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_box_collider_component_a987e54208c89b9fbbf515d5e21085dfc}{on\+Tick}} () override
+\item 
+void \mbox{\hyperlink{class_box_collider_component_a2fef24fe68f25a96bf586bdd6c3ba6d0}{set\+Size}} (const glm\+::vec3 \&\+\_\+size)
+\item 
+glm\+::vec3 \mbox{\hyperlink{class_box_collider_component_a1a6089a96367130e233eae5195673d91}{get\+Size}} () const
+\item 
+void \mbox{\hyperlink{class_box_collider_component_a4e596e3aaf8a00bf85e20234d5054e68}{set\+Offset}} (const glm\+::vec3 \&\+\_\+offset)
+\item 
+glm\+::vec3 \mbox{\hyperlink{class_box_collider_component_a38c31c3a9dba31b65d96e9fa85a2b9b8}{get\+Offset}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class handles A\+A\+BB collisions between objects.
+
+This class handles checking for collisions as well as allowing for size adjustments to the bounding box. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_box_collider_component_a38c31c3a9dba31b65d96e9fa85a2b9b8}\label{class_box_collider_component_a38c31c3a9dba31b65d96e9fa85a2b9b8}} 
+\index{BoxColliderComponent@{BoxColliderComponent}!getOffset@{getOffset}}
+\index{getOffset@{getOffset}!BoxColliderComponent@{BoxColliderComponent}}
+\doxysubsubsection{\texorpdfstring{getOffset()}{getOffset()}}
+{\footnotesize\ttfamily glm\+::vec3 Box\+Collider\+Component\+::get\+Offset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+This method returns the size of the offset.
+
+This method returns the size of the offset on the entity. \mbox{\Hypertarget{class_box_collider_component_a1a6089a96367130e233eae5195673d91}\label{class_box_collider_component_a1a6089a96367130e233eae5195673d91}} 
+\index{BoxColliderComponent@{BoxColliderComponent}!getSize@{getSize}}
+\index{getSize@{getSize}!BoxColliderComponent@{BoxColliderComponent}}
+\doxysubsubsection{\texorpdfstring{getSize()}{getSize()}}
+{\footnotesize\ttfamily glm\+::vec3 Box\+Collider\+Component\+::get\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+This method returns the size of the entity bounding box.
+
+This method returns the size of the bounding box on the entity. \mbox{\Hypertarget{class_box_collider_component_a987e54208c89b9fbbf515d5e21085dfc}\label{class_box_collider_component_a987e54208c89b9fbbf515d5e21085dfc}} 
+\index{BoxColliderComponent@{BoxColliderComponent}!onTick@{onTick}}
+\index{onTick@{onTick}!BoxColliderComponent@{BoxColliderComponent}}
+\doxysubsubsection{\texorpdfstring{onTick()}{onTick()}}
+{\footnotesize\ttfamily void Box\+Collider\+Component\+::on\+Tick (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+This method calls get\+Collision\+Response with entities each frame.
+
+This method checks for collisions from the get\+Collision\+Response method. 
+
+Reimplemented from \mbox{\hyperlink{class_component}{Component}}.
+
+\mbox{\Hypertarget{class_box_collider_component_a4e596e3aaf8a00bf85e20234d5054e68}\label{class_box_collider_component_a4e596e3aaf8a00bf85e20234d5054e68}} 
+\index{BoxColliderComponent@{BoxColliderComponent}!setOffset@{setOffset}}
+\index{setOffset@{setOffset}!BoxColliderComponent@{BoxColliderComponent}}
+\doxysubsubsection{\texorpdfstring{setOffset()}{setOffset()}}
+{\footnotesize\ttfamily void Box\+Collider\+Component\+::set\+Offset (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{\+\_\+offset }\end{DoxyParamCaption})}
+
+This method sets the size of the entity offset.
+
+This method sets the size of the offset on the entity. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+offset} & This is the size of the offset \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_box_collider_component_a2fef24fe68f25a96bf586bdd6c3ba6d0}\label{class_box_collider_component_a2fef24fe68f25a96bf586bdd6c3ba6d0}} 
+\index{BoxColliderComponent@{BoxColliderComponent}!setSize@{setSize}}
+\index{setSize@{setSize}!BoxColliderComponent@{BoxColliderComponent}}
+\doxysubsubsection{\texorpdfstring{setSize()}{setSize()}}
+{\footnotesize\ttfamily void Box\+Collider\+Component\+::set\+Size (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{\+\_\+size }\end{DoxyParamCaption})}
+
+This method sets the size of the entity bounding box.
+
+This method sets the size of the bounding box on the entity. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+size} & This is the size of the Bounding Box \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Architect\+Engine/Box\+Collider\+Component.\+h\item 
+src/\+Architect\+Engine/Box\+Collider\+Component.\+cpp\end{DoxyCompactItemize}

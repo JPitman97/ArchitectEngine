@@ -1,0 +1,107 @@
+\hypertarget{class_renderer_component}{}\doxysection{Renderer\+Component Class Reference}
+\label{class_renderer_component}\index{RendererComponent@{RendererComponent}}
+
+
+{\ttfamily \#include $<$Renderer\+Component.\+h$>$}
+
+Inheritance diagram for Renderer\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_renderer_component}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_renderer_component_a1c3db124864eaff974e1ac10e5b1d3de}{on\+Display}} () override
+\item 
+void \mbox{\hyperlink{class_renderer_component_af59a5f228d96bb5ee78344ffb1561f84}{set\+Shader}} (const std\+::string \&\+\_\+vert, const std\+::string \&\+\_\+frag)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_shader_program}{Shader\+Program}} $>$ \mbox{\hyperlink{class_renderer_component_ad0a0d5059de4b8b3e1cc5c3fdc4dc072}{get\+Shader}} () const
+\item 
+void \mbox{\hyperlink{class_renderer_component_ae62509ae687e598a29275942fe1dae81}{set\+Mesh}} (const std\+::string \&\+\_\+path, const std\+::string \&\+\_\+tex\+Path)
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_vertex_array}{Vertex\+Array}} $>$ \mbox{\hyperlink{class_renderer_component_a507ea82a6dc70e86453bb2dd39416868}{get\+Mesh}} () const
+\item 
+G\+Luint \mbox{\hyperlink{class_renderer_component_accc28c871e9cf7090fe26f900c571228}{get\+Tex}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class handles rendering of objects.
+
+This class handles the rendering of objects with custom shaders or meshes. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_renderer_component_a507ea82a6dc70e86453bb2dd39416868}\label{class_renderer_component_a507ea82a6dc70e86453bb2dd39416868}} 
+\index{RendererComponent@{RendererComponent}!getMesh@{getMesh}}
+\index{getMesh@{getMesh}!RendererComponent@{RendererComponent}}
+\doxysubsubsection{\texorpdfstring{getMesh()}{getMesh()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_vertex_array}{Vertex\+Array}}$>$ Renderer\+Component\+::get\+Mesh (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+This method returns the mesh.
+
+This method returns the mesh object. \mbox{\Hypertarget{class_renderer_component_ad0a0d5059de4b8b3e1cc5c3fdc4dc072}\label{class_renderer_component_ad0a0d5059de4b8b3e1cc5c3fdc4dc072}} 
+\index{RendererComponent@{RendererComponent}!getShader@{getShader}}
+\index{getShader@{getShader}!RendererComponent@{RendererComponent}}
+\doxysubsubsection{\texorpdfstring{getShader()}{getShader()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_shader_program}{Shader\+Program}}$>$ Renderer\+Component\+::get\+Shader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+This method retrieves the shader.
+
+This method returns the shader. \mbox{\Hypertarget{class_renderer_component_accc28c871e9cf7090fe26f900c571228}\label{class_renderer_component_accc28c871e9cf7090fe26f900c571228}} 
+\index{RendererComponent@{RendererComponent}!getTex@{getTex}}
+\index{getTex@{getTex}!RendererComponent@{RendererComponent}}
+\doxysubsubsection{\texorpdfstring{getTex()}{getTex()}}
+{\footnotesize\ttfamily G\+Luint Renderer\+Component\+::get\+Tex (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+This method gets the texture.
+
+This method gets the texture and returns it. \mbox{\Hypertarget{class_renderer_component_a1c3db124864eaff974e1ac10e5b1d3de}\label{class_renderer_component_a1c3db124864eaff974e1ac10e5b1d3de}} 
+\index{RendererComponent@{RendererComponent}!onDisplay@{onDisplay}}
+\index{onDisplay@{onDisplay}!RendererComponent@{RendererComponent}}
+\doxysubsubsection{\texorpdfstring{onDisplay()}{onDisplay()}}
+{\footnotesize\ttfamily void Renderer\+Component\+::on\+Display (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+This method draws the object.
+
+This method draws the object each tick, using the shaderprograms draw method. 
+
+Reimplemented from \mbox{\hyperlink{class_component}{Component}}.
+
+\mbox{\Hypertarget{class_renderer_component_ae62509ae687e598a29275942fe1dae81}\label{class_renderer_component_ae62509ae687e598a29275942fe1dae81}} 
+\index{RendererComponent@{RendererComponent}!setMesh@{setMesh}}
+\index{setMesh@{setMesh}!RendererComponent@{RendererComponent}}
+\doxysubsubsection{\texorpdfstring{setMesh()}{setMesh()}}
+{\footnotesize\ttfamily void Renderer\+Component\+::set\+Mesh (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+path,  }\item[{const std\+::string \&}]{\+\_\+tex\+Path }\end{DoxyParamCaption})}
+
+This method sets the mesh and texture.
+
+This method sets the mesh and texture to the passed in values. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+path} & This is the path to the model \\
+\hline
+{\em \+\_\+tex\+Path} & This is the path to the texture \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_renderer_component_af59a5f228d96bb5ee78344ffb1561f84}\label{class_renderer_component_af59a5f228d96bb5ee78344ffb1561f84}} 
+\index{RendererComponent@{RendererComponent}!setShader@{setShader}}
+\index{setShader@{setShader}!RendererComponent@{RendererComponent}}
+\doxysubsubsection{\texorpdfstring{setShader()}{setShader()}}
+{\footnotesize\ttfamily void Renderer\+Component\+::set\+Shader (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+vert,  }\item[{const std\+::string \&}]{\+\_\+frag }\end{DoxyParamCaption})}
+
+This method sets the shader.
+
+This method sets the shader for the current object to use when rendering. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+vert} & This is the new vertex shader \\
+\hline
+{\em \+\_\+frag} & This is the new frag shader \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Architect\+Engine/Renderer\+Component.\+h\item 
+src/\+Architect\+Engine/Renderer\+Component.\+cpp\end{DoxyCompactItemize}

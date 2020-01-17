@@ -4,37 +4,32 @@
 #define shared std::shared_ptr
 #define weak std::weak_ptr
 
+///This method creates entities and adds components.
+///
+///This method creates entities and populates them with components before starting the game loop.
 int main()
 {
 	//Init
 	shared<Core> core = Core::Initialize("Arc Light", 1280, 720);
-
-	//Create a new entity
-	//shared<Entity> entity = core->addEntity();
-	//Add a component
-	//shared<LuaComponent> luaTest = entity->addLuaComponent("Debug/test.lua");
-	//auto TC = entity->addComponent<TransformComponent>();
-	//shared<RendererComponent> entityRenderer = entity->addComponent<RendererComponent>();
-	//entityRenderer->setMesh("Debug/Assets/Cube.obj", "Debug/Assets/Crate.jpg");
-	//TC->setPos(glm::vec3(-0.3f, 0.0f, 0.0f));
-	//TC->setRot(glm::vec3(0, 0, 0));
-	//TC->setScale(glm::vec3(0.2f));
-
 	
 	shared<Entity> Crate = core->addEntity();
-	auto TC = Crate->addComponent<TransformComponent>();
+	shared<TransformComponent> TC = Crate->addComponent<TransformComponent>();
 	shared<RendererComponent> entityRenderer = Crate->addComponent<RendererComponent>();
 	entityRenderer->setMesh("Assets/Cube.obj", "Assets/Crate.jpg");
 	TC->setPos(glm::vec3(-0.3f, 0.0f, 0.0f));
 	TC->setRot(glm::vec3(0, 0, 0));
 	TC->setScale(glm::vec3(0.2f));
-	auto BC = Crate->addComponent<BoxColliderComponent>();
+	shared<BoxColliderComponent> BC = Crate->addComponent<BoxColliderComponent>();
 	BC->setSize(glm::vec3(0.1f, 0.1f, 0.1f));
-	auto AC = Crate->addComponent<AudioComponent>();
+	shared<LuaComponent> luaTest = Crate->addComponent<LuaComponent>();
+	luaTest->initialise("Assets/Lua/start.lua");
+	shared<LuaComponent> luaTest2 = Crate->addComponent<LuaComponent>();
+	luaTest2->initialise("Assets/Lua/rotator.lua");
+	shared<AudioComponent> AC = Crate->addComponent<AudioComponent>();
 	AC->playAudio("Assets/Kryp.ogg"); //Background audio
 
 	shared<Entity> Crate2 = core->addEntity();
-	auto TC2 = Crate2->addComponent<TransformComponent>();
+	shared<TransformComponent> TC2 = Crate2->addComponent<TransformComponent>();
 	shared<RendererComponent> entityRenderer2 = Crate2->addComponent<RendererComponent>();
 	entityRenderer2->setShader("Shaders/invert.vert", "Shaders/invert.frag");
 	entityRenderer2->getShader()->SetUniform("projectionMatrix", core->getDefaultProjectionMatrix());
@@ -45,9 +40,22 @@ int main()
 	TC2->setRot(glm::vec3(0, 180, 0));
 	TC2->setScale(glm::vec3(0.5f));
 	Crate2->addComponent<InputComponent>();
-	auto BC2 = Crate2->addComponent<BoxColliderComponent>();
+	shared<BoxColliderComponent> BC2 = Crate2->addComponent<BoxColliderComponent>();
 	BC2->setSize(glm::vec3(0.3f, 0.3f, 0.3f));
-	auto AC2 = Crate2->addComponent<AudioComponent>();
+	shared<AudioComponent> AC2 = Crate2->addComponent<AudioComponent>();
+
+	shared<Entity> Crate3 = core->addEntity();
+	shared<TransformComponent> TC3 = Crate3->addComponent<TransformComponent>();
+	shared<RendererComponent> entityRenderer3 = Crate3->addComponent<RendererComponent>();
+	entityRenderer3->setMesh("Assets/Cube.obj", "Assets/Crate.jpg");
+	TC3->setPos(glm::vec3(-0.1f, 0.0f, 0.0f));
+	TC3->setRot(glm::vec3(0, 0, 0));
+	TC3->setScale(glm::vec3(0.2f));
+	shared<BoxColliderComponent> BC3 = Crate3->addComponent<BoxColliderComponent>();
+	BC3->setSize(glm::vec3(0.1f, 0.1f, 0.1f));
+	shared<LuaComponent> luaTest3 = Crate3->addComponent<LuaComponent>();
+	luaTest3->initialise("Assets/Lua/sineMotion.lua");
+
 
 	shared<Entity> skybox = core->addEntity();
 	shared<RendererComponent> RC = skybox->addComponent<RendererComponent>();

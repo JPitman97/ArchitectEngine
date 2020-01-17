@@ -1,0 +1,53 @@
+\hypertarget{class_t_p_camera_component}{}\doxysection{T\+P\+Camera\+Component Class Reference}
+\label{class_t_p_camera_component}\index{TPCameraComponent@{TPCameraComponent}}
+
+
+{\ttfamily \#include $<$T\+P\+Camera\+Component.\+h$>$}
+
+Inheritance diagram for T\+P\+Camera\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_t_p_camera_component}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_t_p_camera_component_aeceb2e4e28c32d24bbb472fb403561a7}{initialise}} ()
+\item 
+void \mbox{\hyperlink{class_t_p_camera_component_a859e48b49f0ae87048ab34e9f12e3c0b}{on\+Tick}} () override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class handles third person camera views.
+
+This class handles the third person camera, however currently this does not function. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_t_p_camera_component_aeceb2e4e28c32d24bbb472fb403561a7}\label{class_t_p_camera_component_aeceb2e4e28c32d24bbb472fb403561a7}} 
+\index{TPCameraComponent@{TPCameraComponent}!initialise@{initialise}}
+\index{initialise@{initialise}!TPCameraComponent@{TPCameraComponent}}
+\doxysubsubsection{\texorpdfstring{initialise()}{initialise()}}
+{\footnotesize\ttfamily void T\+P\+Camera\+Component\+::initialise (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This method stores a \mbox{\hyperlink{class_camera}{Camera}} instance.
+
+This method stores a camera instance for use in methods. \mbox{\Hypertarget{class_t_p_camera_component_a859e48b49f0ae87048ab34e9f12e3c0b}\label{class_t_p_camera_component_a859e48b49f0ae87048ab34e9f12e3c0b}} 
+\index{TPCameraComponent@{TPCameraComponent}!onTick@{onTick}}
+\index{onTick@{onTick}!TPCameraComponent@{TPCameraComponent}}
+\doxysubsubsection{\texorpdfstring{onTick()}{onTick()}}
+{\footnotesize\ttfamily void T\+P\+Camera\+Component\+::on\+Tick (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+This method sets the camera\textquotesingle{}s position to an offset of the targets location.
+
+This method tracks an entity with a supplied offset. 
+
+Reimplemented from \mbox{\hyperlink{class_component}{Component}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Architect\+Engine/T\+P\+Camera\+Component.\+h\item 
+src/\+Architect\+Engine/T\+P\+Camera\+Component.\+cpp\end{DoxyCompactItemize}

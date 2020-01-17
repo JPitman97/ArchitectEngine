@@ -1,0 +1,98 @@
+\hypertarget{class_transform}{}\doxysection{Transform Class Reference}
+\label{class_transform}\index{Transform@{Transform}}
+
+
+{\ttfamily \#include $<$Transform.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::mat4 \mbox{\hyperlink{class_transform_af4ad7aba6412c7dfd745f964accfa220}{update\+Model\+Matrix}} (glm\+::mat4 \&\+\_\+matrix, const glm\+::vec3 \&\+\_\+position, const glm\+::vec3 \&\+\_\+rotation, const glm\+::vec3 \&\+\_\+scale) const
+\item 
+glm\+::mat4 \mbox{\hyperlink{class_transform_a280cc07682504802372ddc6174a25cab}{update\+View\+Matrix}} (glm\+::mat4 \&\+\_\+matrix, glm\+::vec3 \&\+\_\+position, glm\+::vec3 \&\+\_\+rotation, float \+\_\+delta\+Time) const
+\item 
+glm\+::vec3 \mbox{\hyperlink{class_transform_aae223e1247f7f2d66c62e8a1e4386f56}{get\+Fwd}} (const glm\+::vec3 \&\+\_\+direction, const glm\+::vec3 \&\+\_\+rotation) const
+\item 
+void \mbox{\hyperlink{class_transform_a44cdfcb26577d4b154d33372120fd817}{set\+Model\+Matrix}} (glm\+::mat4 \+\_\+model\+Matrix)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_transform}{Transform}} class.
+
+This class handles the transformations of objects and is used within the \mbox{\hyperlink{class_transform_component}{Transform\+Component}}. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_transform_aae223e1247f7f2d66c62e8a1e4386f56}\label{class_transform_aae223e1247f7f2d66c62e8a1e4386f56}} 
+\index{Transform@{Transform}!getFwd@{getFwd}}
+\index{getFwd@{getFwd}!Transform@{Transform}}
+\doxysubsubsection{\texorpdfstring{getFwd()}{getFwd()}}
+{\footnotesize\ttfamily glm\+::vec3 Transform\+::get\+Fwd (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{\+\_\+direction,  }\item[{const glm\+::vec3 \&}]{\+\_\+rotation }\end{DoxyParamCaption}) const}
+
+This method gets the forward vector for the object.
+
+This method specifies a new forward vector. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+direction} & This is the direction of the vector to calculate \\
+\hline
+{\em \+\_\+rotation} & This is the rotation for the vector to calculate ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_transform_a44cdfcb26577d4b154d33372120fd817}\label{class_transform_a44cdfcb26577d4b154d33372120fd817}} 
+\index{Transform@{Transform}!setModelMatrix@{setModelMatrix}}
+\index{setModelMatrix@{setModelMatrix}!Transform@{Transform}}
+\doxysubsubsection{\texorpdfstring{setModelMatrix()}{setModelMatrix()}}
+{\footnotesize\ttfamily void Transform\+::set\+Model\+Matrix (\begin{DoxyParamCaption}\item[{glm\+::mat4}]{\+\_\+model\+Matrix }\end{DoxyParamCaption})}
+
+This method sets the model matrix of the current object.
+
+This method specifies a new model matrix. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+model\+Matrix} & This is the matrix to be set \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_transform_af4ad7aba6412c7dfd745f964accfa220}\label{class_transform_af4ad7aba6412c7dfd745f964accfa220}} 
+\index{Transform@{Transform}!updateModelMatrix@{updateModelMatrix}}
+\index{updateModelMatrix@{updateModelMatrix}!Transform@{Transform}}
+\doxysubsubsection{\texorpdfstring{updateModelMatrix()}{updateModelMatrix()}}
+{\footnotesize\ttfamily glm\+::mat4 Transform\+::update\+Model\+Matrix (\begin{DoxyParamCaption}\item[{glm\+::mat4 \&}]{\+\_\+matrix,  }\item[{const glm\+::vec3 \&}]{\+\_\+position,  }\item[{const glm\+::vec3 \&}]{\+\_\+rotation,  }\item[{const glm\+::vec3 \&}]{\+\_\+scale }\end{DoxyParamCaption}) const}
+
+This method updates the model matrix of the current object.
+
+This method specifies a new model matrix. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+matrix} & This is the matrix to be modified and returned \\
+\hline
+{\em \+\_\+position} & This is the new position for the model \\
+\hline
+{\em \+\_\+rotation} & This is the new rotation for the model \\
+\hline
+{\em \+\_\+scale} & This is the new scale for the model \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_transform_a280cc07682504802372ddc6174a25cab}\label{class_transform_a280cc07682504802372ddc6174a25cab}} 
+\index{Transform@{Transform}!updateViewMatrix@{updateViewMatrix}}
+\index{updateViewMatrix@{updateViewMatrix}!Transform@{Transform}}
+\doxysubsubsection{\texorpdfstring{updateViewMatrix()}{updateViewMatrix()}}
+{\footnotesize\ttfamily glm\+::mat4 Transform\+::update\+View\+Matrix (\begin{DoxyParamCaption}\item[{glm\+::mat4 \&}]{\+\_\+matrix,  }\item[{glm\+::vec3 \&}]{\+\_\+position,  }\item[{glm\+::vec3 \&}]{\+\_\+rotation,  }\item[{float}]{\+\_\+delta\+Time }\end{DoxyParamCaption}) const}
+
+This method updates the view matrix of the current object.
+
+This method specifies a new view matrix. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+matrix} & This is the matrix to be modified and returned \\
+\hline
+{\em \+\_\+position} & This is the new position for the model \\
+\hline
+{\em \+\_\+rotation} & This is the new rotation for the model \\
+\hline
+{\em \+\_\+delta\+Time} & This is the delta\+Time speed for the model \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Architect\+Engine/Transform.\+h\item 
+src/\+Architect\+Engine/Transform.\+cpp\end{DoxyCompactItemize}

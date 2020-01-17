@@ -1,0 +1,61 @@
+\hypertarget{class_sky_blox_component}{}\doxysection{Sky\+Blox\+Component Class Reference}
+\label{class_sky_blox_component}\index{SkyBloxComponent@{SkyBloxComponent}}
+
+
+{\ttfamily \#include $<$Sky\+Box\+Component.\+h$>$}
+
+Inheritance diagram for Sky\+Blox\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_sky_blox_component}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sky_blox_component_ad851503deb1fe461ed1c0c1e6d93d1c9}{Sky\+Blox\+Component}} (const std\+::string \&\+\_\+file\+Loc)
+\item 
+void \mbox{\hyperlink{class_sky_blox_component_ada46deab54de1a5e46a8f5e2180a5a34}{on\+Display}} () override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class handles the skybox.
+
+This class is used to control and render the skybox to the scene. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_sky_blox_component_ad851503deb1fe461ed1c0c1e6d93d1c9}\label{class_sky_blox_component_ad851503deb1fe461ed1c0c1e6d93d1c9}} 
+\index{SkyBloxComponent@{SkyBloxComponent}!SkyBloxComponent@{SkyBloxComponent}}
+\index{SkyBloxComponent@{SkyBloxComponent}!SkyBloxComponent@{SkyBloxComponent}}
+\doxysubsubsection{\texorpdfstring{SkyBloxComponent()}{SkyBloxComponent()}}
+{\footnotesize\ttfamily Sky\+Blox\+Component\+::\+Sky\+Blox\+Component (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+file\+Loc }\end{DoxyParamCaption})}
+
+This method creates the vertices for the skybox.
+
+This method creates the skybox cube along with it\textquotesingle{}s V\+AO and V\+BO objects, as well as then loading and saving all texture faces. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+file\+Loc} & This is the path for the textures \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_sky_blox_component_ada46deab54de1a5e46a8f5e2180a5a34}\label{class_sky_blox_component_ada46deab54de1a5e46a8f5e2180a5a34}} 
+\index{SkyBloxComponent@{SkyBloxComponent}!onDisplay@{onDisplay}}
+\index{onDisplay@{onDisplay}!SkyBloxComponent@{SkyBloxComponent}}
+\doxysubsubsection{\texorpdfstring{onDisplay()}{onDisplay()}}
+{\footnotesize\ttfamily void Sky\+Blox\+Component\+::on\+Display (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+This method draws the skybox to the scene.
+
+This method takes the loaded textures and renders them to each wall of the cube, as well as modifying the projection matrix. 
+
+Reimplemented from \mbox{\hyperlink{class_component}{Component}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Architect\+Engine/Sky\+Box\+Component.\+h\item 
+src/\+Architect\+Engine/Sky\+Box\+Component.\+cpp\end{DoxyCompactItemize}
