@@ -44,13 +44,7 @@ bool BoxColliderComponent::isColliding(const glm::vec3& _position, const glm::ve
 			{
 				std::cout << "Collision" << std::endl;
 				this->getEntity()->getComponent<AudioComponent>()->playAudio("Assets/dixie_horn.ogg");
-				for (auto& entity : getEntity()->getCore()->getEntities())
-				{
-					if (entity->getComponent<BoxColliderComponent>() && this->getEntity() != entity)
-					{
-						entity->getComponent<AudioComponent>()->playAudio("Assets/Kryp.ogg");;
-					}
-				}
+
 				return true;
 			}
 		}

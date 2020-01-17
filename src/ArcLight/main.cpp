@@ -31,6 +31,7 @@ int main()
 	auto BC = Crate->addComponent<BoxColliderComponent>();
 	BC->setSize(glm::vec3(0.1f, 0.1f, 0.1f));
 	auto AC = Crate->addComponent<AudioComponent>();
+	AC->playAudio("Assets/Kryp.ogg"); //Background audio
 
 	shared<Entity> Crate2 = core->addEntity();
 	auto TC2 = Crate2->addComponent<TransformComponent>();
