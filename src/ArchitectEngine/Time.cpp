@@ -1,3 +1,3 @@
 #include "Time.h"
 
-float Time::deltaTime;
+double Time::deltaTime;

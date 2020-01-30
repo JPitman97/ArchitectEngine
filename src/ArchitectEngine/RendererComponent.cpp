@@ -9,14 +9,14 @@
 
 void RendererComponent::onDisplay()
 {
-	if (!shader && mesh && tex)
+	if (!shader && mesh && tex) //TODO Rewrite this and ShaderProgram to allow for Camera instance
 	{
-		getCore()->getShaderProgram()->draw(mesh, tex);
+		getCore()->getShaderProgram()->draw(mesh, tex, getCore()->getCamera(), getEntity(), NULL);
 	}
 	else
 	{
 		if (mesh && tex)
-			shader->draw(mesh, tex, shader->GetId());
+			shader->draw(mesh, tex, getCore()->getCamera(), getEntity(), shader->GetId());
 	}
 }
 

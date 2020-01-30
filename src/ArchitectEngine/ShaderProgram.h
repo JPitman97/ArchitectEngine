@@ -10,6 +10,8 @@
 #include "fstream"
 
 class VertexArray;
+class Camera;
+class Entity;
 
 ///This class handles the shaders and uniforms.
 ///
@@ -32,7 +34,7 @@ public:
 	///@param _vertexArray This is the vertex Array for the mesh
 	///@param _texID This is the texture ID of the material
 	///@param _id This is used if a new program needs to be used
-	void draw(const std::shared_ptr<VertexArray>& _vertexArray, GLuint _texID, GLuint _id = NULL);
+	void draw(const std::shared_ptr<VertexArray>& _vertexArray, GLuint _texID, std::shared_ptr<Camera> _camera, std::shared_ptr<Entity> _entity, GLuint _id = NULL);
 
 	///This method sets the shader uniform.
 	///

@@ -13,10 +13,10 @@ void TPCameraComponent::initialise()
 void TPCameraComponent::onTick()
 {
 	glm::vec3 position = getEntity()->getComponent<TransformComponent>()->getPos();
-	position.z += 5.0;
+	position.z += 0.0;
+	position.x += 0.3;
 	position.y += 0.2;
 
 	camera->setPosition(position);
-	auto c = getEntity()->getComponent<RendererComponent>();
-	c->getShader()->SetUniform("viewMatrix", camera->GetViewMatrix());
+	getEntity()->getCore()->setCamera(camera);
 }

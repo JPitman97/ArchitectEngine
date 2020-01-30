@@ -4,27 +4,30 @@
 #include "Input.h"
 #include "TransformComponent.h"
 #include "Time.h"
+#include "Camera.h"
 
 void InputComponent::onTick()
 {
-	if (getEntity()->getCore()->getInput()->isKey('w'))
+	const float velocity = 2 * Time::deltaTime;
+	const auto camera = getEntity()->getCore()->getCamera();
+	auto TC = getEntity()->getComponent<TransformComponent>();
+
+	TC->setRot(glm::vec3(0, -90.0f - camera->Yaw, camera->Front.z));
+
+	if (getEntity()->getCore()->getInput()->isKey('W'))
 	{
-		auto TC = getEntity()->getComponent<TransformComponent>();
-		TC->setPos(glm::vec3(TC->getPos().x, TC->getPos().y, TC->getPos().z - 2 * Time::deltaTime));
+		TC->setPos(TC->getPos() += camera->Front * velocity);
 	}
-	if (getEntity()->getCore()->getInput()->isKey('s'))
+	if (getEntity()->getCore()->getInput()->isKey('S'))
 	{
-		auto TC = getEntity()->getComponent<TransformComponent>();
-		TC->setPos(glm::vec3(TC->getPos().x, TC->getPos().y, TC->getPos().z + 2 * Time::deltaTime));
+		TC->setPos(TC->getPos() -= camera->Front * velocity);
 	}
-	if (getEntity()->getCore()->getInput()->isKey('a'))
+	if (getEntity()->getCore()->getInput()->isKey('A'))
 	{
-		auto TC = getEntity()->getComponent<TransformComponent>();
-		TC->setPos(glm::vec3(TC->getPos().x - 2 * Time::deltaTime, TC->getPos().y, TC->getPos().z));
+		TC->setPos(TC->getPos() -= camera->Right * velocity);
 	}
-	if (getEntity()->getCore()->getInput()->isKey('d'))
+	if (getEntity()->getCore()->getInput()->isKey('D'))
 	{
-		auto TC = getEntity()->getComponent<TransformComponent>();
-		TC->setPos(glm::vec3(TC->getPos().x + 2 * Time::deltaTime, TC->getPos().y, TC->getPos().z));
+		TC->setPos(TC->getPos() += camera->Right * velocity);
 	}
 }

@@ -1,13 +1,15 @@
 #ifndef _INPUT_H
 #define  _INPUT_H
 
-#include <SDL2/SDL.h>
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 #include <vector>
 #include "Component.h"
 
 ///This class handles inputs.
 ///
 ///This class handles whether keys are pressed, released or held, and is used within InputComponent.
+///class Entity;
 class Input : Component
 {
 public:
@@ -30,11 +32,20 @@ public:
 	///This method checks for input from SDL and stores the key's.
 	///
 	///This method checks for SDL events and stores the key's if they are pressed.
-	///@param _event This is the event to check for.
-	bool handleInput(SDL_Event* _event);
+	///@param window
+	///@param _window This is the event to check for.
+	void static handleInput(GLFWwindow* window, int key, int scancode, int action, int mods);
 
+	void static mouse_callback(GLFWwindow* window, double xpos, double ypos);
 private:
-	std::vector<int> keys, pressedKeys, releasedKeys;
+	static std::vector<int> keys, pressedKeys, releasedKeys;
+	static bool firstMouse;
+	static float yaw;
+	// yaw is initialized to -90.0 degrees since a yaw of 0.0 results in a direction vector pointing to the right so we initially rotate a bit to the left.
+	static float pitch;
+	static float lastX;
+	static float lastY;
+	static float fov;
 };
 
 #endif

@@ -11,32 +11,44 @@ std::shared_ptr<Core> Core::Initialize(std::string _title, int _width, int _heig
 {
 	std::shared_ptr<Core> core = std::make_shared<Core>();
 	core->self = core;
-	
-	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-		std::string msg = "Couldn't initialise SDL: ";
-		throw std::runtime_error(msg += SDL_GetError());
+
+	if (!glfwInit()) {
+		std::string msg = "Couldn't initialise GLFW: ";
+		throw std::runtime_error(msg);
 	}
 
-	SDL_CreateWindowAndRenderer(_width, _height, SDL_WINDOW_OPENGL, &core->window, &core->renderer);
-	SDL_SetWindowTitle(core->window, _title.c_str());
-
-	if (!SDL_GL_CreateContext(core->window))
+	core->window = glfwCreateWindow(_width, _height, _title.c_str(), NULL, NULL);
+	if (!core->window)
 	{
-		std::string msg = "Couldn't initialise OpenGL Context: ";
-		throw std::runtime_error(msg += SDL_GetError());
+		std::string msg = "Couldn't create window: ";
+		throw std::runtime_error(msg);
 	}
 
+	glfwMakeContextCurrent(core->window);
+	glfwSetWindowUserPointer(core->window, reinterpret_cast<void*>(core.get()));
 	std::cout << glGetString(GL_VERSION) << std::endl;
 
-	if (glewInit() != GLEW_OK)
+	GLenum err = glewInit();
+	if (GLEW_OK != err)
 	{
-		std::string msg = "Couldn't initialise Glew: ";
-		throw std::runtime_error(msg += SDL_GetError());
+		/* Problem: glewInit failed, something is seriously wrong. */
+		std::cerr << "Error: " << glewGetErrorString(err) << std::endl;
 	}
+	std::cerr << "Status: Using GLEW " << glewGetString(GLEW_VERSION) << std::endl;
+
+	core->input = std::make_shared<Input>();
+
+	// tell GLFW to capture our mouse
+	glfwSetInputMode(core->window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+	// Callbacks
+	glfwSetFramebufferSizeCallback(core->window, core->framebuffer_size_callback);
+	glfwSetCursorPosCallback(core->window, core->input->mouse_callback);
+	//glfwSetScrollCallback(core->window, core->scroll_callback);
+	glfwSetKeyCallback(core->window, core->input->handleInput);
 
 	core->setShaderProgram(std::make_shared<ShaderProgram>("Shaders/simple.vert", "Shaders/simple.frag"));
 	core->getShaderProgram()->SetUniform("in_Texture", 1);
-
 	core->input = std::make_shared<Input>();
 
 	// camera 
@@ -47,7 +59,7 @@ std::shared_ptr<Core> Core::Initialize(std::string _title, int _width, int _heig
 
 	//update the shader uniform "projectionMatrix" with the new matrix
 	core->modelMatrix = glm::mat4(1.0f);
-	core->viewMatrix = core->getCamera()->GetViewMatrix();
+	core->viewMatrix = core->getCamera()->getViewMatrix();
 	core->projectionMatrix = glm::perspective(glm::radians(core->getCamera()->Zoom), (float)core->getScreenSize().x / (float)core->getScreenSize().y, 0.1f, 100.0f);
 	core->getShaderProgram()->SetUniform("projectionMatrix", core->projectionMatrix);
 	core->getShaderProgram()->SetUniform("modelMatrix", core->modelMatrix);
@@ -58,15 +70,11 @@ std::shared_ptr<Core> Core::Initialize(std::string _title, int _width, int _heig
 
 void Core::start()
 {
-	lastTime = SDL_GetTicks();
-	isRunning = true;
+	lastTime = glfwGetTime() * 1000;
 
-	while (isRunning)
+	while (!glfwWindowShouldClose(window))
 	{
-		if (!input->handleInput(&event))
-			stop();
-
-		time = SDL_GetTicks();
+		time = glfwGetTime() * 1000;
 		diff = time - lastTime;
 		Time::deltaTime = diff / 1000.0f;
 		lastTime = time;
@@ -75,25 +83,22 @@ void Core::start()
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		for(auto& entity : entities)
+		for (auto& entity : entities)
 		{
 			entity->update();
 		}
-	
-		SDL_GL_SwapWindow(window);
+
+		//Swap buffers
+		glfwSwapBuffers(window);
+		glfwPollEvents();
 
 		idealTime = 1.0f / 60.0f;
-		if (idealTime > Time::deltaTime)
+		if (glfwGetTime() < lastTime + idealTime)
 		{
 			//sleep
-			SDL_Delay((idealTime - Time::deltaTime) * 1000.0f);
+			std::this_thread::sleep_for((idealTime - Time::deltaTime) * 1000ms);
 		}
 	}
-}
-
-void Core::stop()
-{
-	isRunning = false;
 }
 
 std::shared_ptr<Entity> Core::addEntity()
@@ -115,6 +120,11 @@ std::shared_ptr<Camera> Core::getCamera() const
 	return camera;
 }
 
+void Core::setCamera(std::shared_ptr<Camera> _camera)
+{
+	camera = _camera;
+}
+
 std::shared_ptr<Input> Core::getInput() const
 {
 	return input;
@@ -128,4 +138,11 @@ std::list<std::shared_ptr<Entity>> Core::getEntities() const
 glm::vec2 Core::getScreenSize() const
 {
 	return glm::vec2(width, height);
+}
+
+void Core::framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+	// make sure the viewport matches the new window dimensions; note that width and 
+	// height will be significantly larger than specified on retina displays.
+	glViewport(0, 0, width, height);
 }

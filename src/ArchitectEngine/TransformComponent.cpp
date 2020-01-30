@@ -12,7 +12,7 @@ TransformComponent::TransformComponent()
 
 void TransformComponent::onTick()
 {
-	glm::mat4 mm = getCore()->getDefaultModelMatrix();
+	glm::mat4 mm = glm::mat4(1.0f);
 	mm = transform->updateModelMatrix(mm, position, rotation, scale);
 	transform->setModelMatrix(mm);
 	

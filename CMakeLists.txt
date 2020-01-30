@@ -55,9 +55,13 @@ link_directories(
 target_include_directories(ArchitectEngine PUBLIC ${CMAKE_SOURCE_DIR}/External/include/msvc)
 
 if(WIN32)
-	target_link_libraries(ArchitectEngine OpenAL32 SDL2 opengl32 glew32 lua53) #Windows
+	target_link_libraries(ArchitectEngine glfw3 OpenAL32 opengl32 glew32 lua53 assimp) #Windows
 else()
-	target_link_libraries(ArchitectEngine OpenAL32 SDL2 GL GLU lua53) #Linux
+	find_package(PkgConfig REQUIRED)
+	pkg_search_module(GLFW REQUIRED glfw3)
+	find_package(GLEW REQUIRED)
+	
+	target_link_libraries(ArchitectEngine ${GLFW_LIBRARIES} GL ${GLEW_LIBRARIES} assimp lua53 OpenAL32) #Linux
 endif()
 
 add_executable(ArcLight
@@ -72,6 +76,6 @@ add_custom_command(TARGET ArcLight
 		"${PROJECT_SOURCE_DIR}/External/lib/msvc/OpenAL32.dll"
 		"${PROJECT_SOURCE_DIR}/External/lib/msvc/glew32.dll"
 		"${PROJECT_SOURCE_DIR}/External/lib/msvc/lua53.dll"
-		"${PROJECT_SOURCE_DIR}/External/lib/msvc/SDL2.dll"
+		"${PROJECT_SOURCE_DIR}/External/lib/msvc/glfw3.dll"
 		$<TARGET_FILE_DIR:ArcLight>
 )

@@ -1,5 +1,9 @@
 #include "ShaderProgram.h"
 #include "VertexArray.h"
+#include "Camera.h"
+#include "Entity.h"
+#include "TransformComponent.h"
+#include "Transform.h"
 
 ShaderProgram::ShaderProgram(const std::string& _vert, const std::string& _frag)
 {
@@ -101,7 +105,7 @@ ShaderProgram::ShaderProgram(const std::string& _vert, const std::string& _frag)
 	glDeleteShader(fragmentShaderId);
 }
 
-void ShaderProgram::draw(const std::shared_ptr<VertexArray>& _vertexArray, GLuint _texID, GLuint _id)
+void ShaderProgram::draw(const std::shared_ptr<VertexArray>& _vertexArray, GLuint _texID, std::shared_ptr<Camera> _camera, std::shared_ptr<Entity> _entity,  GLuint _id)
 {
 	// Enable depth test
 	glEnable(GL_DEPTH_TEST);
@@ -114,6 +118,18 @@ void ShaderProgram::draw(const std::shared_ptr<VertexArray>& _vertexArray, GLuin
 	else
 		glUseProgram(id);
 	glBindVertexArray(_vertexArray->GetId());
+
+	const glm::vec3 pos = _entity->getComponent<TransformComponent>()->getPos();
+	const glm::vec3 rot = _entity->getComponent<TransformComponent>()->getRot();
+	const glm::vec3 sca = _entity->getComponent<TransformComponent>()->getScale();
+
+	glm::mat4 model = _entity->getComponent<Transform>()->updateModelMatrix(model, pos, rot, sca);
+
+	const glm::mat4 view = _camera->getViewMatrix();
+	const glm::mat4 projection = glm::perspective(glm::radians(_camera->Zoom), (float)1280 / (float)720, 0.1f, 100.0f);
+	SetUniform("modelMatrix", model);
+	SetUniform("viewMatrix", view);
+	SetUniform("projectionMatrix", projection);
 	glDrawArrays(GL_TRIANGLES, 0, _vertexArray->GetVertexCount());
 	glBindVertexArray(0);
 	glUseProgram(0);
@@ -122,30 +138,30 @@ void ShaderProgram::draw(const std::shared_ptr<VertexArray>& _vertexArray, GLuin
 //TODO Convert all these to LearnOpenGL Tutorials
 void ShaderProgram::SetUniform(const std::string& _uniform, const glm::vec3& _value)
 {
-	glUseProgram(id);
+	//glUseProgram(id);
 	glUniform3fv(glGetUniformLocation(id, _uniform.c_str()), 1, &_value[0]); 
-	glUseProgram(0);
+	//glUseProgram(0);
 }
 
 void ShaderProgram::SetUniform(const std::string& _uniform, const glm::vec4& _value)
 {
-	glUseProgram(id);
+	//glUseProgram(id);
 	glUniform4fv(glGetUniformLocation(id, _uniform.c_str()), 1, &_value[0]);
-	glUseProgram(0);
+	//glUseProgram(0);
 }
 
 void ShaderProgram::SetUniform(const std::string& _uniform, const glm::mat4& _value)
 {
-	glUseProgram(id);
+	//glUseProgram(id);
 	glUniformMatrix4fv(glGetUniformLocation(id, _uniform.c_str()), 1, GL_FALSE, &_value[0][0]);
-	glUseProgram(0);
+	//glUseProgram(0);
 }
 
 void ShaderProgram::SetUniform(const std::string& _uniform, const int _value)
 {
-	glUseProgram(id);
+	//glUseProgram(id);
 	glUniform1f(glGetUniformLocation(id, _uniform.c_str()), _value);
-	glUseProgram(0);
+	//glUseProgram(0);
 }
 
 GLuint ShaderProgram::GetId() const

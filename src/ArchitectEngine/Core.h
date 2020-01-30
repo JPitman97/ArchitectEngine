@@ -3,8 +3,13 @@
 
 #include <memory>
 #include <list>
-#include <SDL2/SDL.h>
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 #include <glm/mat4x2.hpp>
+#include <string>
+#include <chrono>
+#include <thread>
+using namespace std::literals::chrono_literals;
 
 class Entity;
 class ShaderProgram;
@@ -31,11 +36,6 @@ public:
 	///
 	///This method starts the game loop as well as initializing the deltaTime variable within Time
 	void start();
-
-	///This method stops the game loop.
-	///
-	///This method stops the game loop and ends the game.
-	void stop();
 
 	///This method adds a new entity.
 	///
@@ -77,6 +77,8 @@ public:
 	///This method returns the camera.
 	std::shared_ptr<Camera> getCamera() const;
 
+	void setCamera(std::shared_ptr<Camera> _camera);
+
 	///This method gets the Input object.
 	///
 	///This method returns the Input object to allow for handling of key presses.
@@ -93,21 +95,23 @@ public:
 	glm::vec2 getScreenSize() const;
 
 private:
+	// Callbacks
+	// glfw: whenever the window size changed (by OS or user resize) this callback function executes
+	static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+
 	std::shared_ptr<ShaderProgram> shaderProgram;
 	std::shared_ptr<Camera> camera;
 	std::list<std::shared_ptr<Entity>> entities;
 	bool isRunning = false;
-	SDL_Window* window = nullptr;
-	SDL_Renderer* renderer = nullptr;
+	GLFWwindow* window = nullptr;
 	int width, height;
-	SDL_Event event;
 	std::weak_ptr<Core> self;
 
 	std::shared_ptr<Input> input;
 
 	glm::mat4 modelMatrix, viewMatrix, projectionMatrix;
 
-	float lastTime, time, diff, idealTime;
+	double lastTime, time, diff, idealTime;
 };
 
 #endif

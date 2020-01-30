@@ -3,6 +3,7 @@
 #include "Component.h"
 #include <GL/glew.h>
 #include <vector>
+#include <string>
 
 class Texture;
 

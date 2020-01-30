@@ -19,7 +19,7 @@ Camera::Camera(float posX, float posY, float posZ, float upX, float upY, float u
 	updateCameraVectors();
 }
 
-glm::mat4 Camera::GetViewMatrix() const
+glm::mat4 Camera::getViewMatrix() const
 {
 	return glm::lookAt(Position, Position + Front, Up);
 }
@@ -27,6 +27,27 @@ glm::mat4 Camera::GetViewMatrix() const
 void Camera::setPosition(const glm::vec3 _position)
 {
 	Position = _position;
+}
+
+void Camera::processMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch)
+{
+	xoffset *= MouseSensitivity;
+	yoffset *= MouseSensitivity;
+
+	Yaw += xoffset;
+	Pitch += yoffset;
+
+	// Make sure that when pitch is out of bounds, screen doesn't get flipped
+	if (constrainPitch)
+	{
+		if (Pitch > 89.0f)
+			Pitch = 89.0f;
+		if (Pitch < -89.0f)
+			Pitch = -89.0f;
+	}	
+	
+	// Update Front, Right and Up Vectors using the updated Euler angles
+	updateCameraVectors();
 }
 
 void Camera::updateCameraVectors()

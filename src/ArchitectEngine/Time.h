@@ -7,7 +7,7 @@
 class Time
 {
 public:
-	static float deltaTime;
+	static double deltaTime;
 };
 
 #endif

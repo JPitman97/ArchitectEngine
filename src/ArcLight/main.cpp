@@ -26,7 +26,7 @@ int main()
 	shared<LuaComponent> luaTest2 = Crate->addComponent<LuaComponent>();
 	luaTest2->initialise("Assets/Lua/rotator.lua");
 	shared<AudioComponent> AC = Crate->addComponent<AudioComponent>();
-	AC->playAudio("Assets/Kryp.ogg"); //Background audio
+	//AC->playAudio("Assets/Kryp.ogg"); //Background audio
 
 	shared<Entity> Crate2 = core->addEntity();
 	shared<TransformComponent> TC2 = Crate2->addComponent<TransformComponent>();
@@ -37,12 +37,13 @@ int main()
 	entityRenderer2->getShader()->SetUniform("viewMatrix", core->getDefaultViewMatrix());	
 	entityRenderer2->setMesh("Assets/ivysaur.obj", "Assets/ivysaur_diffuse.jpg");
 	TC2->setPos(glm::vec3(1.0f, -0.3f, 0.0f));
-	TC2->setRot(glm::vec3(0, 180, 0));
-	TC2->setScale(glm::vec3(0.5f));
+	TC2->setRot(glm::vec3(0, 0, 0));
+	TC2->setScale(glm::vec3(0.2f));
 	Crate2->addComponent<InputComponent>();
 	shared<BoxColliderComponent> BC2 = Crate2->addComponent<BoxColliderComponent>();
 	BC2->setSize(glm::vec3(0.3f, 0.3f, 0.3f));
 	shared<AudioComponent> AC2 = Crate2->addComponent<AudioComponent>();
+	Crate2->addComponent<TPCameraComponent>()->initialise();
 
 	shared<Entity> Crate3 = core->addEntity();
 	shared<TransformComponent> TC3 = Crate3->addComponent<TransformComponent>();

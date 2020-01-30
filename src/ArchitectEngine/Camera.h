@@ -26,6 +26,9 @@ public:
 	float Pitch;
 
 	float Zoom;
+	// Camera options
+	float MovementSpeed = 1.5f;
+	float MouseSensitivity = 0.1f;
 
 	///This constructor sets the position and other values for the camera.
 	///
@@ -52,13 +55,15 @@ public:
 	///This method returns the view matrix.
 	///
 	///This method returns the camera View Matrix.
-	glm::mat4 GetViewMatrix() const;
+	glm::mat4 getViewMatrix() const;
 
 	///This method sets the camera position.
 	///
 	///This method takes a position and sets it to the camera.
 	///@param _position This is the position to set the camera.
 	void setPosition(glm::vec3 _position);
+
+	void processMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch);
 
 private:
 	///This method updates the lookAt matrix.
