@@ -52,7 +52,8 @@ void Input::handleInput(GLFWwindow* window, int key, int scancode, int action, i
 		if (glfwGetKey(window, key))
 			std::cout << "Key pressed: " << static_cast<char>(key) << std::endl;
 		pressedKeys.push_back(key);
-		if (std::find(keys.begin(), keys.end(), key) != keys.end()) {
+		if (std::find(keys.begin(), keys.end(), key) != keys.end()) 
+		{
 			//Do nothing
 			std::cout << "Ignoring key: " << static_cast<char>(key) << std::endl;
 		}

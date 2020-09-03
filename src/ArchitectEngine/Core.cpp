@@ -74,9 +74,9 @@ std::shared_ptr<Core> Core::Initialize(std::string _title, int _width, int _heig
 void Core::start()
 {
 	lastTime = glfwGetTime() * 1000;
-	isRunning = true;
+	quit = false;
 
-	while (!glfwWindowShouldClose(window) && isRunning)
+	while (!glfwWindowShouldClose(window) && !quit)
 	{
 		time = glfwGetTime() * 1000;
 		diff = time - lastTime;
@@ -154,7 +154,7 @@ glm::vec2 Core::getScreenSize() const
 
 void Core::shouldQuit(bool _shouldQuit)
 {
-	isRunning = _shouldQuit;
+	quit = _shouldQuit;
 }
 
 void Core::framebuffer_size_callback(GLFWwindow* window, int width, int height)

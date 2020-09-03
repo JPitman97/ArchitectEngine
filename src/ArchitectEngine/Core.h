@@ -109,7 +109,7 @@ private:
 	std::shared_ptr<Camera> camera;
 	std::unique_ptr<SceneManager> sceneManager;
 
-	bool isRunning = false;
+	bool quit = false;
 	GLFWwindow* window = nullptr;
 	int width, height;
 	std::weak_ptr<Core> self;

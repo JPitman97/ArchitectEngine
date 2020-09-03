@@ -30,4 +30,8 @@ void InputComponent::onTick()
 	{
 		TC->setPos(TC->getPos() += camera->Right * velocity);
 	}
+	if (getEntity()->getCore()->getInput()->isKey(256)) //Escape Key
+	{
+		getEntity()->getCore()->shouldQuit(true);
+	}
 }
