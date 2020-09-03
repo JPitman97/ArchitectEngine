@@ -1,9 +1,6 @@
 #include <ArchitectEngine/architectengine.h>
 #include <iostream>
 
-#define shared std::shared_ptr
-#define weak std::weak_ptr
-
 ///This method creates entities and adds components.
 ///
 ///This method creates entities and populates them with components before starting the game loop.
@@ -11,7 +8,7 @@ int main()
 {
 	//Init
 	shared<Core> core = Core::Initialize("Arc Light", 1280, 720);
-	
+	shared<Scene> scene1 = core->addScene();
 	shared<Entity> Crate = core->addEntity();
 	shared<TransformComponent> TC = Crate->addComponent<TransformComponent>();
 	shared<RendererComponent> entityRenderer = Crate->addComponent<RendererComponent>();
@@ -63,6 +60,8 @@ int main()
 	RC->setShader("Shaders/skybox.vert", "Shaders/skybox.frag");
 	RC->getShader()->SetUniform("skybox", 0);
 	shared<SkyBloxComponent> SB = skybox->addComponent<SkyBloxComponent>("Assets/Skybox");
+
+	shared<Scene> scene2 = core->addScene();
 
 	//Start
 	core->start();

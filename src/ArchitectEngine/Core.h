@@ -2,7 +2,7 @@
 #define _CORE_H
 
 #include <memory>
-#include <list>
+#include <vector>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <glm/mat4x2.hpp>
@@ -15,6 +15,8 @@ class Entity;
 class ShaderProgram;
 class Camera;
 class Input;
+class SceneManager;
+class Scene;
 
 ///This class is the main class that groups everything together.
 ///
@@ -41,6 +43,8 @@ public:
 	///
 	///This method adds a new entity and specifies values for self and core, as well as pushing the entity onto a vector.
 	std::shared_ptr<Entity> addEntity();
+
+	std::shared_ptr<Scene> addScene();
 
 	///This method sets the default model matrix for the engine.
 	///
@@ -87,12 +91,14 @@ public:
 	///This method gets the entities list.
 	///
 	///This method returns the entities list so it can be iterated through.
-	std::list<std::shared_ptr<Entity>> getEntities() const;
+	std::vector<std::shared_ptr<Entity>> getEntities() const;
 
 	///This method gets the default screen size.
 	///
 	///This method returns the screen size set during initialization.
 	glm::vec2 getScreenSize() const;
+
+	void shouldQuit(bool _shouldQuit);
 
 private:
 	// Callbacks
@@ -101,7 +107,8 @@ private:
 
 	std::shared_ptr<ShaderProgram> shaderProgram;
 	std::shared_ptr<Camera> camera;
-	std::list<std::shared_ptr<Entity>> entities;
+	std::unique_ptr<SceneManager> sceneManager;
+
 	bool isRunning = false;
 	GLFWwindow* window = nullptr;
 	int width, height;
@@ -111,7 +118,7 @@ private:
 
 	glm::mat4 modelMatrix, viewMatrix, projectionMatrix;
 
-	double lastTime, time, diff, idealTime;
+	double lastTime, time, diff, idealTime = 0;
 };
 
 #endif

@@ -46,6 +46,10 @@ add_library(ArchitectEngine
 	src/ArchitectEngine/BoxColliderComponent.h
 	src/ArchitectEngine/AudioComponent.cpp
 	src/ArchitectEngine/AudioComponent.h
+	src/ArchitectEngine/SceneManager.cpp
+	src/ArchitectEngine/SceneManager.h
+    src/ArchitectEngine/Scene.cpp
+	src/ArchitectEngine/Scene.h
 )
 
 link_directories(

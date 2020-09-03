@@ -6,6 +6,7 @@
 #include "Time.h"
 #include "Camera.h"
 #include "Input.h"
+#include "SceneManager.h"
 
 std::shared_ptr<Core> Core::Initialize(std::string _title, int _width, int _height)
 {
@@ -51,6 +52,8 @@ std::shared_ptr<Core> Core::Initialize(std::string _title, int _width, int _heig
 	core->getShaderProgram()->SetUniform("in_Texture", 1);
 	core->input = std::make_shared<Input>();
 
+	core->sceneManager = std::make_unique<SceneManager>();
+
 	// camera 
 	core->camera = std::make_shared<Camera>(glm::vec3(0.0F, 0.0f, 3.0f));
 
@@ -71,8 +74,9 @@ std::shared_ptr<Core> Core::Initialize(std::string _title, int _width, int _heig
 void Core::start()
 {
 	lastTime = glfwGetTime() * 1000;
+	isRunning = true;
 
-	while (!glfwWindowShouldClose(window))
+	while (!glfwWindowShouldClose(window) && isRunning)
 	{
 		time = glfwGetTime() * 1000;
 		diff = time - lastTime;
@@ -83,7 +87,7 @@ void Core::start()
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		for (auto& entity : entities)
+		for (auto& entity : sceneManager->activeScene->SceneEntities)
 		{
 			entity->update();
 		}
@@ -106,8 +110,16 @@ std::shared_ptr<Entity> Core::addEntity()
 	std::shared_ptr<Entity> entity = std::make_shared<Entity>();
 	entity->self = entity;
 	entity->core = self;
-	entities.push_back(entity);
+	sceneManager->activeScene->SceneEntities.push_back(entity);
 	return entity;
+}
+
+std::shared_ptr<Scene> Core::addScene()
+{
+	std::shared_ptr<Scene> scene = std::make_shared<Scene>();
+	sceneManager->setActiveScene(scene);
+
+	return scene;
 }
 
 std::shared_ptr<ShaderProgram> Core::getShaderProgram() const
@@ -130,14 +142,19 @@ std::shared_ptr<Input> Core::getInput() const
 	return input;
 }
 
-std::list<std::shared_ptr<Entity>> Core::getEntities() const
+std::vector<std::shared_ptr<Entity>> Core::getEntities() const
 {
-	return entities;
+	return sceneManager->activeScene->SceneEntities;
 }
 
 glm::vec2 Core::getScreenSize() const
 {
 	return glm::vec2(width, height);
+}
+
+void Core::shouldQuit(bool _shouldQuit)
+{
+	isRunning = _shouldQuit;
 }
 
 void Core::framebuffer_size_callback(GLFWwindow* window, int width, int height)
