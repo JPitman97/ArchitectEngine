@@ -16,8 +16,8 @@ int main()
 	TC->setPos(glm::vec3(-0.3f, 0.0f, 0.0f));
 	TC->setRot(glm::vec3(0, 0, 0));
 	TC->setScale(glm::vec3(0.2f));
-	shared<BoxColliderComponent> BC = Crate->addComponent<BoxColliderComponent>();
-	BC->setSize(glm::vec3(0.1f, 0.1f, 0.1f));
+	//shared<BoxColliderComponent> BC = Crate->addComponent<BoxColliderComponent>();
+	//BC->setSize(glm::vec3(0.1f, 0.1f, 0.1f));
 	shared<LuaComponent> luaTest = Crate->addComponent<LuaComponent>();
 	luaTest->initialise("Assets/Lua/start.lua");
 	shared<LuaComponent> luaTest2 = Crate->addComponent<LuaComponent>();
@@ -32,8 +32,8 @@ int main()
 	TC3->setPos(glm::vec3(-0.3f, 0.0f, 1.0f));
 	TC3->setRot(glm::vec3(0, 0, 0));
 	TC3->setScale(glm::vec3(0.2f));
-	shared<BoxColliderComponent> BC3 = Crate2->addComponent<BoxColliderComponent>();
-	BC3->setSize(glm::vec3(0.1f, 0.1f, 0.1f));
+	//shared<BoxColliderComponent> BC3 = Crate2->addComponent<BoxColliderComponent>();
+	//BC3->setSize(glm::vec3(0.1f, 0.1f, 0.1f));
 	shared<LuaComponent> luaTest3 = Crate2->addComponent<LuaComponent>();
 	luaTest3->initialise("Assets/Lua/sineMotion.lua");
 
@@ -49,8 +49,8 @@ int main()
 	TC2->setRot(glm::vec3(0, 0, 0));
 	TC2->setScale(glm::vec3(0.2f));
 	Player->addComponent<InputComponent>();
-	shared<BoxColliderComponent> BC2 = Player->addComponent<BoxColliderComponent>();
-	BC2->setSize(glm::vec3(0.3f, 0.3f, 0.3f));
+	//shared<BoxColliderComponent> BC2 = Player->addComponent<BoxColliderComponent>();
+	//BC2->setSize(glm::vec3(0.3f, 0.3f, 0.3f));
 	shared<AudioComponent> AC2 = Player->addComponent<AudioComponent>();
 	Player->addComponent<TPCameraComponent>()->initialise();
 

@@ -1,4 +1,7 @@
-﻿#include <iostream>
+﻿#ifndef _SCENE_H
+#define _SCENE_H
+
+#include <iostream>
 #include <vector>
 #include "Core.h"
 
@@ -12,3 +15,4 @@ public:
 private:
 	std::vector<std::shared_ptr<Entity>> SceneEntities;
 };
+#endif

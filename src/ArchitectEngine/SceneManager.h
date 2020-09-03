@@ -1,4 +1,7 @@
-﻿#include <iostream>
+﻿#ifndef _SCENEMANAGER_H
+#define _SCENEMANAGER_H
+
+#include <iostream>
 #include <vector>
 #include "Core.h"
 #include "Scene.h"
@@ -12,3 +15,4 @@ public:
 private:
 	std::shared_ptr<Scene> activeScene;
 };
+#endif
