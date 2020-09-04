@@ -60,7 +60,9 @@ int main()
 	RC->getShader()->SetUniform("skybox", 0);
 	shared<SkyBloxComponent> SB = skybox->addComponent<SkyBloxComponent>("Assets/Skybox");
 
-	//shared<Scene> scene2 = core->addScene();
+	shared<Scene> scene2 = core->addScene();
+	
+	core->setActiveScene(scene1); 
 
 	//Start
 	core->start();

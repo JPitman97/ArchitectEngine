@@ -44,7 +44,16 @@ public:
 	///This method adds a new entity and specifies values for self and core, as well as pushing the entity onto a vector.
 	std::shared_ptr<Entity> addEntity();
 
+	///This method adds a new scene to the engine vector.
+	///
+	///This method adds a new scene to the engine vector.
 	std::shared_ptr<Scene> addScene();
+
+	///This method sets the active scene to render.
+	///
+	///This method sets the active scene to render.
+	/// @param _scene is the scene to set active and render.
+	void setActiveScene(std::shared_ptr<Scene> _scene);
 
 	///This method sets the default model matrix for the engine.
 	///

@@ -122,6 +122,11 @@ std::shared_ptr<Scene> Core::addScene()
 	return scene;
 }
 
+void Core::setActiveScene(std::shared_ptr<Scene> _scene)
+{
+	sceneManager->setActiveScene(_scene);
+}
+
 std::shared_ptr<ShaderProgram> Core::getShaderProgram() const
 {
 	return shaderProgram;
