@@ -52,6 +52,6 @@ public:
 	///This method handles retrieving the Id for the object instance
 	GLuint GetId();
 
-
+	std::vector<float> GetData();
 };
 #endif

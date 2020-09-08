@@ -41,6 +41,8 @@ public:
 	///
 	///This method returns the mesh object.
 	std::shared_ptr<VertexArray> getMesh() const { return mesh; }
+
+	std::shared_ptr<VertexBuffer> getobjPositions() const { return objPositions; }
 	///This method gets the texture.
 	///
 	///This method gets the texture and returns it.

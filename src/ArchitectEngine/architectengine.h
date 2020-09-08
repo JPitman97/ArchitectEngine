@@ -15,5 +15,6 @@
 #include "SkyBoxComponent.h"
 #include "InputComponent.h"
 #include "BoxColliderComponent.h"
+#include "MeshCollision.h"
 #include "AudioComponent.h"
 #endif
