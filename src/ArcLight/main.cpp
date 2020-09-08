@@ -9,22 +9,22 @@ int main()
 	//Init
 	shared<Core> core = Core::Initialize("Arc Light", 1280, 720);
 	shared<Scene> scene1 = core->addScene();
-	shared<Entity> Crate = core->addEntity();
-	shared<TransformComponent> TC = Crate->addComponent<TransformComponent>();
-	shared<RendererComponent> entityRenderer = Crate->addComponent<RendererComponent>();
-	entityRenderer->setMesh("Assets/Cube.obj", "Assets/Crate.jpg");
-	TC->setPos(glm::vec3(-0.3f, 0.0f, 0.0f));
-	TC->setRot(glm::vec3(0, 0, 0));
-	TC->setScale(glm::vec3(0.2f));
-	shared<MeshCollision> BC = Crate->addComponent<MeshCollision>();
-	BC->setIsStatic(true);
-	//BC->setSize(glm::vec3(0.1f, 0.1f, 0.1f));
-	shared<LuaComponent> luaTest = Crate->addComponent<LuaComponent>();
-	luaTest->initialise("Assets/Lua/start.lua");
-	shared<LuaComponent> luaTest2 = Crate->addComponent<LuaComponent>();
-	luaTest2->initialise("Assets/Lua/rotator.lua");
-	shared<AudioComponent> AC = Crate->addComponent<AudioComponent>();
-	//AC->playAudio("Assets/Kryp.ogg"); //Background audio
+	//shared<Entity> Crate = core->addEntity();
+	//shared<TransformComponent> TC = Crate->addComponent<TransformComponent>();
+	//shared<RendererComponent> entityRenderer = Crate->addComponent<RendererComponent>();
+	//entityRenderer->setMesh("Assets/Cube.obj", "Assets/Crate.jpg");
+	//TC->setPos(glm::vec3(-0.3f, 0.0f, 0.0f));
+	//TC->setRot(glm::vec3(0, 0, 0));
+	//TC->setScale(glm::vec3(0.2f));
+	//shared<MeshCollision> BC = Crate->addComponent<MeshCollision>();
+	//BC->setIsStatic(true);
+	////BC->setSize(glm::vec3(0.1f, 0.1f, 0.1f));
+	//shared<LuaComponent> luaTest = Crate->addComponent<LuaComponent>();
+	//luaTest->initialise("Assets/Lua/start.lua");
+	//shared<LuaComponent> luaTest2 = Crate->addComponent<LuaComponent>();
+	//luaTest2->initialise("Assets/Lua/rotator.lua");
+	//shared<AudioComponent> AC = Crate->addComponent<AudioComponent>();
+	////AC->playAudio("Assets/Kryp.ogg"); //Background audio
 
 	shared<Entity> Crate2 = core->addEntity();
 	shared<TransformComponent> TC3 = Crate2->addComponent<TransformComponent>();
