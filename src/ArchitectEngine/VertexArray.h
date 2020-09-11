@@ -1,7 +1,7 @@
 #ifndef _VERTEXARRAY_H
 #define _VERTEXARRAY_H
 
-#include <GL/glew.h>
+#include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <vector>
 #include <iostream>

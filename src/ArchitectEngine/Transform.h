@@ -1,7 +1,7 @@
 #ifndef _TRANSFORM_H
 #define _TRANSFORM_H
 
-#include <GL/glew.h>
+#include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/ext.hpp>

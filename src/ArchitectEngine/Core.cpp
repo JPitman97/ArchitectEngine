@@ -1,6 +1,5 @@
 #include "Core.h"
 #include "Entity.h"
-#include <GL/glew.h>
 #include "ShaderProgram.h"
 #include "TransformComponent.h"
 #include "Time.h"
@@ -27,15 +26,12 @@ std::shared_ptr<Core> Core::Initialize(std::string _title, int _width, int _heig
 
 	glfwMakeContextCurrent(core->window);
 	glfwSetWindowUserPointer(core->window, reinterpret_cast<void*>(core.get()));
-	std::cout << glGetString(GL_VERSION) << std::endl;
 
-	GLenum err = glewInit();
-	if (GLEW_OK != err)
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
-		/* Problem: glewInit failed, something is seriously wrong. */
-		std::cerr << "Error: " << glewGetErrorString(err) << std::endl;
+		std::cout << "Failed to initialize GLAD" << std::endl;
+		std::cerr << "Error: Loading GLAD" << std::endl;
 	}
-	std::cerr << "Status: Using GLEW " << glewGetString(GLEW_VERSION) << std::endl;
 
 	core->input = std::make_shared<Input>();
 
@@ -71,10 +67,18 @@ std::shared_ptr<Core> Core::Initialize(std::string _title, int _width, int _heig
 	return core;
 }
 
+#include <reactphysics3d/reactphysics3d.h>
 void Core::start()
 {
 	lastTime = glfwGetTime() * 1000;
 	quit = false;
+
+	reactphysics3d::PhysicsCommon physicsCommon;
+	reactphysics3d::PhysicsWorld* world = physicsCommon.createPhysicsWorld();
+	reactphysics3d::Vector3 position(0, 20, 0);
+	reactphysics3d::Quaternion orientation = reactphysics3d::Quaternion::identity();
+	reactphysics3d::Transform transform(position, orientation);
+	reactphysics3d::RigidBody* body = world->createRigidBody(transform);
 
 	while (!glfwWindowShouldClose(window) && !quit)
 	{
@@ -82,6 +86,15 @@ void Core::start()
 		diff = time - lastTime;
 		Time::deltaTime = diff / 1000.0f;
 		lastTime = time;
+
+		world->update(Time::deltaTime);
+		// Get the updated position of the body 
+		const reactphysics3d::Transform& transform = body->getTransform();
+		const reactphysics3d::Vector3& position = transform.getPosition();
+
+		// Display the position of the body 
+		std::cout << "Body Position: (" << position.x << ", " <<
+			position.y << ", " << position.z << ")" << std::endl;
 
 		//Clear the screen to white and also clear the color and depth buffer
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);

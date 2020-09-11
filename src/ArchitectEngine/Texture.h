@@ -2,7 +2,7 @@
 #define _TEXTURE_H
 
 #include <iostream>
-#include <GL/glew.h>
+#include <glad/glad.h>
 #include <vector>
 
 ///This class handles texture loading.

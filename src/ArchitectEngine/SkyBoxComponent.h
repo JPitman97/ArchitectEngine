@@ -1,7 +1,7 @@
 #ifndef _SKYBOXCOMPONENT_H
 #define _SKYBOXCOMPONENT_H
 #include "Component.h"
-#include <GL/glew.h>
+#include <glad/glad.h>
 #include <vector>
 #include <string>
 
