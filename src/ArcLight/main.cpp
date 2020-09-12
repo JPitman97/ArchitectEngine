@@ -24,15 +24,15 @@ int main()
 	shared<AudioComponent> AC = Crate->addComponent<AudioComponent>();
 	//AC->playAudio("Assets/Kryp.ogg"); //Background audio
 
-	shared<Entity> Crate2 = core->addEntity();
+	/*shared<Entity> Crate2 = core->addEntity();
 	shared<TransformComponent> TC3 = Crate2->addComponent<TransformComponent>();
 	shared<RendererComponent> entityRenderer3 = Crate2->addComponent<RendererComponent>();
-	entityRenderer3->setMesh("Assets/Cube.obj", "Assets/Crate.jpg");
+	entityRenderer3->setMesh("Assets/map.obj", "Assets/Crate.jpg");
 	TC3->setPos(glm::vec3(-0.3f, 0.0f, 1.0f));
 	TC3->setRot(glm::vec3(0, 0, 0));
-	TC3->setScale(glm::vec3(0.2f));
-	shared<LuaComponent> luaTest3 = Crate2->addComponent<LuaComponent>();
-	luaTest3->initialise("Assets/Lua/sineMotion.lua");
+	TC3->setScale(glm::vec3(0.2f));*/
+	/*shared<LuaComponent> luaTest3 = Crate2->addComponent<LuaComponent>();
+	luaTest3->initialise("Assets/Lua/sineMotion.lua");*/
 
 	shared<Entity> Player = core->addEntity();
 	shared<TransformComponent> TC2 = Player->addComponent<TransformComponent>();
@@ -41,7 +41,7 @@ int main()
 	entityRenderer2->getShader()->SetUniform("projectionMatrix", core->getDefaultProjectionMatrix());
 	entityRenderer2->getShader()->SetUniform("modelMatrix", core->getDefaultModelMatrix());
 	entityRenderer2->getShader()->SetUniform("viewMatrix", core->getDefaultViewMatrix());
-	entityRenderer2->setMesh("Assets/ivysaur.obj", "Assets/ivysaur_diffuse.jpg");
+	//entityRenderer2->setMesh("Assets/ivysaur.obj", "Assets/ivysaur_diffuse.jpg");
 	TC2->setPos(glm::vec3(1.0f, -0.3f, 0.0f));
 	TC2->setRot(glm::vec3(0, 0, 0));
 	TC2->setScale(glm::vec3(0.2f));

@@ -68,17 +68,51 @@ std::shared_ptr<Core> Core::Initialize(std::string _title, int _width, int _heig
 }
 
 #include <reactphysics3d/reactphysics3d.h>
+#include "RendererComponent.h"
 void Core::start()
 {
 	lastTime = glfwGetTime() * 1000;
 	quit = false;
 
-	reactphysics3d::PhysicsCommon physicsCommon;
-	reactphysics3d::PhysicsWorld* world = physicsCommon.createPhysicsWorld();
-	reactphysics3d::Vector3 position(0, 20, 0);
-	reactphysics3d::Quaternion orientation = reactphysics3d::Quaternion::identity();
-	reactphysics3d::Transform transform(position, orientation);
-	reactphysics3d::RigidBody* body = world->createRigidBody(transform);
+	rp3d::PhysicsCommon physicsCommon;
+	rp3d::PhysicsWorld* world = physicsCommon.createPhysicsWorld();
+	rp3d::Vector3 position(0, 20, 0);
+	rp3d::Quaternion orientation = reactphysics3d::Quaternion::identity();
+	rp3d::Transform transform(position, orientation);
+	rp3d::RigidBody* body = world->createRigidBody(transform);
+	body->setType(reactphysics3d::BodyType::DYNAMIC);
+	body->setMass(50);
+
+	std::shared_ptr<Entity> Crate2 = addEntity();
+	std::shared_ptr<TransformComponent> TC3 = Crate2->addComponent<TransformComponent>();
+	std::shared_ptr<RendererComponent> entityRenderer3 = Crate2->addComponent<RendererComponent>();
+	entityRenderer3->setMesh("Assets/Cube.obj", "Assets/Crate.jpg");
+	TC3->setPos(glm::vec3(-0.3f, 0.0f, 1.0f));
+	TC3->setRot(glm::vec3(0, 0, 0));
+	TC3->setScale(glm::vec3(1.0f));
+	// Half extents of the box in the x, y and z directions 
+	const reactphysics3d::Vector3 halfExtents(5.0, 5.0, 5.0);
+	// Create the box shape 
+	rp3d::BoxShape* boxShape = physicsCommon.createBoxShape(halfExtents);
+	body->addCollider(boxShape, transform);
+	//TODO fix why this is bouncing and acting strangely, maybe need to update library? 
+	std::shared_ptr<Entity> Map = addEntity();
+	std::shared_ptr<TransformComponent> transComp = Map->addComponent<TransformComponent>();
+	std::shared_ptr<RendererComponent> er = Map->addComponent<RendererComponent>();
+	er->setMesh("Assets/Map.obj", "Assets/Crate.jpg");
+	transComp->setPos(glm::vec3(0, 0.0f, 0.0f));
+	transComp->setRot(glm::vec3(0, 0, 0));
+	transComp->setScale(glm::vec3(1.0f));
+	rp3d::Vector3 position2(0, 0.0f, 0.0f);
+	rp3d::Quaternion orientation2 = reactphysics3d::Quaternion::identity();
+	rp3d::Transform MapTrans(position2, orientation2);
+	rp3d::RigidBody* mapRB = world->createRigidBody(MapTrans);
+	mapRB->setType(rp3d::BodyType::STATIC);
+	// Half extents of the box in the x, y and z directions 
+	const rp3d::Vector3 halfExtents2(15.0, 15.0, 15.0);
+	// Create the box shape 
+	rp3d::BoxShape* boxShape2 = physicsCommon.createBoxShape(halfExtents2);
+	mapRB->addCollider(boxShape2, MapTrans);
 
 	while (!glfwWindowShouldClose(window) && !quit)
 	{
@@ -91,10 +125,7 @@ void Core::start()
 		// Get the updated position of the body 
 		const reactphysics3d::Transform& transform = body->getTransform();
 		const reactphysics3d::Vector3& position = transform.getPosition();
-
-		// Display the position of the body 
-		std::cout << "Body Position: (" << position.x << ", " <<
-			position.y << ", " << position.z << ")" << std::endl;
+		TC3->setPos(glm::vec3(position.x, position.y, position.z));
 
 		//Clear the screen to white and also clear the color and depth buffer
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -116,6 +147,12 @@ void Core::start()
 			std::this_thread::sleep_for((idealTime - Time::deltaTime) * 1000ms);
 		}
 	}
+	// Destroy a rigid body 
+	world->destroyRigidBody(body);
+	world->destroyRigidBody(mapRB);
+
+	// Destroy a physics world 
+	physicsCommon.destroyPhysicsWorld(world);
 }
 
 std::shared_ptr<Entity> Core::addEntity()

@@ -22,7 +22,7 @@ VertexArray::VertexArray()
 	{
 		std::cout << e.what() << std::endl;
 	}
-	
+
 }
 
 void VertexArray::SetBuffer(const std::string& _attribute, const std::shared_ptr<VertexBuffer>& _buffer)
@@ -97,5 +97,5 @@ GLuint VertexArray::GetId()
 	{
 		std::cout << e.what() << std::endl;
 	}
-	
+
 }

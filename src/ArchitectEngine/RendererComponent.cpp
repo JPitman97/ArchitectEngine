@@ -20,7 +20,7 @@ void RendererComponent::onDisplay()
 	}
 }
 
-void RendererComponent::setShader(const std::string & _vert, const std::string & _frag)
+void RendererComponent::setShader(const std::string& _vert, const std::string& _frag)
 {
 	shader = std::make_shared<ShaderProgram>(_vert, _frag);
 }

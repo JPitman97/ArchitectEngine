@@ -145,7 +145,7 @@ GLuint VertexBuffer::GetId()
 	{
 		std::cout << e.what() << std::endl;
 	}
-	
+
 }
 
 std::vector<float> VertexBuffer::GetData()

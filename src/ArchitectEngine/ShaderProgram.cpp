@@ -105,7 +105,7 @@ ShaderProgram::ShaderProgram(const std::string& _vert, const std::string& _frag)
 	glDeleteShader(fragmentShaderId);
 }
 
-void ShaderProgram::draw(const std::shared_ptr<VertexArray>& _vertexArray, GLuint _texID, std::shared_ptr<Camera> _camera, std::shared_ptr<Entity> _entity,  GLuint _id)
+void ShaderProgram::draw(const std::shared_ptr<VertexArray>& _vertexArray, GLuint _texID, std::shared_ptr<Camera> _camera, std::shared_ptr<Entity> _entity, GLuint _id)
 {
 	// Enable depth test
 	glEnable(GL_DEPTH_TEST);
@@ -139,7 +139,7 @@ void ShaderProgram::draw(const std::shared_ptr<VertexArray>& _vertexArray, GLuin
 void ShaderProgram::SetUniform(const std::string& _uniform, const glm::vec3& _value)
 {
 	//glUseProgram(id);
-	glUniform3fv(glGetUniformLocation(id, _uniform.c_str()), 1, &_value[0]); 
+	glUniform3fv(glGetUniformLocation(id, _uniform.c_str()), 1, &_value[0]);
 	//glUseProgram(0);
 }
 

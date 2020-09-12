@@ -58,14 +58,13 @@ target_include_directories(ArchitectEngine PUBLIC ${CMAKE_SOURCE_DIR}/External/i
 target_link_directories(ArchitectEngine PUBLIC ${CMAKE_SOURCE_DIR}/External/lib/msvc)
 
 if(WIN32)
-	list(APPEND CMAKE_PREFIX_PATH "C:\\SDKs\\ReactPhysics3D\\64-Bit")
+	list(APPEND CMAKE_PREFIX_PATH "C:\\SDKs\\ReactPhysics3D\\64-Bit\\Debug")
 	find_package(ReactPhysics3D REQUIRED) 
 	target_link_libraries(ArchitectEngine glfw3 OpenAL32 opengl32 lua53 ReactPhysics3D::ReactPhysics3D) #Windows
 else()
 	find_package(PkgConfig REQUIRED)
 	pkg_search_module(GLFW REQUIRED glfw3)
 	find_package(GLEW REQUIRED)
-	
 	target_link_libraries(ArchitectEngine ${GLFW_LIBRARIES} GL lua53 OpenAL32 ReactPhysics3D::ReactPhysics3D) #Linux
 endif()
 
