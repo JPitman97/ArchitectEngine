@@ -10,7 +10,7 @@ int main()
 	//Init
 	shared<Core> core = Core::Initialize("Arc Light", 1280, 720);
 	shared<Scene> scene1 = core->addScene();
-	shared<Entity> Crate = core->addEntity();
+	/*shared<Entity> Crate = core->addEntity();
 	shared<TransformComponent> TC = Crate->addComponent<TransformComponent>();
 	shared<RendererComponent> entityRenderer = Crate->addComponent<RendererComponent>();
 	entityRenderer->setMesh("Assets/Cube.obj", "Assets/Crate.jpg");
@@ -21,7 +21,7 @@ int main()
 	luaTest->initialise("Assets/Lua/start.lua");
 	shared<LuaComponent> luaTest2 = Crate->addComponent<LuaComponent>();
 	luaTest2->initialise("Assets/Lua/rotator.lua");
-	shared<AudioComponent> AC = Crate->addComponent<AudioComponent>();
+	shared<AudioComponent> AC = Crate->addComponent<AudioComponent>();*/
 	//AC->playAudio("Assets/Kryp.ogg"); //Background audio
 
 	/*shared<Entity> Crate2 = core->addEntity();
@@ -42,7 +42,7 @@ int main()
 	entityRenderer2->getShader()->SetUniform("modelMatrix", core->getDefaultModelMatrix());
 	entityRenderer2->getShader()->SetUniform("viewMatrix", core->getDefaultViewMatrix());
 	//entityRenderer2->setMesh("Assets/ivysaur.obj", "Assets/ivysaur_diffuse.jpg");
-	TC2->setPos(glm::vec3(1.0f, -0.3f, 0.0f));
+	TC2->setPos(glm::vec3(0.0f, 5.0f, 5.0f));
 	TC2->setRot(glm::vec3(0, 0, 0));
 	TC2->setScale(glm::vec3(0.2f));
 	Player->addComponent<InputComponent>();
