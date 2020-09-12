@@ -85,8 +85,7 @@ void Core::start()
 	rp3d::Transform transform(position, orientation);
 	rp3d::RigidBody* body = world->createRigidBody(transform);
 	body->setType(reactphysics3d::BodyType::DYNAMIC);
-	body->setMass(20);
-	body->setAngularDamping(1.0);
+	body->setAngularDamping(0.3);
 	body->setLinearDamping(0.3);
 
 	std::shared_ptr<Entity> Crate2 = addEntity();
@@ -101,7 +100,10 @@ void Core::start()
 	// Create the box shape 
 	rp3d::BoxShape* boxShape = physicsCommon.createBoxShape(halfExtents);
 	body->addCollider(boxShape, transform);
-	//TODO fix why this is bouncing and acting strangely, maybe need to update library? 
+	body->getCollider(0)->getMaterial().setBounciness(0.5);
+	body->getCollider(0)->getMaterial().setMassDensity(20);
+	body->updateMassPropertiesFromColliders();
+
 	std::shared_ptr<Entity> Map = addEntity();
 	std::shared_ptr<TransformComponent> transComp = Map->addComponent<TransformComponent>();
 	std::shared_ptr<RendererComponent> er = Map->addComponent<RendererComponent>();
@@ -119,6 +121,7 @@ void Core::start()
 	// Create the box shape 
 	rp3d::BoxShape* boxShape2 = physicsCommon.createBoxShape(halfExtents2);
 	mapRB->addCollider(boxShape2, MapTrans);
+	mapRB->getCollider(0)->getMaterial().setBounciness(0);
 
 	long double accumulator = 0;
 	long double previousFrameTime = 0;
@@ -218,13 +221,7 @@ void Core::start()
 		rp3d::Transform interpolatedTransform = rp3d::Transform::interpolateTransforms(prevTransform,
 			currTransform, factor);
 		auto trans = interpolatedTransform.getPosition();
-		// Display the position of the body 
-		std::cout << "Body Position: (" << trans.x << ", " <<
-			trans.y << ", " << trans.z << ")" << std::endl;
-		if (body->isSleeping())
-		{
-			std::cout << "Body is sleeping" << std::endl;
-		}
+
 		// Now you can render your body using the interpolated transform here 
 		Crate2->getComponent<TransformComponent>()->setPos(glm::vec3(trans.x, trans.y, trans.z));
 		//Clear the screen to white and also clear the color and depth buffer
