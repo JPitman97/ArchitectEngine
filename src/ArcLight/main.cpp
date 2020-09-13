@@ -1,6 +1,5 @@
 #include <ArchitectEngine/architectengine.h>
 #include <iostream>
-// Include the main ReactPhysics3D header file 
 
 ///This method creates entities and adds components.
 ///
@@ -9,7 +8,12 @@ int main()
 {
 	//Init
 	shared<Core> core = Core::Initialize("Arc Light", 1280, 720);
+	auto prop = Scene::createWorldPhysicsSettings();
+	prop.gravity = { 0, -9.81, 0 };
+	prop.isSleepingEnabled = { true };
 	shared<Scene> scene1 = core->addScene();
+	scene1->addPhysicsWorld(prop);
+
 	/*shared<Entity> Crate = core->addEntity();
 	shared<TransformComponent> TC = Crate->addComponent<TransformComponent>();
 	shared<RendererComponent> entityRenderer = Crate->addComponent<RendererComponent>();
@@ -49,19 +53,20 @@ int main()
 	shared<AudioComponent> AC2 = Player->addComponent<AudioComponent>();
 	Player->addComponent<TPCameraComponent>()->initialise();
 
+	shared<Entity> testRB = core->addEntity();
+	testRB->addComponent<RigidBodyComponent>()->Init();
+
+
 	shared<Entity> skybox = core->addEntity();
 	shared<RendererComponent> RC = skybox->addComponent<RendererComponent>();
 	RC->setShader("Shaders/skybox.vert", "Shaders/skybox.frag");
 	RC->getShader()->SetUniform("skybox", 0);
 	shared<SkyBloxComponent> SB = skybox->addComponent<SkyBloxComponent>("Assets/Skybox");
-
-	shared<Scene> scene2 = core->addScene();
 	
 	core->setActiveScene(scene1); 
 
 	//Start
 	core->start();
-
 	std::cout << "Dying" << std::endl;
 	return 0;
 }

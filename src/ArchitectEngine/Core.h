@@ -55,6 +55,8 @@ public:
 	/// @param _scene is the scene to set active and render.
 	void setActiveScene(std::shared_ptr<Scene> _scene);
 
+	std::shared_ptr<Scene> getActiveScene();
+
 	///This method sets the default model matrix for the engine.
 	///
 	///This method sets the model matrix for new components.

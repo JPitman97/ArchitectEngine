@@ -75,19 +75,19 @@ void Core::start()
 	quit = false;
 
 	rp3d::PhysicsCommon physicsCommon;
-	rp3d::PhysicsWorld* world = physicsCommon.createPhysicsWorld();
+	//rp3d::PhysicsWorld* world = physicsCommon.createPhysicsWorld();
 
 	// Gravity vector in the physics world
 	rp3d::Vector3 gravity(0, rp3d::decimal(-9.81), 0);
-	world->setGravity(gravity);
+	sceneManager->activeScene->world->setGravity(gravity);
 	rp3d::Vector3 position(0, 20, 0);
 	rp3d::Quaternion orientation = reactphysics3d::Quaternion::identity();
 	rp3d::Transform transform(position, orientation);
-	rp3d::RigidBody* body = world->createRigidBody(transform);
+	rp3d::RigidBody* body = sceneManager->activeScene->world->createRigidBody(transform);
 	body->setType(reactphysics3d::BodyType::DYNAMIC);
 	body->setAngularDamping(0.3);
 	body->setLinearDamping(0.3);
-
+	
 	std::shared_ptr<Entity> Crate2 = addEntity();
 	std::shared_ptr<TransformComponent> TC3 = Crate2->addComponent<TransformComponent>();
 	std::shared_ptr<RendererComponent> entityRenderer3 = Crate2->addComponent<RendererComponent>();
@@ -114,7 +114,7 @@ void Core::start()
 	rp3d::Vector3 position2(0, 0.0f, 0.0f);
 	rp3d::Quaternion orientation2 = reactphysics3d::Quaternion::identity();
 	rp3d::Transform MapTrans(position2, orientation2);
-	rp3d::RigidBody* mapRB = world->createRigidBody(MapTrans);
+	rp3d::RigidBody* mapRB = sceneManager->activeScene->world->createRigidBody(MapTrans);
 	mapRB->setType(rp3d::BodyType::STATIC);
 	// Half extents of the box in the x, y and z directions 
 	const rp3d::Vector3 halfExtents2(100.0, 12, 100.0);
@@ -145,7 +145,7 @@ void Core::start()
 		while (accumulator >= idealTime)
 		{
 			// Update the physics world with a constant time step 
-			world->update(idealTime);
+			sceneManager->activeScene->world->update(idealTime);
 
 			// Decrease the accumulated time 
 			accumulator -= idealTime;
@@ -180,12 +180,10 @@ void Core::start()
 			std::this_thread::sleep_for((idealTime - Time::deltaTime) * 1000ms);
 		}
 	}
-	// Destroy a rigid body 
-	world->destroyRigidBody(body);
-	world->destroyRigidBody(mapRB);
 
-	// Destroy a physics world 
-	physicsCommon.destroyPhysicsWorld(world);
+	// Destroy a rigid body 
+	sceneManager->activeScene->world->destroyRigidBody(body);
+	sceneManager->activeScene->world->destroyRigidBody(mapRB);
 }
 
 std::shared_ptr<Entity> Core::addEntity()
@@ -208,6 +206,11 @@ std::shared_ptr<Scene> Core::addScene()
 void Core::setActiveScene(std::shared_ptr<Scene> _scene)
 {
 	sceneManager->setActiveScene(_scene);
+}
+
+std::shared_ptr<Scene> Core::getActiveScene()
+{
+	return sceneManager->activeScene;
 }
 
 std::shared_ptr<ShaderProgram> Core::getShaderProgram() const

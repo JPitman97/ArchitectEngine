@@ -43,7 +43,6 @@ private:
 	///This method can be overloaded by components to draw objects.
 	virtual void onDisplay();
 
-
 private:
 	std::weak_ptr<Entity> entity;
 	std::weak_ptr<Core> core;

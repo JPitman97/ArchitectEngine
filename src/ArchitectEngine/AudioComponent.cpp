@@ -54,11 +54,15 @@ AudioComponent::~AudioComponent()
  * Note: Make sure current context has been set to NULL before deleting context.
  *       Make sure context destroyed before closing device.
  */
-	alDeleteSources(1, &sourceId);
-	alDeleteBuffers(1, &bufferId);
-	alcMakeContextCurrent(NULL);
-	alcDestroyContext(context);
-	alcCloseDevice(device);
+	if (stop == false)
+	{
+		alDeleteSources(1, &sourceId);
+		alDeleteBuffers(1, &bufferId);
+		alcMakeContextCurrent(NULL);
+		alcDestroyContext(context);
+		alcCloseDevice(device);
+		stop = true;
+	}
 }
 
 void AudioComponent::onTick()

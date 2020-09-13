@@ -27,7 +27,7 @@ public:
 	///This destructor destroys the device and context to avoid memory leaks.
 	///
 	///This destructor cleans up the audio component when it's destroyed.
-	~AudioComponent();
+	~AudioComponent() override;
 
 	///This method checks to see whether a sound is playing, if so it blocks others.
 	///
@@ -56,6 +56,7 @@ private:
 	ALuint sourceId = 0;
 
 	bool canPlay = true;
+	bool stop = false;
 };
 
 #endif
