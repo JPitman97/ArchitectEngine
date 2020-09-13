@@ -92,7 +92,6 @@ void Core::start()
 	std::shared_ptr<TransformComponent> TC3 = Crate2->addComponent<TransformComponent>();
 	std::shared_ptr<RendererComponent> entityRenderer3 = Crate2->addComponent<RendererComponent>();
 	entityRenderer3->setMesh("Assets/Cube.obj", "Assets/Crate.jpg");
-	//TC3->setPos(glm::vec3(-0.3f, 0.0f, 1.0f));
 	TC3->setRot(glm::vec3(0, 0, 0));
 	TC3->setScale(glm::vec3(1.0f));
 	// Half extents of the box in the x, y and z directions 
@@ -100,8 +99,9 @@ void Core::start()
 	// Create the box shape 
 	rp3d::BoxShape* boxShape = physicsCommon.createBoxShape(halfExtents);
 	body->addCollider(boxShape, transform);
-	body->getCollider(0)->getMaterial().setBounciness(0.5);
-	body->getCollider(0)->getMaterial().setMassDensity(20);
+	auto& mat = body->getCollider(0)->getMaterial();
+	mat.setBounciness(0.2);
+	mat.setMassDensity(5);
 	body->updateMassPropertiesFromColliders();
 
 	std::shared_ptr<Entity> Map = addEntity();
@@ -128,7 +128,7 @@ void Core::start()
 
 	while (!glfwWindowShouldClose(window) && !quit)
 	{
-		/*time = glfwGetTime() * 1000;
+		time = glfwGetTime() * 1000;
 		diff = time - lastTime;
 		Time::deltaTime = diff / 1000.0f;
 		lastTime = time;
@@ -139,10 +139,11 @@ void Core::start()
 		const reactphysics3d::Transform& oldTrans = body->getTransform();
 
 		idealTime = 1.0f / 60.0f;
+
 		// While there is enough accumulated time to take 
 		// one or several physics steps 
-		while (accumulator >= idealTime) {
-
+		while (accumulator >= idealTime)
+		{
 			// Update the physics world with a constant time step 
 			world->update(idealTime);
 
@@ -151,16 +152,14 @@ void Core::start()
 		}
 		// Compute the time interpolation factor 
 		double factor = accumulator / idealTime;
+
 		// Get the updated position of the body 
 		const reactphysics3d::Transform& transform = body->getTransform();
-		rp3d::Transform interpolatedTransform = rp3d::Transform::interpolateTransforms(oldTrans,
-			transform, factor);
+		rp3d::Transform interpolatedTransform = rp3d::Transform::interpolateTransforms(oldTrans, transform, factor);
 		const reactphysics3d::Vector3& position = interpolatedTransform.getPosition();
 		TC3->setPos(glm::vec3(position.x, position.y, position.z));
-		if (body->isSleeping())
-		{
-			std::cout << "Body is sleeping" << std::endl;
-		}
+		const reactphysics3d::Quaternion& rotation = interpolatedTransform.getOrientation();
+		TC3->setRot(glm::vec3(rotation.x, rotation.y, rotation.z));
 
 		//Clear the screen to white and also clear the color and depth buffer
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -179,65 +178,7 @@ void Core::start()
 		{
 			//sleep
 			std::this_thread::sleep_for((idealTime - Time::deltaTime) * 1000ms);
-		}*/
-
-		// Constant physics time step 
-		const float timeStep = 1.0 / 60.0;
-
-		// Get the current system time 
-		long double currentFrameTime = glfwGetTime();
-
-		// Compute the time difference between the two frames 
-		long double deltaTime = currentFrameTime - previousFrameTime;
-		Time::deltaTime = deltaTime;
-
-		// Update the previous time 
-		previousFrameTime = currentFrameTime;
-
-		// Add the time difference in the accumulator 
-		accumulator += deltaTime;
-
-		// Get the previous transform of the body 
-		rp3d::Transform prevTransform = body->getTransform();
-
-		// While there is enough accumulated time to take 
-		// one or several physics steps 
-		while (accumulator >= timeStep) {
-
-			// Update the physics world with a constant time step 
-			world->update(timeStep);
-
-			// Decrease the accumulated time 
-			accumulator -= timeStep;
 		}
-
-		// Compute the time interpolation factor 
-		rp3d::decimal factor = accumulator / timeStep;
-
-		// Get the updated transform of the body 
-		rp3d::Transform currTransform = body->getTransform();
-
-		// Compute the interpolated transform of the rigid body 
-		rp3d::Transform interpolatedTransform = rp3d::Transform::interpolateTransforms(prevTransform,
-			currTransform, factor);
-		auto trans = interpolatedTransform.getPosition();
-
-		// Now you can render your body using the interpolated transform here 
-		Crate2->getComponent<TransformComponent>()->setPos(glm::vec3(trans.x, trans.y, trans.z));
-		//Clear the screen to white and also clear the color and depth buffer
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-		for (auto& entity : sceneManager->activeScene->SceneEntities)
-		{
-			entity->update();
-		}
-
-		//Swap buffers
-		glfwSwapBuffers(window);
-		glfwPollEvents();
-		// Update the previous transform 
-		prevTransform = currTransform;
 	}
 	// Destroy a rigid body 
 	world->destroyRigidBody(body);
