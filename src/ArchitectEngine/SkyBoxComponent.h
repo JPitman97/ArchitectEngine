@@ -10,16 +10,16 @@ class Texture;
 ///This class handles the skybox.
 ///
 ///This class is used to control and render the skybox to the scene.
-class SkyBloxComponent : public Component
+class SkyBoxComponent : public Component
 {
 public:
-	SkyBloxComponent() = default;
+	SkyBoxComponent() = default;
 
 	///This method creates the vertices for the skybox.
 	///
 	///This method creates the skybox cube along with it's VAO and VBO objects, as well as then loading and saving all texture faces.
 	///@param _fileLoc This is the path for the textures
-	SkyBloxComponent(const std::string& _fileLoc);
+	SkyBoxComponent(const std::string& _fileLoc);
 
 	///This method draws the skybox to the scene.
 	///

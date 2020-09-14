@@ -74,58 +74,7 @@ void Core::start()
 	lastTime = glfwGetTime() * 1000;
 	quit = false;
 
-	rp3d::PhysicsCommon physicsCommon;
-	//rp3d::PhysicsWorld* world = physicsCommon.createPhysicsWorld();
-
-	// Gravity vector in the physics world
-	rp3d::Vector3 gravity(0, rp3d::decimal(-9.81), 0);
-	sceneManager->activeScene->world->setGravity(gravity);
-	rp3d::Vector3 position(0, 20, 0);
-	rp3d::Quaternion orientation = reactphysics3d::Quaternion::identity();
-	rp3d::Transform transform(position, orientation);
-	rp3d::RigidBody* body = sceneManager->activeScene->world->createRigidBody(transform);
-	body->setType(reactphysics3d::BodyType::DYNAMIC);
-	body->setAngularDamping(0.3);
-	body->setLinearDamping(0.3);
-	
-	std::shared_ptr<Entity> Crate2 = addEntity();
-	std::shared_ptr<TransformComponent> TC3 = Crate2->addComponent<TransformComponent>();
-	std::shared_ptr<RendererComponent> entityRenderer3 = Crate2->addComponent<RendererComponent>();
-	entityRenderer3->setMesh("Assets/Cube.obj", "Assets/Crate.jpg");
-	TC3->setRot(glm::vec3(0, 0, 0));
-	TC3->setScale(glm::vec3(1.0f));
-	// Half extents of the box in the x, y and z directions 
-	const reactphysics3d::Vector3 halfExtents(10.0, 10.0, 10.0);
-	// Create the box shape 
-	rp3d::BoxShape* boxShape = physicsCommon.createBoxShape(halfExtents);
-	body->addCollider(boxShape, transform);
-	auto& mat = body->getCollider(0)->getMaterial();
-	mat.setBounciness(0.2);
-	mat.setMassDensity(5);
-	body->updateMassPropertiesFromColliders();
-
-	std::shared_ptr<Entity> Map = addEntity();
-	std::shared_ptr<TransformComponent> transComp = Map->addComponent<TransformComponent>();
-	std::shared_ptr<RendererComponent> er = Map->addComponent<RendererComponent>();
-	er->setMesh("Assets/Map.obj", "Assets/Crate.jpg");
-	transComp->setPos(glm::vec3(0, 0.0f, 0.0f));
-	transComp->setRot(glm::vec3(0, 0, 0));
-	transComp->setScale(glm::vec3(1.0f));
-	rp3d::Vector3 position2(0, 0.0f, 0.0f);
-	rp3d::Quaternion orientation2 = reactphysics3d::Quaternion::identity();
-	rp3d::Transform MapTrans(position2, orientation2);
-	rp3d::RigidBody* mapRB = sceneManager->activeScene->world->createRigidBody(MapTrans);
-	mapRB->setType(rp3d::BodyType::STATIC);
-	// Half extents of the box in the x, y and z directions 
-	const rp3d::Vector3 halfExtents2(100.0, 12, 100.0);
-	// Create the box shape 
-	rp3d::BoxShape* boxShape2 = physicsCommon.createBoxShape(halfExtents2);
-	mapRB->addCollider(boxShape2, MapTrans);
-	mapRB->getCollider(0)->getMaterial().setBounciness(0);
-
 	long double accumulator = 0;
-	long double previousFrameTime = 0;
-
 	while (!glfwWindowShouldClose(window) && !quit)
 	{
 		time = glfwGetTime() * 1000;
@@ -135,8 +84,6 @@ void Core::start()
 
 		// Add the time difference in the accumulator 
 		accumulator += Time::deltaTime;
-
-		const reactphysics3d::Transform& oldTrans = body->getTransform();
 
 		idealTime = 1.0f / 60.0f;
 
@@ -150,16 +97,6 @@ void Core::start()
 			// Decrease the accumulated time 
 			accumulator -= idealTime;
 		}
-		// Compute the time interpolation factor 
-		double factor = accumulator / idealTime;
-
-		// Get the updated position of the body 
-		const reactphysics3d::Transform& transform = body->getTransform();
-		rp3d::Transform interpolatedTransform = rp3d::Transform::interpolateTransforms(oldTrans, transform, factor);
-		const reactphysics3d::Vector3& position = interpolatedTransform.getPosition();
-		TC3->setPos(glm::vec3(position.x, position.y, position.z));
-		const reactphysics3d::Quaternion& rotation = interpolatedTransform.getOrientation();
-		TC3->setRot(glm::vec3(rotation.x, rotation.y, rotation.z));
 
 		//Clear the screen to white and also clear the color and depth buffer
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -180,10 +117,6 @@ void Core::start()
 			std::this_thread::sleep_for((idealTime - Time::deltaTime) * 1000ms);
 		}
 	}
-
-	// Destroy a rigid body 
-	sceneManager->activeScene->world->destroyRigidBody(body);
-	sceneManager->activeScene->world->destroyRigidBody(mapRB);
 }
 
 std::shared_ptr<Entity> Core::addEntity()

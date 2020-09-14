@@ -6,6 +6,8 @@
 ///This method creates entities and populates them with components before starting the game loop.
 int main()
 {
+	//TODO Entities require RendererComponent otherwise crash
+
 	//Init
 	shared<Core> core = Core::Initialize("Arc Light", 1280, 720);
 	auto prop = Scene::createWorldPhysicsSettings();
@@ -13,30 +15,6 @@ int main()
 	prop.isSleepingEnabled = { true };
 	shared<Scene> scene1 = core->addScene();
 	scene1->addPhysicsWorld(prop);
-
-	/*shared<Entity> Crate = core->addEntity();
-	shared<TransformComponent> TC = Crate->addComponent<TransformComponent>();
-	shared<RendererComponent> entityRenderer = Crate->addComponent<RendererComponent>();
-	entityRenderer->setMesh("Assets/Cube.obj", "Assets/Crate.jpg");
-	TC->setPos(glm::vec3(-0.3f, 0.0f, 0.0f));
-	TC->setRot(glm::vec3(0, 0, 0));
-	TC->setScale(glm::vec3(0.2f));
-	shared<LuaComponent> luaTest = Crate->addComponent<LuaComponent>();
-	luaTest->initialise("Assets/Lua/start.lua");
-	shared<LuaComponent> luaTest2 = Crate->addComponent<LuaComponent>();
-	luaTest2->initialise("Assets/Lua/rotator.lua");
-	shared<AudioComponent> AC = Crate->addComponent<AudioComponent>();*/
-	//AC->playAudio("Assets/Kryp.ogg"); //Background audio
-
-	/*shared<Entity> Crate2 = core->addEntity();
-	shared<TransformComponent> TC3 = Crate2->addComponent<TransformComponent>();
-	shared<RendererComponent> entityRenderer3 = Crate2->addComponent<RendererComponent>();
-	entityRenderer3->setMesh("Assets/map.obj", "Assets/Crate.jpg");
-	TC3->setPos(glm::vec3(-0.3f, 0.0f, 1.0f));
-	TC3->setRot(glm::vec3(0, 0, 0));
-	TC3->setScale(glm::vec3(0.2f));*/
-	/*shared<LuaComponent> luaTest3 = Crate2->addComponent<LuaComponent>();
-	luaTest3->initialise("Assets/Lua/sineMotion.lua");*/
 
 	shared<Entity> Player = core->addEntity();
 	shared<TransformComponent> TC2 = Player->addComponent<TransformComponent>();
@@ -53,15 +31,39 @@ int main()
 	shared<AudioComponent> AC2 = Player->addComponent<AudioComponent>();
 	Player->addComponent<TPCameraComponent>()->initialise();
 
-	shared<Entity> testRB = core->addEntity();
-	testRB->addComponent<RigidBodyComponent>()->Init();
+	shared<Entity> Map = core->addEntity();
+	shared<RendererComponent> mRC = Map->addComponent<RendererComponent>();
+	mRC->setMesh("Assets/Map.obj", "Assets/Crate.jpg");
+	shared<TransformComponent> mTC = Map->addComponent<TransformComponent>();
+	mTC->setPos(glm::vec3(0.0f, 0.0f, 0.0f));
+	mTC->setRot(glm::vec3(0, 0, 0));
+	mTC->setScale(glm::vec3(1.0f));
+	shared<RigidBodyComponent> mRb = Map->addComponent<RigidBodyComponent>();
+	mRb->initialise();
+	mRb->setType(RigidBodyComponent::RIGIDBODYTYPE::STATIC);
+	mRb->addCollider(RigidBodyComponent::COLLIDERTYPE::BOX, glm::vec3(200, 24, 200));
+	mRb->setBounciness(0);
 
+	shared<Entity> testRB = core->addEntity();
+	shared<RendererComponent> rbRC = testRB->addComponent<RendererComponent>();
+	rbRC->setMesh("Assets/Cube.obj", "Assets/Crate.jpg");
+	shared<TransformComponent> rbTC = testRB->addComponent<TransformComponent>();
+	rbTC->setPos(glm::vec3(0.0f, 20.0f, 0.0f));
+	rbTC->setRot(glm::vec3(0, 0, 0));
+	rbTC->setScale(glm::vec3(1.0f));
+	shared<RigidBodyComponent> rb = testRB->addComponent<RigidBodyComponent>();
+	rb->initialise();
+	rb->setType(RigidBodyComponent::RIGIDBODYTYPE::DYNAMIC);
+	rb->addCollider(RigidBodyComponent::COLLIDERTYPE::BOX, glm::vec3(20, 20, 20));
+	//Any higher and possibly float precision lost with bounce?
+	rb->setBounciness(0.4);
+	rb->setMass(5);
 
 	shared<Entity> skybox = core->addEntity();
 	shared<RendererComponent> RC = skybox->addComponent<RendererComponent>();
 	RC->setShader("Shaders/skybox.vert", "Shaders/skybox.frag");
 	RC->getShader()->SetUniform("skybox", 0);
-	shared<SkyBloxComponent> SB = skybox->addComponent<SkyBloxComponent>("Assets/Skybox");
+	shared<SkyBoxComponent> SB = skybox->addComponent<SkyBoxComponent>("Assets/Skybox");
 	
 	core->setActiveScene(scene1); 
 

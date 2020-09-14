@@ -7,7 +7,7 @@
 #include "Core.h"
 #include "Camera.h"
 
-SkyBloxComponent::SkyBloxComponent(const std::string& _fileLoc)
+SkyBoxComponent::SkyBoxComponent(const std::string& _fileLoc)
 {
 	skyboxVertices = {
 		// Positions
@@ -77,7 +77,7 @@ SkyBloxComponent::SkyBloxComponent(const std::string& _fileLoc)
 	cubemapTexture = texture->loadCubemap(faces);
 }
 
-void SkyBloxComponent::onDisplay()
+void SkyBoxComponent::onDisplay()
 {
 	// draw skybox as last
 	glDepthFunc(GL_LEQUAL);  // change depth function so depth test passes when values are equal to depth buffer's content
