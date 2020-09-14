@@ -56,7 +56,7 @@ int main()
 	rb->setType(RigidBodyComponent::RIGIDBODYTYPE::DYNAMIC);
 	rb->addCollider(RigidBodyComponent::COLLIDERTYPE::BOX, glm::vec3(20, 20, 20));
 	//Any higher and possibly float precision lost with bounce?
-	rb->setBounciness(0.4);
+	rb->setBounciness(0.3);
 	rb->setMass(5);
 
 	shared<Entity> skybox = core->addEntity();

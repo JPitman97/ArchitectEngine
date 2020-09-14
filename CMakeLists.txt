@@ -51,6 +51,8 @@ add_library(ArchitectEngine
 	src/ArchitectEngine/SceneManager.h
     src/ArchitectEngine/Scene.cpp
 	src/ArchitectEngine/Scene.h
+	src/ArchitectEngine/RigidBodyComponent.cpp
+	src/ArchitectEngine/RigidBodyComponent.h
 )
 
 target_include_directories(ArchitectEngine PUBLIC ${CMAKE_SOURCE_DIR}/External/include/msvc)

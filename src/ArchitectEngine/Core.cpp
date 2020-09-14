@@ -67,8 +67,6 @@ std::shared_ptr<Core> Core::Initialize(std::string _title, int _width, int _heig
 	return core;
 }
 
-#include <reactphysics3d/reactphysics3d.h>
-#include "RendererComponent.h"
 void Core::start()
 {
 	lastTime = glfwGetTime() * 1000;
