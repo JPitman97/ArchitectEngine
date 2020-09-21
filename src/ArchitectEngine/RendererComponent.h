@@ -35,8 +35,7 @@ public:
 	///
 	///This method sets the mesh and texture to the passed in values.
 	///@param _path This is the path to the model
-	///@param _texPath This is the path to the texture
-	void setMesh(const std::string& _path, const std::string& _texPath);
+	void setMesh(const std::string& _path);
 	///This method returns the mesh.
 	///
 	///This method returns the mesh object.

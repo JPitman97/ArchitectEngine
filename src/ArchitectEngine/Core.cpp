@@ -64,6 +64,24 @@ std::shared_ptr<Core> Core::Initialize(std::string _title, int _width, int _heig
 	core->getShaderProgram()->SetUniform("modelMatrix", core->modelMatrix);
 	core->getShaderProgram()->SetUniform("viewMatrix", core->viewMatrix);
 
+	// Setup Dear ImGui context
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+	io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+
+	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+
+	// Setup Dear ImGui style
+	ImGui::StyleColorsDark();
+	//ImGui::StyleColorsClassic();
+
+	// Setup Platform/Renderer bindings
+	ImGui_ImplGlfw_InitForOpenGL(core->window, true);
+	ImGui_ImplOpenGL3_Init("#version 330");
+
 	return core;
 }
 
@@ -73,6 +91,7 @@ void Core::start()
 	quit = false;
 
 	long double accumulator = 0;
+
 	while (!glfwWindowShouldClose(window) && !quit)
 	{
 		time = glfwGetTime() * 1000;
@@ -100,10 +119,27 @@ void Core::start()
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		//// Start the Dear ImGui frame
+		//ImGui_ImplOpenGL3_NewFrame();
+		//ImGui_ImplGlfw_NewFrame();
+		//ImGui::NewFrame();
+
+
 		for (auto& entity : sceneManager->activeScene->SceneEntities)
 		{
 			entity->update();
 		}
+		//// Rendering
+		//ImGui::Render();
+		//ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+		//// Update and Render additional Platform Windows
+		//// (Platform functions may change the current OpenGL context, so we save/restore it to make it easier to paste this code elsewhere.
+		////  For this specific demo app we could also call glfwMakeContextCurrent(window) directly)
+
+		//GLFWwindow* backup_current_context = glfwGetCurrentContext();
+		//ImGui::UpdatePlatformWindows();
+		//ImGui::RenderPlatformWindowsDefault();
+		//glfwMakeContextCurrent(backup_current_context);
 
 		//Swap buffers
 		glfwSwapBuffers(window);
@@ -115,6 +151,10 @@ void Core::start()
 			std::this_thread::sleep_for((idealTime - Time::deltaTime) * 1000ms);
 		}
 	}
+	//// Cleanup
+	//ImGui_ImplOpenGL3_Shutdown();
+	//ImGui_ImplGlfw_Shutdown();
+	ImGui::DestroyContext();
 }
 
 std::shared_ptr<Entity> Core::addEntity()

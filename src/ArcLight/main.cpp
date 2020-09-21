@@ -23,7 +23,6 @@ int main()
 	entityRenderer2->getShader()->SetUniform("projectionMatrix", core->getDefaultProjectionMatrix());
 	entityRenderer2->getShader()->SetUniform("modelMatrix", core->getDefaultModelMatrix());
 	entityRenderer2->getShader()->SetUniform("viewMatrix", core->getDefaultViewMatrix());
-	//entityRenderer2->setMesh("Assets/ivysaur.obj", "Assets/ivysaur_diffuse.jpg");
 	TC2->setPos(glm::vec3(0.0f, 5.0f, 5.0f));
 	TC2->setRot(glm::vec3(0, 0, 0));
 	TC2->setScale(glm::vec3(0.2f));
@@ -33,7 +32,7 @@ int main()
 
 	shared<Entity> Map = core->addEntity();
 	shared<RendererComponent> mRC = Map->addComponent<RendererComponent>();
-	mRC->setMesh("Assets/Map.obj", "Assets/Crate.jpg");
+	mRC->setMesh("Assets/Models/Map.obj");
 	shared<TransformComponent> mTC = Map->addComponent<TransformComponent>();
 	mTC->setPos(glm::vec3(0.0f, 0.0f, 0.0f));
 	mTC->setRot(glm::vec3(0, 0, 0));
@@ -46,7 +45,7 @@ int main()
 
 	shared<Entity> testRB = core->addEntity();
 	shared<RendererComponent> rbRC = testRB->addComponent<RendererComponent>();
-	rbRC->setMesh("Assets/Cube.obj", "Assets/Crate.jpg");
+	rbRC->setMesh("Assets/Models/CubeNewTexture.obj");
 	shared<TransformComponent> rbTC = testRB->addComponent<TransformComponent>();
 	rbTC->setPos(glm::vec3(0.0f, 20.0f, 0.0f));
 	rbTC->setRot(glm::vec3(0, 0, 0));

@@ -3,6 +3,12 @@
 
 #include <memory>
 #include <vector>
+
+#define IMGUI_IMPL_OPENGL_LOADER_GLAD2
+#include <dearimgui/imgui.h>
+#include <dearimgui/imgui_impl_glfw.h>
+#include <dearimgui/imgui_impl_opengl3.h>
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/mat4x2.hpp>

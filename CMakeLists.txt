@@ -1,20 +1,56 @@
-cmake_minimum_required(VERSION 3.8) 
+cmake_minimum_required(VERSION 3.18) 
 project(ARCHITECTENGINE)
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 include_directories(src)
 
+set(GLAD External/include/msvc/glad/glad.c) # Glad extension library
+set(DEARIMGUI
+	External/include/msvc/dearimgui/imgui.cpp
+	External/include/msvc/dearimgui/imgui.h
+	External/Include/msvc/dearimgui/imgui_demo.cpp
+	External/include/msvc/dearimgui/imconfig.h
+	External/include/msvc/dearimgui/imgui_impl_glfw.cpp
+	External/include/msvc/dearimgui/imgui_impl_glfw.h
+	External/include/msvc/dearimgui/imgui_impl_opengl3.cpp
+	External/include/msvc/dearimgui/imgui_impl_opengl3.h
+	External/include/msvc/dearimgui/imgui_internal.h
+	External/include/msvc/dearimgui/imgui_widgets.cpp
+	External/include/msvc/dearimgui/imgui_draw.cpp
+	External/include/msvc/dearimgui/imstb_rectpack.h
+	External/include/msvc/dearimgui/imstb_textedit.h
+	External/include/msvc/dearimgui/imstb_truetype.h
+)
+set(COMPONENTS
+	src/ArchitectEngine/RendererComponent.cpp
+	src/ArchitectEngine/RendererComponent.h
+	src/ArchitectEngine/LuaComponent.cpp
+	src/ArchitectEngine/LuaComponent.h
+	src/ArchitectEngine/TPCameraComponent.cpp
+	src/ArchitectEngine/TPCameraComponent.h
+	src/ArchitectEngine/TransformComponent.cpp
+	src/ArchitectEngine/TransformComponent.h
+	src/ArchitectEngine/SkyboxComponent.cpp
+	src/ArchitectEngine/SkyboxComponent.h
+	src/Architectengine/InputComponent.cpp
+	src/Architectengine/InputComponent.h
+	src/ArchitectEngine/BoxColliderComponent.cpp
+	src/ArchitectEngine/BoxColliderComponent.h
+	src/ArchitectEngine/RigidBodyComponent.cpp
+	src/ArchitectEngine/RigidBodyComponent.h
+)
 add_library(ArchitectEngine
-	External/include/msvc/glad/glad.c # Glad extension library
+	${GLAD}
+	${DEARIMGUI}
+	${COMPONENTS}
+	
 	src/ArchitectEngine/Core.cpp
 	src/ArchitectEngine/Core.h
 	src/ArchitectEngine/Entity.cpp
 	src/ArchitectEngine/Entity.h
 	src/ArchitectEngine/Component.cpp
 	src/ArchitectEngine/Component.h
-	src/ArchitectEngine/RendererComponent.cpp
-	src/ArchitectEngine/RendererComponent.h
-	src/ArchitectEngine/LuaComponent.cpp
-	src/ArchitectEngine/LuaComponent.h
+
 	src/ArchitectEngine/architectengine.h
 	src/ArchitectEngine/Camera.cpp
 	src/ArchitectEngine/Camera.h
@@ -28,32 +64,26 @@ add_library(ArchitectEngine
 	src/ArchitectEngine/VertexArray.h
 	src/ArchitectEngine/VertexBuffer.cpp
 	src/ArchitectEngine/VertexBuffer.h
-	src/ArchitectEngine/TPCameraComponent.cpp
-	src/ArchitectEngine/TPCameraComponent.h
-	src/ArchitectEngine/TransformComponent.cpp
-	src/ArchitectEngine/TransformComponent.h
-	src/ArchitectEngine/ObjectLoader.h
+	
 	src/ArchitectEngine/Enviroment.cpp
 	src/ArchitectEngine/Enviroment.h
 	src/ArchitectEngine/Time.cpp
 	src/ArchitectEngine/Time.h
-	src/ArchitectEngine/SkyboxComponent.cpp
-	src/ArchitectEngine/SkyboxComponent.h
+	
 	src/Architectengine/Input.cpp
 	src/Architectengine/Input.h
-	src/Architectengine/InputComponent.cpp
-	src/Architectengine/InputComponent.h
-	src/ArchitectEngine/BoxColliderComponent.cpp
-	src/ArchitectEngine/BoxColliderComponent.h
+	
 	src/ArchitectEngine/AudioComponent.cpp
 	src/ArchitectEngine/AudioComponent.h
 	src/ArchitectEngine/SceneManager.cpp
 	src/ArchitectEngine/SceneManager.h
     src/ArchitectEngine/Scene.cpp
 	src/ArchitectEngine/Scene.h
-	src/ArchitectEngine/RigidBodyComponent.cpp
-	src/ArchitectEngine/RigidBodyComponent.h
 )
+
+source_group(glad FILES ${GLAD})
+source_group(dearimgui FILES ${DEARIMGUI})
+source_group(Components FILES ${COMPONENTS})
 
 target_include_directories(ArchitectEngine PUBLIC ${CMAKE_SOURCE_DIR}/External/include/msvc)
 
